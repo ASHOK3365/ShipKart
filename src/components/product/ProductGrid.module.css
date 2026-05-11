@@ -1,0 +1,142 @@
+.wrapper {
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 4rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--text-white);
+  letter-spacing: -0.04em;
+  margin-bottom: 0.5rem;
+}
+
+.count {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.count::before {
+  content: '';
+  width: 16px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: 2px;
+  box-shadow: var(--glow-primary);
+}
+
+.sort {
+  padding: 1rem 2rem;
+  border-radius: var(--radius-md);
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-white);
+  outline: none;
+  cursor: pointer;
+  transition: var(--transition);
+  appearance: none;
+  box-shadow: var(--shadow-secondary);
+}
+
+.sort:hover {
+  background: #F8FAFC;
+  border-color: rgba(203, 213, 225, 0.8);
+  box-shadow: var(--shadow-primary);
+}
+
+.sort option {
+  background: #FFFFFF;
+  color: var(--text-white);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2.5rem;
+  row-gap: 4rem;
+}
+
+.gridItem {
+  height: 100%;
+  display: flex;
+  perspective: 1000px;
+}
+
+.empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 12rem 0;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border-radius: var(--radius-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  box-shadow: var(--shadow-primary);
+  border: 1px solid var(--border);
+}
+
+.empty h3 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-white);
+}
+
+.empty p {
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+/* Responsiveness */
+@media (max-width: 1800px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    row-gap: 3.5rem;
+  }
+}
+
+@media (max-width: 1440px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    row-gap: 3rem;
+  }
+  .title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+}

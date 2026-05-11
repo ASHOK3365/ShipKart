@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+:root {
+  --bg-dark: #F8FAFC; 
+  --bg-surface: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --primary: #5B6CFF;
+  --primary-hover: #7C8BFF;
+  --accent: #00E5FF;
+  --accent-hover: #33EEFF;
+  --secondary: #7C4DFF;
+  --tertiary: #FF4D8D;
+  --text-white: #0F172A;
+  --text-muted: #64748B;
+  --border: rgba(226, 232, 240, 0.7);
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --shadow-primary: 0 10px 30px rgba(15, 23, 42, 0.06);
+  --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  --radius-md: 16px;
+  --radius-lg: 24px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-white);
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', sans-serif;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

@@ -1,0 +1,53 @@
+.recentSection {
+  margin: 4rem 0;
+  padding: 0 2rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.titleGroup {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.icon {
+  color: #3B82F6;
+}
+
+.titleGroup h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.clearBtn {
+  font-size: 0.85rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.clearBtn:hover {
+  color: #0f172a;
+}
+
+.grid {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+  scrollbar-width: none;
+}
+
+.grid::-webkit-scrollbar {
+  display: none;
+}
+
+.itemWrapper {
+  flex: 0 0 300px;
+}
