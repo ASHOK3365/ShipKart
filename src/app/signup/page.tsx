@@ -142,7 +142,7 @@ export default function SignupPage() {
                     }} 
                   />
                 </div>
-                <span style={{ fontSize: '0.75rem', color: var(--text-muted), fontWeight: 600 }}>
+                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontWeight: 600 }}>
                   {getPasswordStrength() <= 33 && 'Weak'}
                   {getPasswordStrength() > 33 && getPasswordStrength() <= 66 && 'Medium'}
                   {getPasswordStrength() > 66 && 'Strong'}
