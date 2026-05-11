@@ -1,10 +1,10 @@
 export interface Product {
   id: string;
-  slug: string;
+  slug?: string;
   name: string;
   brand: string;
   category: string;
-  subCategory: string;
+  subCategory?: string;
   description: string;
   longDescription?: string;
   price: number;
@@ -28,6 +28,9 @@ export interface Product {
   dealProgress?: number;
   weight?: string;
   nutritionInfo?: Record<string, string>;
+  processor?: string;
+  ram?: string;
+  storage?: string;
 }
 
 

@@ -74,7 +74,7 @@ export default function ForgotPasswordPage() {
             className={styles.successView}
             style={{ textAlign: 'center' }}
           >
-            <div className={styles.successIcon} style={{ width: '80px', height: '80px', borderRadius: '50%', background: 'rgba(16, 185, 129, 0.1)', color: '#10B981', display: 'flex', alignItems: 'center', justifyCenter: 'center', margin: '0 auto 2rem' }}>
+            <div className={styles.successIcon} style={{ width: '80px', height: '80px', borderRadius: '50%', background: 'rgba(16, 185, 129, 0.1)', color: '#10B981', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 2rem' }}>
               <Sparkles size={40} />
             </div>
             <h1 style={{ fontSize: '1.75rem', marginBottom: '1rem', color: 'var(--text-white)' }}>Check Your Email</h1>

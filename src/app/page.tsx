@@ -89,10 +89,12 @@ export default function Home() {
                 <motion.div 
                   className={`${styles.floatingProduct} ${styles.fp1}`}
                   initial={{ opacity: 0, scale: 0.8, y: 100 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  transition={{ duration: 1, delay: 0.2 }}
-                  animate={{ y: [0, -20, 0] }}
-                  transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+                  animate={{ opacity: 1, scale: 1, y: [0, -20, 0] }}
+                  transition={{ 
+                    y: { repeat: Infinity, duration: 6, ease: "easeInOut" },
+                    opacity: { duration: 1, delay: 0.2 },
+                    scale: { duration: 1, delay: 0.2 }
+                  }}
                 >
                   <img src="https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?q=80&w=600" alt="Premium Laptop" style={{ width: '100%', borderRadius: '8px' }} />
                 </motion.div>
@@ -100,10 +102,13 @@ export default function Home() {
                 <motion.div 
                   className={`${styles.floatingProduct} ${styles.fp2}`}
                   initial={{ opacity: 0, scale: 0.8, x: 100 }}
-                  animate={{ opacity: 1, scale: 1, x: 0 }}
-                  transition={{ duration: 1, delay: 0.4 }}
-                  animate={{ y: [0, 20, 0] }}
-                  transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
+                  animate={{ opacity: 1, scale: 1, x: 0, y: [0, 20, 0] }}
+                  transition={{ 
+                    y: { repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 },
+                    opacity: { duration: 1, delay: 0.4 },
+                    scale: { duration: 1, delay: 0.4 },
+                    x: { duration: 1, delay: 0.4 }
+                  }}
                 >
                   <img src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db?q=80&w=400" alt="Gaming Console" style={{ width: '100%', borderRadius: '8px' }} />
                 </motion.div>
@@ -111,10 +116,12 @@ export default function Home() {
                 <motion.div 
                   className={`${styles.floatingProduct} ${styles.fp3}`}
                   initial={{ opacity: 0, scale: 0.8, y: -100 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  transition={{ duration: 1, delay: 0.6 }}
-                  animate={{ y: [0, -15, 0] }}
-                  transition={{ repeat: Infinity, duration: 7, ease: "easeInOut", delay: 2 }}
+                  animate={{ opacity: 1, scale: 1, y: [0, -15, 0] }}
+                  transition={{ 
+                    y: { repeat: Infinity, duration: 7, ease: "easeInOut", delay: 2 },
+                    opacity: { duration: 1, delay: 0.6 },
+                    scale: { duration: 1, delay: 0.6 }
+                  }}
                 >
                   <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=400" alt="Premium Headphones" style={{ width: '100%', borderRadius: '8px' }} />
                 </motion.div>

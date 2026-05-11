@@ -27,7 +27,7 @@ const SELLER_STATS = [
   { label: 'Active Products', value: '42', change: 2, trend: 'up' },
   { label: 'Pending Orders', value: '12', change: -5, trend: 'down' },
   { label: 'Customer Rating', value: '4.8', change: 0.1, trend: 'up' },
-];
+] as const;
 
 const PERFORMANCE_DATA = [
   { name: 'Mon', sales: 400 },
