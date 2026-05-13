@@ -11,7 +11,9 @@ const AIAssistant = dynamic(() => import('@/components/ui/AIAssistant'), {
 
 export default function AppWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const isCustomLayoutPage = pathname === '/categories/grocery' || pathname === '/categories/mobiles';
+  const isCustomLayoutPage = pathname === '/categories/grocery' || 
+                             pathname === '/categories/mobiles' || 
+                             pathname === '/categories/electronics';
 
   if (isCustomLayoutPage) {
     return (
