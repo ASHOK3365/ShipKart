@@ -20,7 +20,8 @@ import { products } from '@/data/products';
 import ApplianceShowcase from '@/components/product/ApplianceShowcase';
 import styles from './page.module.css';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, Sparkles, Zap, BrainCircuit, Headphones, Smartphone, ShoppingBag, Watch, Mic } from 'lucide-react';
+import SafeImage from '@/components/ui/SafeImage';
+import { ArrowRight, Sparkles, Zap, BrainCircuit, Headphones, Smartphone, ShoppingBag, Watch, Mic, Heart } from 'lucide-react';
 
 export default function Home() {
   const [activeCategory, setActiveCategory] = useState('Home');
