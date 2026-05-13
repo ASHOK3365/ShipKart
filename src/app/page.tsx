@@ -21,7 +21,7 @@ import ApplianceShowcase from '@/components/product/ApplianceShowcase';
 import styles from './page.module.css';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import SafeImage from '@/components/ui/SafeImage';
-import { ArrowRight, Sparkles, Zap, BrainCircuit, Headphones, Smartphone, ShoppingBag, Watch, Mic, Heart, Search, User, Instagram, Twitter } from 'lucide-react';
+import { ArrowRight, Sparkles, Zap, BrainCircuit, Headphones, Smartphone, ShoppingBag, Watch, Mic, Heart, Search, User, Instagram, Share2 } from 'lucide-react';
 
 export default function Home() {
   const [activeCategory, setActiveCategory] = useState('Home');
@@ -82,7 +82,7 @@ export default function Home() {
               </p>
               <div className={styles.socialMinimal}>
                 <div className={styles.socialItem}><Instagram size={14} /> <span>Instagram</span></div>
-                <div className={styles.socialItem}><Twitter size={14} /> <span>Twitter</span></div>
+                <div className={styles.socialItem}><Share2 size={14} /> <span>Social</span></div>
               </div>
             </div>
 
