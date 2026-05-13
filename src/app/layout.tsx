@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import ErrorBoundary from "@/components/ui/ErrorBoundary";
 import StructuredData from "@/components/ui/StructuredData";
+import AppWrapper from "@/components/layout/AppWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,11 +15,9 @@ const orgData = {
   "logo": "https://shopkart-ai.vercel.app/logo.png"
 };
 
-
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.SITE_URL || 'http://localhost:3000'),
   title: "ShopKart AI | Premium AI-Powered E-commerce Ecosystem",
-
   description: "Experience the future of commerce with Antigravity Brain. Predictive search, curated luxury products, and frictionless AI-assisted shopping.",
   keywords: ["ecommerce", "AI shopping", "luxury electronics", "smart appliances", "Antigravity AI"],
   authors: [{ name: "Antigravity Team" }],
@@ -38,33 +37,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "ShopKart AI | Premium Commerce",
-    description: "AI-powered shopping experience.",
-    images: ["/og-image.jpg"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
 };
-
-
-import GlobalSidebar from "@/components/layout/GlobalSidebar";
-import Navbar from "@/components/layout/Navbar";
-import dynamic from 'next/dynamic';
-
-const AIAssistant = dynamic(() => import('@/components/ui/AIAssistant'), {
-  ssr: false
-});
 
 export default function RootLayout({
   children,
@@ -81,46 +54,13 @@ export default function RootLayout({
         <meta name="theme-color" content="#EDE8FF" />
       </head>
 
-
       <body className={inter.className}>
         <StructuredData data={orgData} />
         <ErrorBoundary>
-          <div className="app-container">
-            <GlobalSidebar />
-            <div className="main-viewport">
-              <Navbar />
-              <main className="page-content">
-                {children}
-              </main>
-            </div>
-          </div>
-          <AIAssistant />
+          <AppWrapper>
+            {children}
+          </AppWrapper>
         </ErrorBoundary>
-
-        <style jsx global>{`
-          .app-container {
-            display: flex;
-            min-height: 100vh;
-            background-color: var(--bg-primary);
-          }
-          .main-viewport {
-            flex: 1;
-            margin-left: 300px; /* Sidebar width + spacing */
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-          }
-          .page-content {
-            margin-top: 80px; /* Navbar height + spacing */
-            flex: 1;
-          }
-          @media (max-width: 1024px) {
-            .main-viewport {
-              margin-left: 0;
-            }
-          }
-        `}</style>
       </body>
     </html>
   );
