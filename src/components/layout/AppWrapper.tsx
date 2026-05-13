@@ -1,4 +1,13 @@
+'use client';
+import React from 'react';
 import { usePathname } from 'next/navigation';
+import dynamic from 'next/dynamic';
+import GlobalSidebar from "./GlobalSidebar";
+import Navbar from "./Navbar";
+
+const AIAssistant = dynamic(() => import('@/components/ui/AIAssistant'), {
+  ssr: false
+});
 
 export default function AppWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -28,4 +37,3 @@ export default function AppWrapper({ children }: { children: React.ReactNode }) 
     </div>
   );
 }
-
