@@ -21,7 +21,7 @@ import ApplianceShowcase from '@/components/product/ApplianceShowcase';
 import styles from './page.module.css';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import SafeImage from '@/components/ui/SafeImage';
-import { ArrowRight, Sparkles, Zap, BrainCircuit, Headphones, Smartphone, ShoppingBag, Watch, Mic, Heart, Search, User, Instagram, Share2 } from 'lucide-react';
+import { ArrowRight, Sparkles, Zap, BrainCircuit, Headphones, Smartphone, ShoppingBag, Watch, Mic, Heart, Search, User, Camera, Share2 } from 'lucide-react';
 
 export default function Home() {
   const [activeCategory, setActiveCategory] = useState('Home');
@@ -81,7 +81,7 @@ export default function Home() {
                 the ultimate online destination for all your footwear needs with the latest styles and trends!
               </p>
               <div className={styles.socialMinimal}>
-                <div className={styles.socialItem}><Instagram size={14} /> <span>Instagram</span></div>
+                <div className={styles.socialItem}><Camera size={14} /> <span>Gallery</span></div>
                 <div className={styles.socialItem}><Share2 size={14} /> <span>Social</span></div>
               </div>
             </div>
