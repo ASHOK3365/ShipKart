@@ -89,29 +89,6 @@ export default function Home() {
       <Navbar activeCategory={activeCategory} onCategoryChange={setActiveCategory} />
       
       <div className={styles.mainFloatingContainer}>
-        {/* Header inside the container */}
-        <header className={styles.containerHeader}>
-          <div className={styles.innerLogo}>
-            <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" strokeWidth="3" fill="none"><path d="M4 12l4-4 4 4 4-4 4 4" /></svg>
-          </div>
-          <div className={styles.innerNavPills}>
-            {currentConfig.pills.map((tab: string) => (
-              <button 
-                key={tab} 
-                className={`${styles.innerTab} ${tab === activeSubCategory ? styles.tabActive : ''}`}
-                onClick={() => setActiveSubCategory(tab)}
-              >
-                {tab}
-              </button>
-            ))}
-          </div>
-          <div className={styles.innerActions}>
-            <button className={styles.iconCircle}><Search size={16} /></button>
-            <button className={styles.iconCircle}><ShoppingBag size={16} /></button>
-            <button className={styles.iconCircle}><User size={16} /></button>
-          </div>
-        </header>
-
         {activeCategory === 'Grocery' ? (
           <div className={styles.groceryContent}>
             {/* Grocery Hero */}
