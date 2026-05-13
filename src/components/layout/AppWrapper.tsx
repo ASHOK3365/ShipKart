@@ -13,7 +13,8 @@ export default function AppWrapper({ children }: { children: React.ReactNode }) 
   const pathname = usePathname();
   const isCustomLayoutPage = pathname === '/categories/grocery' || 
                              pathname === '/categories/mobiles' || 
-                             pathname === '/categories/electronics';
+                             pathname === '/categories/electronics' ||
+                             pathname === '/categories/fashion';
 
   if (isCustomLayoutPage) {
     return (
