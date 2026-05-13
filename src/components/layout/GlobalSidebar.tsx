@@ -28,11 +28,11 @@ const navItems = [
 ];
 
 const categoryIcons = [
-  { icon: UtensilsCrossed, label: 'Grocery' },
-  { icon: Smartphone, label: 'Mobiles' },
-  { icon: Laptop, label: 'Electronics' },
-  { icon: Shirt, label: 'Fashion' },
-  { icon: Bike, label: 'Automotive' },
+  { icon: UtensilsCrossed, label: 'Grocery', href: '/categories/grocery' },
+  { icon: Smartphone, label: 'Mobiles', href: '/categories/mobiles' },
+  { icon: Laptop, label: 'Electronics', href: '/categories/electronics' },
+  { icon: Shirt, label: 'Fashion', href: '/categories/fashion' },
+  { icon: Bike, label: 'Automotive', href: '/categories/automotive' },
 ];
 
 const GlobalSidebar = () => {
@@ -68,10 +68,10 @@ const GlobalSidebar = () => {
           <span className={styles.sectionTitle}>CATEGORIES</span>
           <div className={styles.navGroup}>
             {categoryIcons.map((item) => (
-              <div key={item.label} className={styles.navItem}>
+              <Link key={item.label} href={item.href || '#'} className={styles.navItem}>
                 <item.icon size={20} />
                 <span>{item.label}</span>
-              </div>
+              </Link>
             ))}
           </div>
         </nav>

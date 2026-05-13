@@ -1,14 +1,20 @@
-'use client';
-import React from 'react';
-import GlobalSidebar from "./GlobalSidebar";
-import Navbar from "./Navbar";
-import dynamic from 'next/dynamic';
-
-const AIAssistant = dynamic(() => import('@/components/ui/AIAssistant'), {
-  ssr: false
-});
+import { usePathname } from 'next/navigation';
 
 export default function AppWrapper({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
+  const isGroceryPage = pathname === '/categories/grocery';
+
+  if (isGroceryPage) {
+    return (
+      <div className="app-container" style={{ padding: 0 }}>
+        <main style={{ flex: 1, height: '100vh', overflow: 'hidden' }}>
+          {children}
+        </main>
+        <AIAssistant />
+      </div>
+    );
+  }
+
   return (
     <div className="app-container">
       <GlobalSidebar />
@@ -22,3 +28,4 @@ export default function AppWrapper({ children }: { children: React.ReactNode }) 
     </div>
   );
 }
+
