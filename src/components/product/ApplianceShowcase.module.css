@@ -1,0 +1,366 @@
+.container {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* HERO SECTION */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border-radius: 40px;
+  padding: 6rem;
+  min-height: 600px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  color: white;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+}
+
+.heroBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(99, 102, 241, 0.2);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  padding: 0.5rem 1.25rem;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #818cf8;
+  margin-bottom: 2rem;
+}
+
+.hero h1 {
+  font-size: 4.5rem;
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.gradientText {
+  background: linear-gradient(to right, #818cf8, #c084fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+  font-size: 1.25rem;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin-bottom: 3rem;
+  max-width: 500px;
+}
+
+.heroActions {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.btnPrimary {
+  background: #6366f1;
+  color: white;
+  padding: 1.25rem 2.5rem;
+  border-radius: 16px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  cursor: pointer;
+}
+
+.btnPrimary:hover {
+  background: #4f46e5;
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);
+}
+
+.btnSecondary {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  padding: 1.25rem 2.5rem;
+  border-radius: 16px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.btnSecondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.heroVisual {
+  position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heroImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 500px;
+}
+
+.glowEffect {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.4) 0%, transparent 70%);
+  filter: blur(60px);
+  z-index: 1;
+}
+
+.heroImage {
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.5));
+}
+
+.productTag {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(20px);
+  padding: 1.5rem 2rem;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 3;
+}
+
+.productTag h4 {
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.productTag p {
+  color: #818cf8;
+  font-weight: 800;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+/* CATEGORY BAR */
+.categoryBar {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding: 1rem 8rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.categoryBar::-webkit-scrollbar {
+  display: none;
+}
+
+.catButton {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: white;
+  border: 1px solid #e2e8f0;
+  padding: 1rem 1.5rem;
+  border-radius: 20px;
+  white-space: nowrap;
+  transition: all 0.3s;
+  cursor: pointer;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.catIcon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8fafc;
+  border-radius: 12px;
+  color: #64748b;
+  transition: all 0.3s;
+}
+
+.catName {
+  font-weight: 600;
+  color: #64748b;
+}
+
+.activeCat {
+  background: #0f172a;
+  border-color: #0f172a;
+}
+
+.activeCat .catIcon {
+  background: rgba(99, 102, 241, 0.2);
+  color: #818cf8;
+}
+
+.activeCat .catName {
+  color: white;
+}
+
+.catButton:hover:not(.activeCat) {
+  border-color: #94a3b8;
+  transform: translateY(-2px);
+}
+
+/* SECTIONS */
+.trendingSection {
+  padding: 0 8rem;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 2.5rem;
+}
+
+.sectionHeader h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
+
+.sectionHeader p {
+  color: #64748b;
+  font-size: 1.1rem;
+}
+
+.viewAll {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #6366f1;
+  font-weight: 700;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.trendingGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.mainGridSection {
+  margin-top: 2rem;
+  padding: 0 8rem;
+}
+
+.gridHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.gridHeader h2 {
+  font-size: 1.75rem;
+  font-weight: 800;
+}
+
+.gridStats {
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+/* BRANDS */
+.brandsSection {
+  text-align: center;
+  padding: 4rem 8rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.brandsSection p {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #94a3b8;
+  letter-spacing: 0.2em;
+  margin-bottom: 3rem;
+}
+
+.brandLogos {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  flex-wrap: wrap;
+}
+
+.brandLogos span {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #cbd5e1;
+  transition: all 0.3s;
+}
+
+.brandLogos span:hover {
+  color: #64748b;
+}
+
+@media (max-width: 1200px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 4rem;
+    text-align: center;
+  }
+  .heroContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .heroActions {
+    justify-content: center;
+  }
+  .heroVisual {
+    height: 400px;
+  }
+  .trendingGrid, .productGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 3rem;
+  }
+  .trendingGrid, .productGrid {
+    grid-template-columns: 1fr;
+  }
+  .brandLogos {
+    gap: 2rem;
+  }
+}

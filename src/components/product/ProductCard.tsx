@@ -2,7 +2,7 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Heart, Star, Zap, ShieldCheck, Clock } from 'lucide-react';
+import { Heart, Star, Zap, ShieldCheck, Clock, BrainCircuit } from 'lucide-react';
 import { Product } from '@/data/products';
 import styles from './ProductCard.module.css';
 import SafeImage from '@/components/ui/SafeImage';
@@ -67,6 +67,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <div className={styles.breadcrumb}>
             {product.brand} / {product.category}
           </div>
+          {product.category === 'Appliances' && product.specifications?.['Smart Features'] && (
+            <div className={styles.smartTag}>
+              <BrainCircuit size={12} />
+              <span>Smart Connect</span>
+            </div>
+          )}
           {product.energyRating && (
             <div className={styles.energyRating}>
               {Array.from({ length: 5 }).map((_, i) => (

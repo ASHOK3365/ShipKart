@@ -36,11 +36,13 @@ export interface Product {
 
 import { allGroceryProducts } from './groceryData';
 import { allMobileProducts, Smartphone } from './mobileData';
+import { allApplianceProducts } from './applianceData';
 
 export type { Smartphone };
 
 
 const generateProducts = () => {
+  // Generating 400+ realistic products including 100+ appliances
   const allProducts: Product[] = [];
 
   // Add the realistic grocery products first
@@ -49,8 +51,11 @@ const generateProducts = () => {
   // 1. MOBILE (100+ products)
   allProducts.push(...allMobileProducts);
 
+  // 2. APPLIANCES (100+ products)
+  allProducts.push(...allApplianceProducts);
 
-  // 2. ELECTRONICS (40 products)
+
+  // 3. ELECTRONICS (40 products)
 
   const elecBrands = ['Sony', 'Bose', 'JBL', 'Samsung', 'Logitech', 'Zebronics', 'Marshall'];
   const elecImages = [
@@ -81,37 +86,7 @@ const generateProducts = () => {
     });
   }
 
-  // 4. APPLIANCES (30 products)
-  const appBrands = ['LG', 'Samsung', 'Dyson', 'Whirlpool', 'Panasonic', 'Bosch'];
-  const appImages = [
-    '1584622650111-993a426fbf0a', '1581009146145-b5ef03a7471b', '1585333120169-02c017d29497',
-    '1556911220-e1502d338a83', '1581009146145-b5ef03a7471b', '1585659722982-7d60710f7173'
-  ];
-
-  for (let i = 1; i <= 30; i++) {
-    const brand = appBrands[i % appBrands.length];
-    allProducts.push({
-      id: `a-${i}`,
-      name: `${brand} ${i % 3 === 0 ? 'Smart Inverter Fridge' : i % 2 === 0 ? 'Front Load Washer' : 'Air Purifier'} Pro`,
-      brand,
-      category: 'Appliances',
-      subCategory: 'Home',
-      description: `Smart home solution from ${brand}. Energy efficient with advanced ${i % 3 === 0 ? 'Twin Cooling' : 'AI Direct Drive'} technology.`,
-      price: 18900 + (i * 1500),
-      originalPrice: 28900 + (i * 1800),
-      discount: 25,
-      rating: 4.5 + (Math.random() * 0.5),
-      reviews: 1200 + (i * 95),
-      image: `https://images.unsplash.com/photo-${appImages[i % appImages.length]}?q=80&w=800&auto=format&fit=crop`,
-      availability: 'in-stock',
-      deliveryDate: 'Home Delivery in 3 Days',
-      energyRating: 4 + (i % 2),
-      warranty: '2 Year Comprehensive, 10 Year on Motor',
-      emiOptions: 'No Cost EMI from ₹2,499/mo'
-    });
-  }
-
-  // 5. CLOTHING (40 products)
+  // 4. CLOTHING (40 products)
   const clothBrands = ['Nike', 'Adidas', 'Zara', 'Levi\'s', 'Puma', 'Uniqlo'];
   const clothImages = [
     '1523381210434-271e8be1f52b', '1521572163474-6864f9cf17ab', '1516762689617-e1cffcef479d',

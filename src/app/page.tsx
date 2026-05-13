@@ -1,4 +1,5 @@
 'use client';
+// Trigger HMR refresh for premium Appliances ecosystem
 import dynamic from 'next/dynamic';
 import React, { useState } from 'react';
 import Navbar from '@/components/layout/Navbar';
@@ -16,6 +17,7 @@ const FlashDeals = dynamic(() => import('@/components/home/FlashDeals'), {
 });
 
 import { products } from '@/data/products';
+import ApplianceShowcase from '@/components/product/ApplianceShowcase';
 import styles from './page.module.css';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Sparkles, Zap, BrainCircuit, Headphones, Smartphone, ShoppingBag, Watch } from 'lucide-react';
@@ -35,7 +37,7 @@ export default function Home() {
     { name: 'Grocery', icon: <ShoppingBag size={24} />, colorClass: styles.catGrocery, items: '1.2k+ Items' },
     { name: 'Mobile', icon: <Smartphone size={24} />, colorClass: styles.catMobile, items: '450+ Items' },
     { name: 'Electronics', icon: <Watch size={24} />, colorClass: styles.catElectronics, items: '800+ Items' },
-    { name: 'Appliances', icon: <Zap size={24} />, colorClass: styles.catAppliances, items: '320+ Items' }
+    { name: 'Appliances', icon: <Zap size={24} />, colorClass: styles.catAppliances, items: '1.5k+ Items' }
   ];
 
   const brands = ['APPLE', 'SAMSUNG', 'SONY', 'BOSE', 'NIKE', 'DYSON'];
@@ -260,8 +262,9 @@ export default function Home() {
 
           </div>
         ) : (
-          <div className={styles.categoryContainer}>
-            <div className={styles.sidebar}>
+          <div className={activeCategory === 'Appliances' ? styles.fullWidthContainer : styles.categoryContainer}>
+            {activeCategory !== 'Appliances' && (
+              <div className={styles.sidebar}>
               {activeCategory === 'Grocery' && (
                 <div className={styles.filterGroup}>
                   <h3>Subcategories</h3>
@@ -296,18 +299,48 @@ export default function Home() {
                 </div>
               )}
 
-            </div>
-            <div className={styles.mainContent}>
-              <ProductGrid 
-                products={products.filter(p => {
-                  if (p.category.toLowerCase() !== activeCategory.toLowerCase()) return false;
-                  if (activeCategory === 'Grocery' && activeSubCategory !== 'All' && p.subCategory !== activeSubCategory) return false;
-                  if (activeCategory === 'Mobile' && activeSubCategory !== 'All' && p.brand !== activeSubCategory) return false;
-                  return true;
-                })} 
-                category={activeSubCategory === 'All' ? activeCategory : activeSubCategory} 
-              />
+              {activeCategory === 'Appliances' && (
+                <div className={styles.filterGroup}>
+                  <h3>Categories</h3>
+                  <div className={styles.filterList}>
+                    {['All', 'Refrigerators', 'Washing Machines', 'Air Conditioners', 'Microwave Ovens', 'Air Fryers', 'Water Purifiers', 'Vacuum Cleaners', 'Coffee Machines', 'Smart Home Devices', 'Dishwashers', 'Air Purifiers'].map(sub => (
+                      <button 
+                        key={sub}
+                        className={`${styles.filterItem} ${activeSubCategory === sub ? styles.activeFilter : ''}`}
+                        onClick={() => setActiveSubCategory(sub)}
+                      >
+                        {sub}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
 
+            </div>
+            )}
+            <div className={activeCategory === 'Appliances' ? styles.fullWidthContent : styles.mainContent}>
+              {activeCategory === 'Appliances' ? (
+                <ApplianceShowcase 
+                  products={products.filter(p => {
+                    if (p.category !== 'Appliances') return false;
+                    if (activeSubCategory === 'All') return true;
+                    return p.subCategory === activeSubCategory;
+                  })}
+                  activeSubCategory={activeSubCategory}
+                  onSubCategoryChange={setActiveSubCategory}
+                />
+              ) : (
+                <ProductGrid 
+                  products={products.filter(p => {
+                    if (p.category.toLowerCase() !== activeCategory.toLowerCase()) return false;
+                    if (activeSubCategory === 'All') return true;
+                    if (activeCategory === 'Grocery' && p.subCategory !== activeSubCategory) return false;
+                    if (activeCategory === 'Mobile' && p.brand !== activeSubCategory) return false;
+                    return true;
+                  })} 
+                  category={activeSubCategory === 'All' ? activeCategory : activeSubCategory} 
+                />
+              )}
             </div>
           </div>
         )}
