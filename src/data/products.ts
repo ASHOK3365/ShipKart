@@ -38,25 +38,21 @@ import { allGroceryProducts } from './groceryData';
 import { allMobileProducts, Smartphone } from './mobileData';
 import { allApplianceProducts } from './applianceData';
 import { allClothingProducts } from './clothingData';
+import { allBeautyProducts } from './beautyData';
 
 export type { Smartphone };
 
 
 const generateProducts = () => {
-  // Generating 600+ realistic products including 150+ clothing
+  // Generating 800+ realistic products including 120+ beauty items
   const allProducts: Product[] = [];
 
-  // Add the realistic grocery products first
+  // Add the realistic products
   allProducts.push(...allGroceryProducts);
-
-  // 1. MOBILE (100+ products)
   allProducts.push(...allMobileProducts);
-
-  // 2. APPLIANCES (100+ products)
   allProducts.push(...allApplianceProducts);
-
-  // 3. CLOTHING (150+ products)
   allProducts.push(...allClothingProducts);
+  allProducts.push(...allBeautyProducts);
 
 
   // 4. ELECTRONICS (40 products)
@@ -92,33 +88,7 @@ const generateProducts = () => {
 
 
 
-  // 6. BEAUTY (30 products)
-  const beautyBrands = ['L\'Oreal', 'Nivea', 'Dove', 'Lakme', 'Maybelline', 'The Body Shop'];
-  const beautyImages = [
-    '1556228578-0d85b1a4d571', '1596462502278-27bfad450216', '1612817288484-6f916006741a',
-    '1512496015851-a90fb38ba796', '1570172236081-aba100c580ed', '1598440947619-2c35fc9aa908'
-  ];
 
-  for (let i = 1; i <= 30; i++) {
-    const brand = beautyBrands[i % beautyBrands.length];
-    allProducts.push({
-      id: `b-${i}`,
-      name: `${brand} ${i % 2 === 0 ? 'Hydrating Serum' : 'Matte Finish Lipstick'} Pro`,
-      brand,
-      category: 'Beauty',
-      subCategory: 'Cosmetics',
-      description: `Enhance your natural beauty with ${brand}. Dermatologically tested and suitable for all skin types.`,
-      price: 499 + (i * 95),
-      originalPrice: 999 + (i * 120),
-      discount: 40,
-      rating: 4.4 + (Math.random() * 0.6),
-      reviews: 1800 + (i * 65),
-      image: `https://images.unsplash.com/photo-${beautyImages[i % beautyImages.length]}?q=80&w=800&auto=format&fit=crop`,
-      availability: 'in-stock',
-      deliveryDate: 'Delivery in 2 days',
-      labels: ['Trending', 'Premium']
-    });
-  }
 
   // 7. TWO WHEELER (25 products)
   const bikeBrands = ['Honda', 'Hero', 'Yamaha', 'Royal Enfield', 'KTM', 'Bajaj', 'TVS'];

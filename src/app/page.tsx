@@ -424,6 +424,23 @@ export default function Home() {
                 </div>
               )}
 
+              {activeCategory === 'Beauty' && (
+                <div className={styles.filterGroup}>
+                  <h3>Subcategories</h3>
+                  <div className={styles.filterList}>
+                    {['All', 'Skincare', 'Makeup', 'Perfumes', 'Hair Care', 'Lipsticks', 'Foundations', 'Face Serums', 'Sunscreens', 'Eye Makeup', 'Luxury Beauty Kits', 'Organic Beauty', 'Men’s Grooming'].map(sub => (
+                      <button 
+                        key={sub}
+                        className={`${styles.filterItem} ${activeSubCategory === sub ? styles.activeFilter : ''}`}
+                        onClick={() => setActiveSubCategory(sub)}
+                      >
+                        {sub}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
             </div>
             )}
             <div className={activeCategory === 'Appliances' ? styles.fullWidthContent : styles.mainContent}>
@@ -445,6 +462,7 @@ export default function Home() {
                     if (activeCategory === 'Grocery' && p.subCategory !== activeSubCategory) return false;
                     if (activeCategory === 'Mobile' && p.brand !== activeSubCategory) return false;
                     if (activeCategory === 'Clothing' && p.subCategory !== activeSubCategory) return false;
+                    if (activeCategory === 'Beauty' && p.subCategory !== activeSubCategory) return false;
                     return true;
                   })} 
                   category={activeSubCategory === 'All' ? activeCategory : activeSubCategory} 

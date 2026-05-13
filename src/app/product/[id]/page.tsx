@@ -153,6 +153,31 @@ export default function ProductDetailsPage() {
               </div>
             )}
 
+            {/* Beauty Specific: Shades & Skin Compatibility */}
+            {product.category === 'Beauty' && (
+              <div className={styles.fashionOptions}>
+                {product.subCategory === 'Foundations' || product.subCategory === 'Lipsticks' || product.subCategory === 'Makeup' ? (
+                  <div className={styles.optionGroup}>
+                    <div className={styles.optionLabel}>Select Shade</div>
+                    <div className={styles.shadeGrid}>
+                      {['#FAD5B8', '#F3C096', '#E4A36E', '#C6804B', '#9B5A2F', '#71401D'].map((color, idx) => (
+                        <button key={idx} className={styles.colorCircle} style={{ backgroundColor: color }}></button>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <div className={styles.optionGroup}>
+                    <div className={styles.optionLabel}>Skin Type Compatibility</div>
+                    <div className={styles.skinTypeGrid}>
+                      {['Oily', 'Dry', 'Sensitive', 'Normal'].map(type => (
+                        <span key={type} className={styles.skinBadge}>{type}</span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
             {/* 4. SMART ACTIONS */}
             <div className={styles.actionRow}>
               <button 
