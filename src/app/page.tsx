@@ -407,6 +407,23 @@ export default function Home() {
                 </div>
               )}
 
+              {activeCategory === 'Clothing' && (
+                <div className={styles.filterGroup}>
+                  <h3>Subcategories</h3>
+                  <div className={styles.filterList}>
+                    {['All', 'T-Shirts', 'Hoodies', 'Shirts', 'Jeans', 'Jackets', 'Sneakers', 'Activewear', 'Formal Wear', 'Ethnic Wear', 'Women Fashion', 'Winter Wear', 'Streetwear'].map(sub => (
+                      <button 
+                        key={sub}
+                        className={`${styles.filterItem} ${activeSubCategory === sub ? styles.activeFilter : ''}`}
+                        onClick={() => setActiveSubCategory(sub)}
+                      >
+                        {sub}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
             </div>
             )}
             <div className={activeCategory === 'Appliances' ? styles.fullWidthContent : styles.mainContent}>
@@ -427,6 +444,7 @@ export default function Home() {
                     if (activeSubCategory === 'All') return true;
                     if (activeCategory === 'Grocery' && p.subCategory !== activeSubCategory) return false;
                     if (activeCategory === 'Mobile' && p.brand !== activeSubCategory) return false;
+                    if (activeCategory === 'Clothing' && p.subCategory !== activeSubCategory) return false;
                     return true;
                   })} 
                   category={activeSubCategory === 'All' ? activeCategory : activeSubCategory} 

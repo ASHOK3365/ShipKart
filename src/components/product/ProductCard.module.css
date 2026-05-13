@@ -311,6 +311,22 @@
   font-weight: 600;
 }
 
+.sizePreview {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.sizeBadge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+}
+
 .deliveryRow {
   display: flex;
   align-items: center;

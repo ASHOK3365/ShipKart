@@ -121,6 +121,38 @@ export default function ProductDetailsPage() {
 
             <p className={styles.description}>{product.description}</p>
 
+            {/* Clothing Specific: Size & Color Selection */}
+            {product.category === 'Clothing' && (
+              <div className={styles.fashionOptions}>
+                <div className={styles.optionGroup}>
+                  <div className={styles.optionLabel}>
+                    <span>Select Size</span>
+                    <button className={styles.sizeGuideBtn}>Size Guide</button>
+                  </div>
+                  <div className={styles.sizeGrid}>
+                    {['XS', 'S', 'M', 'L', 'XL', 'XXL'].map(size => (
+                      <button key={size} className={styles.sizeBtn}>{size}</button>
+                    ))}
+                  </div>
+                </div>
+
+                {product.colors && product.colors.length > 0 && (
+                  <div className={styles.optionGroup}>
+                    <div className={styles.optionLabel}>Select Color</div>
+                    <div className={styles.colorGrid}>
+                      {product.colors.map((color, idx) => (
+                        <button 
+                          key={idx} 
+                          className={styles.colorCircle} 
+                          style={{ backgroundColor: color }}
+                        ></button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
             {/* 4. SMART ACTIONS */}
             <div className={styles.actionRow}>
               <button 

@@ -114,6 +114,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           )}
         </div>
 
+        {product.category === 'Clothing' && (
+          <div className={styles.sizePreview}>
+            {['S', 'M', 'L', 'XL'].map(size => (
+              <span key={size} className={styles.sizeBadge}>{size}</span>
+            ))}
+          </div>
+        )}
+
         {product.colors && product.colors.length > 0 && (
           <div className={styles.variants}>
             {product.colors.map((color, index) => (

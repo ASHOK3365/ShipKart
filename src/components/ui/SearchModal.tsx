@@ -14,20 +14,19 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose }) => {
   const [isListening, setIsListening] = useState(false);
 
   const trendingSearches = [
-    "iPhone 16 Pro Max Natural Titanium",
-    "Galaxy S25 Ultra AI Features",
-    "OnePlus 13 100W Fast Charging",
-    "Google Pixel 9 Pro XL Actua Display",
-    "Best Gaming Phone under 50k",
-    "Nothing Phone 3 Glyph Design"
-
+    "Oversized Hoodies for Men",
+    "Nike Air Jordan Sneakers",
+    "Zara Premium Winter Jackets",
+    "Levi's 501 Slim Fit Jeans",
+    "Ethnic Kurta Sets for Women",
+    "Streetwear Fashion 2026"
   ];
 
   const recentSearches = [
-    "Organic Robusta Banana",
-    "Amul Gold Full Cream Milk",
-    "Whole Wheat Bread Fresh",
-    "Kiran Watermelon Whole"
+    "White Graphic T-Shirt",
+    "Adidas Running Shoes",
+    "Formal Office Blazer",
+    "Yoga Activewear Set"
   ];
 
 

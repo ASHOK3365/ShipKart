@@ -37,12 +37,13 @@ export interface Product {
 import { allGroceryProducts } from './groceryData';
 import { allMobileProducts, Smartphone } from './mobileData';
 import { allApplianceProducts } from './applianceData';
+import { allClothingProducts } from './clothingData';
 
 export type { Smartphone };
 
 
 const generateProducts = () => {
-  // Generating 400+ realistic products including 100+ appliances
+  // Generating 600+ realistic products including 150+ clothing
   const allProducts: Product[] = [];
 
   // Add the realistic grocery products first
@@ -54,8 +55,11 @@ const generateProducts = () => {
   // 2. APPLIANCES (100+ products)
   allProducts.push(...allApplianceProducts);
 
+  // 3. CLOTHING (150+ products)
+  allProducts.push(...allClothingProducts);
 
-  // 3. ELECTRONICS (40 products)
+
+  // 4. ELECTRONICS (40 products)
 
   const elecBrands = ['Sony', 'Bose', 'JBL', 'Samsung', 'Logitech', 'Zebronics', 'Marshall'];
   const elecImages = [
@@ -86,35 +90,7 @@ const generateProducts = () => {
     });
   }
 
-  // 4. CLOTHING (40 products)
-  const clothBrands = ['Nike', 'Adidas', 'Zara', 'Levi\'s', 'Puma', 'Uniqlo'];
-  const clothImages = [
-    '1523381210434-271e8be1f52b', '1521572163474-6864f9cf17ab', '1516762689617-e1cffcef479d',
-    '1542272604-787c3835535d', '1618354691373-d851c5c3a990', '1491553895911-0055eca6402d',
-    '1542291026-7eec264c27ff', '1551028150-64b9f398f678'
-  ];
 
-  for (let i = 1; i <= 40; i++) {
-    const brand = clothBrands[i % clothBrands.length];
-    allProducts.push({
-      id: `c-${i}`,
-      name: `${brand} ${i % 4 === 0 ? 'Running Shoes' : i % 3 === 0 ? 'Premium Jacket' : 'Graphic Tee'} Series`,
-      brand,
-      category: 'Clothing',
-      subCategory: 'Apparel',
-      description: `Unmatched comfort and style from ${brand}. Crafted with premium materials for durability and a perfect fit.`,
-      price: 1499 + (i * 250),
-      originalPrice: 2999 + (i * 350),
-      discount: 50,
-      rating: 4.2 + (Math.random() * 0.8),
-      reviews: 2100 + (i * 110),
-      image: `https://images.unsplash.com/photo-${clothImages[i % clothImages.length]}?q=80&w=800&auto=format&fit=crop`,
-      availability: 'in-stock',
-      deliveryDate: 'Delivery by tomorrow',
-      colors: ['#000000', '#3b82f6', '#ef4444', '#10b981'],
-      labels: i % 5 === 0 ? ['Best Seller'] : []
-    });
-  }
 
   // 6. BEAUTY (30 products)
   const beautyBrands = ['L\'Oreal', 'Nivea', 'Dove', 'Lakme', 'Maybelline', 'The Body Shop'];
