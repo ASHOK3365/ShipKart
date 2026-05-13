@@ -57,13 +57,13 @@ const Navbar = () => {
             <Bell size={20} />
           </button>
 
-          <div className={styles.profileBtn}>
+          <Link href="/account" className={styles.profileBtn}>
             <img 
               src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=100&auto=format&fit=crop" 
               alt="Profile" 
               className={styles.avatar}
             />
-          </div>
+          </Link>
         </div>
       </nav>
     </div>

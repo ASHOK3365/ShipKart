@@ -8,11 +8,19 @@ import {
   ShoppingBag, 
   Heart, 
   User, 
-  HelpCircle,
-  Plus,
+  Trash2, 
+  ChevronLeft, 
+  Plus, 
   Minus,
-  Trash2,
-  ChevronLeft,
+  LayoutGrid,
+  Home,
+  Tag,
+  Sparkles,
+  HelpCircle,
+  ShoppingBag,
+  Smartphone,
+  UtensilsCrossed,
+  Laptop,
   ChevronDown,
   ArrowRight,
   ShieldCheck,
@@ -20,66 +28,86 @@ import {
   Truck,
   Grid,
   List,
-  Shirt,
   Star
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './fashion.module.css';
 
-const navItems = [
-  { icon: Home, label: 'Home' },
-  { icon: LayoutGrid, label: 'Categories', active: true },
-  { icon: Tag, label: 'Deals' },
-  { icon: Sparkles, label: 'New Arrivals' },
-  { icon: ShoppingBag, label: 'Brands' },
-  { icon: Heart, label: 'Wishlist' },
-  { icon: ShoppingBag, label: 'Orders' },
-  { icon: User, label: 'Profile' },
-  { icon: HelpCircle, label: 'Support' },
+const menuItems = [
+  { icon: Home, label: 'Home', href: '/' },
+  { icon: Tag, label: 'Deals', href: '/deals' },
+  { icon: Sparkles, label: 'New Arrivals', href: '/new-arrivals' },
+];
+
+const categoryItems = [
+  { icon: UtensilsCrossed, label: 'Grocery', href: '/categories/grocery' },
+  { icon: Smartphone, label: 'Mobiles', href: '/categories/mobiles' },
+  { icon: Laptop, label: 'Electronics', href: '/categories/electronics' },
+  { icon: Shirt, label: 'Fashion', href: '/categories/fashion', active: true },
+  { icon: Sparkles, label: 'Beauty', href: '/categories/beauty' },
+  { icon: LayoutGrid, label: 'Appliances', href: '/categories/appliances' },
 ];
 
 const categoryPills = [
   'All', 'Men', 'Women', 'Kids', 'Topwear', 'Bottomwear', 'Winterwear', 'Accessories'
 ];
 
-const clothingProducts = [
-  { id: 1, name: 'Hooded Sweatshirt', category: 'Men', price: 999, originalPrice: 1249, discount: '-20%', rating: 4.6, reviews: '1.2K', image: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=400&q=80' },
-  { id: 2, name: 'Denim Jacket', category: 'Men', price: 1699, originalPrice: 1999, discount: '-15%', rating: 4.7, reviews: '980', image: 'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?auto=format&fit=crop&w=400&q=80' },
-  { id: 3, name: 'Floral Dress', category: 'Women', price: 1499, originalPrice: 1999, discount: '-25%', rating: 4.5, reviews: '1.1K', image: 'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=400&q=80' },
-  { id: 4, name: 'Polo T-Shirt', category: 'Men', price: 599, originalPrice: 669, discount: '-10%', rating: 4.4, reviews: '856', image: 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&w=400&q=80' },
-  { id: 5, name: 'Cargo Pants', category: 'Men', price: 1199, originalPrice: 1499, discount: '-20%', rating: 4.6, reviews: '1.3K', image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=400&q=80' },
-  { id: 6, name: 'Oversized Hoodie', category: 'Women', price: 1099, originalPrice: 1299, discount: '-15%', rating: 4.7, reviews: '1.0K', image: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=400&q=80' },
-];
+import { useCartStore } from '@/store/cartStore';
+import Link from 'next/link';
 
-const cartItems = [
-  { id: 1, name: 'Hooded Sweatshirt', category: 'Men / Beige / L', price: 999, quantity: 1, image: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=100&q=80', color: '#8B5CF6' },
-  { id: 2, name: 'Denim Jacket', category: 'Men / Blue / M', price: 1699, quantity: 1, image: 'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?auto=format&fit=crop&w=100&q=80', color: '#FBBF24' },
-  { id: 3, name: 'Floral Dress', category: 'Women / Pink / S', price: 1499, quantity: 1, image: 'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=100&q=80', color: '#EC4899' },
-  { id: 4, name: 'Polo T-Shirt', category: 'Men / Green / L', price: 599, quantity: 1, image: 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&w=100&q=80', color: '#84CC16' },
+const clothingProducts = [
+  { id: 'f1', name: 'Hooded Sweatshirt', category: 'Men', price: 999, originalPrice: 1249, discount: '-20%', rating: 4.6, reviews: '1.2K', image: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=400&q=80', description: 'Comfortable cotton hooded sweatshirt.', brand: 'NovaStyle' },
+  { id: 'f2', name: 'Denim Jacket', category: 'Men', price: 1699, originalPrice: 1999, discount: '-15%', rating: 4.7, reviews: '980', image: 'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?auto=format&fit=crop&w=400&q=80', description: 'Classic rugged denim jacket.', brand: 'NovaStyle' },
+  { id: 'f3', name: 'Floral Dress', category: 'Women', price: 1499, originalPrice: 1999, discount: '-25%', rating: 4.5, reviews: '1.1K', image: 'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=400&q=80', description: 'Elegant summer floral dress.', brand: 'NovaStyle' },
+  { id: 'f4', name: 'Polo T-Shirt', category: 'Men', price: 599, originalPrice: 669, discount: '-10%', rating: 4.4, reviews: '856', image: 'https://images.unsplash.com/photo-1581655353564-df123a1eb820?auto=format&fit=crop&w=400&q=80', description: 'Classic fit polo t-shirt.', brand: 'NovaStyle' },
+  { id: 'f5', name: 'Cargo Pants', category: 'Men', price: 1199, originalPrice: 1499, discount: '-20%', rating: 4.6, reviews: '1.3K', image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=400&q=80', description: 'Stylish and functional cargo pants.', brand: 'NovaStyle' },
+  { id: 'f6', name: 'Oversized Hoodie', category: 'Women', price: 1099, originalPrice: 1299, discount: '-15%', rating: 4.7, reviews: '1.0K', image: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=400&q=80', description: 'Trendy oversized hoodie for women.', brand: 'NovaStyle' },
 ];
 
 const FashionPage = () => {
   const [activeTab, setActiveTab] = useState('All');
+  const { items, addItem, removeItem, updateQuantity, getSubtotal } = useCartStore();
 
   return (
     <div className={styles.fashionLayout}>
       {/* LEFT SIDEBAR */}
       <aside className={styles.leftSidebar}>
-        <div className={styles.logo}>
+        <Link href="/" className={styles.logo}>
           <div className={styles.logoBox}>
              <ShoppingBag size={24} color="#D946EF" fill="#D946EF" fillOpacity={0.2} />
           </div>
           <h2>NovaMart</h2>
-        </div>
+        </Link>
 
-        <nav className={styles.sideNav}>
-          {navItems.map((item) => (
-            <div key={item.label} className={`${styles.navItem} ${item.active ? styles.active : ''}`}>
-              <item.icon size={20} />
-              <span>{item.label}</span>
-            </div>
-          ))}
-        </nav>
+        <div className={styles.sideNav}>
+          <div className={styles.navSection}>
+            <span className={styles.sectionTitle}>MENU</span>
+            {menuItems.map((item) => (
+              <Link key={item.label} href={item.href} className={styles.navItem}>
+                <item.icon size={20} />
+                <span>{item.label}</span>
+              </Link>
+            ))}
+          </div>
+
+          <div className={styles.navSection}>
+            <span className={styles.sectionTitle}>CATEGORIES</span>
+            {categoryItems.map((item) => (
+              <Link key={item.label} href={item.href} className={`${styles.navItem} ${item.active ? styles.active : ''}`}>
+                <item.icon size={20} />
+                <span>{item.label}</span>
+              </Link>
+            ))}
+          </div>
+          
+          <div className={styles.navSection}>
+            <span className={styles.sectionTitle}>ACCOUNT</span>
+            <Link href="/account" className={styles.navItem}>
+              <User size={20} />
+              <span>Profile</span>
+            </Link>
+          </div>
+        </div>
 
         <div className={styles.styleUpCard}>
           <h3>Style Up!</h3>
@@ -143,7 +171,7 @@ const FashionPage = () => {
                     <span className={styles.price}>₹{product.price.toLocaleString('en-IN')}</span>
                     <span className={styles.oldPrice}>₹{product.originalPrice.toLocaleString('en-IN')}</span>
                   </div>
-                  <button className={styles.addBtn}><Plus size={18} /></button>
+                  <button className={styles.addBtn} onClick={() => addItem(product as any)}><Plus size={18} /></button>
                 </div>
               </div>
             </motion.div>
@@ -159,28 +187,26 @@ const FashionPage = () => {
       {/* RIGHT SIDEBAR (CART) */}
       <aside className={styles.rightSidebar}>
         <div className={styles.cartHeader}>
-          <button className={styles.backBtn}><ChevronLeft size={20} /></button>
+          <Link href="/" className={styles.backBtn}><ChevronLeft size={20} /></Link>
           <h2>CART</h2>
-          <button className={styles.trashBtn}><Trash2 size={20} /></button>
+          <button className={styles.trashBtn} onClick={() => useCartStore.getState().clearCart()}><Trash2 size={20} /></button>
         </div>
 
         <div className={styles.cartList}>
-          {cartItems.map((item) => (
+          {items.map((item) => (
             <div key={item.id} className={styles.cartItem}>
               <div className={styles.itemImg}>
                 <img src={item.image} alt={item.name} />
               </div>
               <div className={styles.itemInfo}>
                 <h4>{item.name}</h4>
-                <p>{item.category}</p>
                 <div className={styles.itemPrice}>₹{item.price.toLocaleString('en-IN')}</div>
               </div>
               <div className={styles.itemActions}>
-                <div className={styles.dot} style={{ background: item.color }} />
                 <div className={styles.qtyBox}>
-                  <button><Minus size={14} /></button>
+                  <button onClick={() => updateQuantity(item.id, item.quantity - 1)}><Minus size={14} /></button>
                   <span>{item.quantity}</span>
-                  <button><Plus size={14} /></button>
+                  <button onClick={() => updateQuantity(item.id, item.quantity + 1)}><Plus size={14} /></button>
                 </div>
               </div>
             </div>
@@ -198,9 +224,11 @@ const FashionPage = () => {
           </div>
           <div className={styles.totalRow}>
             <span>TOTAL</span>
-            <strong>₹4,845</strong>
+            <strong>₹{(getSubtotal() + 49).toLocaleString('en-IN')}</strong>
           </div>
-          <button className={styles.payBtn}>PROCEED TO PAY</button>
+          <Link href="/checkout">
+            <button className={styles.payBtn}>PROCEED TO PAY</button>
+          </Link>
         </div>
 
         <div className={styles.trustBadges}>

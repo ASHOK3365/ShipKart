@@ -8,33 +8,44 @@ import {
   ShoppingBag, 
   Heart, 
   User, 
-  HelpCircle,
-  Plus,
+  Trash2, 
+  ChevronLeft, 
+  Plus, 
   Minus,
-  Trash2,
-  ChevronLeft,
+  LayoutGrid,
+  Home,
+  Tag,
+  Sparkles,
+  HelpCircle,
+  ShoppingBag,
+  Laptop,
+  Smartphone,
+  Shirt,
   ChevronDown,
   ArrowRight,
   ShieldCheck,
   RotateCcw,
   Truck,
   Grid,
-  List,
-  Search
+  List
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useCartStore } from '@/store/cartStore';
 import styles from './grocery.module.css';
 
-const navItems = [
-  { icon: Home, label: 'Home' },
-  { icon: LayoutGrid, label: 'Categories', active: true },
-  { icon: Tag, label: 'Deals' },
-  { icon: Sparkles, label: 'New Arrivals' },
-  { icon: ShoppingBag, label: 'Brands' },
-  { icon: Heart, label: 'Wishlist' },
-  { icon: ShoppingBag, label: 'Orders' },
-  { icon: User, label: 'Profile' },
-  { icon: HelpCircle, label: 'Support' },
+const menuItems = [
+  { icon: Home, label: 'Home', href: '/' },
+  { icon: Tag, label: 'Deals', href: '/deals' },
+  { icon: Sparkles, label: 'New Arrivals', href: '/new-arrivals' },
+];
+
+const categoryItems = [
+  { icon: UtensilsCrossed, label: 'Grocery', href: '/categories/grocery', active: true },
+  { icon: Smartphone, label: 'Mobiles', href: '/categories/mobiles' },
+  { icon: Laptop, label: 'Electronics', href: '/categories/electronics' },
+  { icon: Shirt, label: 'Fashion', href: '/categories/fashion' },
+  { icon: Sparkles, label: 'Beauty', href: '/categories/beauty' },
+  { icon: LayoutGrid, label: 'Appliances', href: '/categories/appliances' },
 ];
 
 const categoryPills = [
@@ -42,43 +53,58 @@ const categoryPills = [
 ];
 
 const groceryProducts = [
-  { id: 1, name: 'Kashmiri Apples', weight: '1 kg', price: 149, originalPrice: 182, discount: '-18%', image: 'https://images.unsplash.com/photo-1560806887-1e4cd07c405d?auto=format&fit=crop&w=400&q=80' },
-  { id: 2, name: 'Amul Taaza Milk', weight: '1 L', price: 59, originalPrice: 67, discount: '-12%', image: 'https://images.unsplash.com/photo-1550583724-125581f77833?auto=format&fit=crop&w=400&q=80' },
-  { id: 3, name: 'Aashirvaad Atta', weight: '5 kg', price: 249, originalPrice: 312, discount: '-20%', image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80' },
-  { id: 4, name: "Lay's Chile Limón", weight: '52 g', price: 25, originalPrice: 29, discount: '-15%', image: 'https://images.unsplash.com/photo-1566478989037-eec170784d0b?auto=format&fit=crop&w=400&q=80' },
-  { id: 5, name: 'Farm Eggs (White)', weight: '12 pcs', price: 64, originalPrice: 71, discount: '-10%', image: 'https://images.unsplash.com/photo-1582722653846-d297500777bc?auto=format&fit=crop&w=400&q=80' },
-  { id: 6, name: 'Tata Tea Premium', weight: '1 kg', price: 485, originalPrice: 585, discount: '-17%', image: 'https://images.unsplash.com/photo-1544787210-2211d24731b4?auto=format&fit=crop&w=400&q=80' },
-];
-
-const cartItems = [
-  { id: 1, name: 'Kashmiri Apples', weight: '1 kg', price: 149, quantity: 1, image: 'https://images.unsplash.com/photo-1560806887-1e4cd07c405d?auto=format&fit=crop&w=100&q=80', color: '#4CAF50' },
-  { id: 2, name: 'Amul Taaza Milk', weight: '1 L', price: 59, quantity: 1, image: 'https://images.unsplash.com/photo-1550583724-125581f77833?auto=format&fit=crop&w=100&q=80', color: '#2196F3' },
-  { id: 3, name: 'Aashirvaad Atta', weight: '5 kg', price: 249, quantity: 1, image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=100&q=80', color: '#FFC107' },
-  { id: 4, name: "Lay's Chile Limón", weight: '52 g', price: 25, quantity: 1, image: 'https://images.unsplash.com/photo-1566478989037-eec170784d0b?auto=format&fit=crop&w=100&q=80', color: '#E91E63' },
+  { id: 'g1', name: 'Fresh Organic Bananas', price: 60, originalPrice: 80, discount: '-25%', rating: 4.8, reviews: '1.2K', image: 'https://images.unsplash.com/photo-1603833665858-e61d17a86224?auto=format&fit=crop&w=400&q=80', description: 'Fresh organic bananas from the farm.', category: 'Fruits', brand: 'FarmFresh' },
+  { id: 'g2', name: 'Premium Avocado', price: 120, originalPrice: 150, discount: '-20%', rating: 4.7, reviews: '980', image: 'https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?auto=format&fit=crop&w=400&q=80', description: 'Creamy premium Hass avocados.', category: 'Fruits', brand: 'GreenHarvest' },
+  { id: 'g3', name: 'Fresh Milk 1L', price: 65, originalPrice: 75, discount: '-12%', rating: 4.6, reviews: '2.5K', image: 'https://images.unsplash.com/photo-1563636619-e910ef2a844b?auto=format&fit=crop&w=400&q=80', description: 'Fresh farm whole milk.', category: 'Dairy', brand: 'Amul' },
+  { id: 'g4', name: 'Organic Almonds', price: 450, originalPrice: 550, discount: '-18%', rating: 4.9, reviews: '1.1K', image: 'https://images.unsplash.com/photo-1508061253366-f7da158b6d46?auto=format&fit=crop&w=400&q=80', description: 'Premium California organic almonds.', category: 'Snacks', brand: 'Nutty' },
+  { id: 'g5', name: 'Greek Yogurt', price: 85, originalPrice: 95, discount: '-10%', rating: 4.7, reviews: '1.8K', image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=400&q=80', description: 'Thick and creamy greek yogurt.', category: 'Dairy', brand: 'Epigamia' },
+  { id: 'g6', name: 'Whole Wheat Bread', price: 45, originalPrice: 55, discount: '-15%', rating: 4.5, reviews: '3.2K', image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=400&q=80', description: 'Freshly baked whole wheat bread.', category: 'Bakery', brand: 'Modern' },
 ];
 
 const GroceryPage = () => {
   const [activeTab, setActiveTab] = useState('All');
+  const { items, addItem, removeItem, updateQuantity, getSubtotal } = useCartStore();
 
   return (
     <div className={styles.groceryLayout}>
       {/* LEFT SIDEBAR */}
       <aside className={styles.leftSidebar}>
-        <div className={styles.logo}>
+        <Link href="/" className={styles.logo}>
           <div className={styles.logoBox}>
-             <ShoppingBag size={24} color="#4CAF50" fill="#4CAF50" fillOpacity={0.2} />
+             <ShoppingBag size={24} color="#10B981" fill="#10B981" fillOpacity={0.2} />
           </div>
           <h2>NovaMart</h2>
-        </div>
+        </Link>
 
-        <nav className={styles.sideNav}>
-          {navItems.map((item) => (
-            <div key={item.label} className={`${styles.navItem} ${item.active ? styles.active : ''}`}>
-              <item.icon size={20} />
-              <span>{item.label}</span>
-            </div>
-          ))}
-        </nav>
+        <div className={styles.sideNav}>
+          <div className={styles.navSection}>
+            <span className={styles.sectionTitle}>MENU</span>
+            {menuItems.map((item) => (
+              <Link key={item.label} href={item.href} className={styles.navItem}>
+                <item.icon size={20} />
+                <span>{item.label}</span>
+              </Link>
+            ))}
+          </div>
+
+          <div className={styles.navSection}>
+            <span className={styles.sectionTitle}>CATEGORIES</span>
+            {categoryItems.map((item) => (
+              <Link key={item.label} href={item.href} className={`${styles.navItem} ${item.active ? styles.active : ''}`}>
+                <item.icon size={20} />
+                <span>{item.label}</span>
+              </Link>
+            ))}
+          </div>
+          
+          <div className={styles.navSection}>
+            <span className={styles.sectionTitle}>ACCOUNT</span>
+            <Link href="/account" className={styles.navItem}>
+              <User size={20} />
+              <span>Profile</span>
+            </Link>
+          </div>
+        </div>
 
         <div className={styles.freshSavingsCard}>
           <h3>Fresh Savings</h3>
@@ -138,7 +164,7 @@ const GroceryPage = () => {
                     <span className={styles.price}>₹{product.price}</span>
                     <span className={styles.oldPrice}>₹{product.originalPrice}</span>
                   </div>
-                  <button className={styles.addBtn}><Plus size={18} /></button>
+                  <button className={styles.addBtn} onClick={() => addItem(product as any)}><Plus size={18} /></button>
                 </div>
               </div>
             </motion.div>
@@ -154,28 +180,26 @@ const GroceryPage = () => {
       {/* RIGHT SIDEBAR (CART) */}
       <aside className={styles.rightSidebar}>
         <div className={styles.cartHeader}>
-          <button className={styles.backBtn}><ChevronLeft size={20} /></button>
+          <Link href="/" className={styles.backBtn}><ChevronLeft size={20} /></Link>
           <h2>CART</h2>
-          <button className={styles.trashBtn}><Trash2 size={20} /></button>
+          <button className={styles.trashBtn} onClick={() => useCartStore.getState().clearCart()}><Trash2 size={20} /></button>
         </div>
 
         <div className={styles.cartList}>
-          {cartItems.map((item) => (
+          {items.map((item) => (
             <div key={item.id} className={styles.cartItem}>
               <div className={styles.itemImg}>
                 <img src={item.image} alt={item.name} />
               </div>
               <div className={styles.itemInfo}>
                 <h4>{item.name}</h4>
-                <span>{item.weight}</span>
-                <div className={styles.itemPrice}>₹{item.price}</div>
+                <div className={styles.itemPrice}>₹{item.price.toLocaleString('en-IN')}</div>
               </div>
               <div className={styles.itemActions}>
-                <div className={styles.dot} style={{ background: item.color }} />
                 <div className={styles.qtyBox}>
-                  <button><Minus size={14} /></button>
+                  <button onClick={() => updateQuantity(item.id, item.quantity - 1)}><Minus size={14} /></button>
                   <span>{item.quantity}</span>
-                  <button><Plus size={14} /></button>
+                  <button onClick={() => updateQuantity(item.id, item.quantity + 1)}><Plus size={14} /></button>
                 </div>
               </div>
             </div>
@@ -193,9 +217,11 @@ const GroceryPage = () => {
           </div>
           <div className={styles.totalRow}>
             <span>TOTAL</span>
-            <strong>₹531</strong>
+            <strong>₹{(getSubtotal() + 49).toLocaleString('en-IN')}</strong>
           </div>
-          <button className={styles.payBtn}>PROCEED TO PAY</button>
+          <Link href="/checkout">
+            <button className={styles.payBtn}>PROCEED TO PAY</button>
+          </Link>
         </div>
 
         <div className={styles.trustBadges}>

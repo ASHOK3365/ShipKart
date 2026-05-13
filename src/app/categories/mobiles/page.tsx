@@ -25,16 +25,19 @@ import {
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './mobiles.module.css';
 
-const navItems = [
-  { icon: Home, label: 'Home' },
-  { icon: LayoutGrid, label: 'Categories', active: true },
-  { icon: Tag, label: 'Deals' },
-  { icon: Sparkles, label: 'New Arrivals' },
-  { icon: ShoppingBag, label: 'Brands' },
-  { icon: Heart, label: 'Wishlist' },
-  { icon: ShoppingBag, label: 'Orders' },
-  { icon: User, label: 'Profile' },
-  { icon: HelpCircle, label: 'Support' },
+const menuItems = [
+  { icon: Home, label: 'Home', href: '/' },
+  { icon: Tag, label: 'Deals', href: '/deals' },
+  { icon: Sparkles, label: 'New Arrivals', href: '/new-arrivals' },
+];
+
+const categoryItems = [
+  { icon: UtensilsCrossed, label: 'Grocery', href: '/categories/grocery' },
+  { icon: Smartphone, label: 'Mobiles', href: '/categories/mobiles', active: true },
+  { icon: Laptop, label: 'Electronics', href: '/categories/electronics' },
+  { icon: Shirt, label: 'Fashion', href: '/categories/fashion' },
+  { icon: Sparkles, label: 'Beauty', href: '/categories/beauty' },
+  { icon: LayoutGrid, label: 'Appliances', href: '/categories/appliances' },
 ];
 
 const categoryPills = [
@@ -58,26 +61,48 @@ const cartItems = [
 
 const MobilesPage = () => {
   const [activeTab, setActiveTab] = useState('All');
+  const { items, addItem, removeItem, updateQuantity, getSubtotal } = useCartStore();
 
   return (
     <div className={styles.mobilesLayout}>
       {/* LEFT SIDEBAR */}
       <aside className={styles.leftSidebar}>
-        <div className={styles.logo}>
+        <Link href="/" className={styles.logo}>
           <div className={styles.logoBox}>
              <ShoppingBag size={24} color="#8B5CF6" fill="#8B5CF6" fillOpacity={0.2} />
           </div>
           <h2>NovaMart</h2>
-        </div>
+        </Link>
 
-        <nav className={styles.sideNav}>
-          {navItems.map((item) => (
-            <div key={item.label} className={`${styles.navItem} ${item.active ? styles.active : ''}`}>
-              <item.icon size={20} />
-              <span>{item.label}</span>
-            </div>
-          ))}
-        </nav>
+        <div className={styles.sideNav}>
+          <div className={styles.navSection}>
+            <span className={styles.sectionTitle}>MENU</span>
+            {menuItems.map((item) => (
+              <Link key={item.label} href={item.href} className={styles.navItem}>
+                <item.icon size={20} />
+                <span>{item.label}</span>
+              </Link>
+            ))}
+          </div>
+
+          <div className={styles.navSection}>
+            <span className={styles.sectionTitle}>CATEGORIES</span>
+            {categoryItems.map((item) => (
+              <Link key={item.label} href={item.href} className={`${styles.navItem} ${item.active ? styles.active : ''}`}>
+                <item.icon size={20} />
+                <span>{item.label}</span>
+              </Link>
+            ))}
+          </div>
+          
+          <div className={styles.navSection}>
+            <span className={styles.sectionTitle}>ACCOUNT</span>
+            <Link href="/account" className={styles.navItem}>
+              <User size={20} />
+              <span>Profile</span>
+            </Link>
+          </div>
+        </div>
 
         <div className={styles.megaSaleCard}>
           <h3>Mega Sale</h3>
@@ -137,7 +162,7 @@ const MobilesPage = () => {
                     <span className={styles.price}>₹{product.price.toLocaleString('en-IN')}</span>
                     <span className={styles.oldPrice}>₹{product.originalPrice.toLocaleString('en-IN')}</span>
                   </div>
-                  <button className={styles.addBtn}><Plus size={18} /></button>
+                  <button className={styles.addBtn} onClick={() => addItem(product as any)}><Plus size={18} /></button>
                 </div>
               </div>
             </motion.div>
@@ -153,25 +178,27 @@ const MobilesPage = () => {
       {/* RIGHT SIDEBAR (CART) */}
       <aside className={styles.rightSidebar}>
         <div className={styles.cartHeader}>
-          <button className={styles.backBtn}><ChevronLeft size={20} /></button>
+          <Link href="/" className={styles.backBtn}><ChevronLeft size={20} /></Link>
           <h2>CART</h2>
-          <button className={styles.trashBtn}><Trash2 size={20} /></button>
+          <button className={styles.trashBtn} onClick={() => useCartStore.getState().clearCart()}><Trash2 size={20} /></button>
         </div>
 
         <div className={styles.cartList}>
-          {cartItems.map((item) => (
+          {items.map((item) => (
             <div key={item.id} className={styles.cartItem}>
               <div className={styles.itemImg}>
                 <img src={item.image} alt={item.name} />
               </div>
               <div className={styles.itemInfo}>
                 <h4>{item.name}</h4>
-                <span>{item.specs}</span>
                 <div className={styles.itemPrice}>₹{item.price.toLocaleString('en-IN')}</div>
-                <div className={styles.itemQty}>1 x</div>
               </div>
               <div className={styles.itemActions}>
-                <div className={styles.dot} style={{ background: item.color }} />
+                <div className={styles.qtyBox}>
+                  <button onClick={() => updateQuantity(item.id, item.quantity - 1)}><Minus size={14} /></button>
+                  <span>{item.quantity}</span>
+                  <button onClick={() => updateQuantity(item.id, item.quantity + 1)}><Plus size={14} /></button>
+                </div>
               </div>
             </div>
           ))}
@@ -188,9 +215,11 @@ const MobilesPage = () => {
           </div>
           <div className={styles.totalRow}>
             <span>TOTAL</span>
-            <strong>₹1,94,947</strong>
+            <strong>₹{(getSubtotal() + 49).toLocaleString('en-IN')}</strong>
           </div>
-          <button className={styles.payBtn}>PROCEED TO PAY</button>
+          <Link href="/checkout">
+            <button className={styles.payBtn}>PROCEED TO PAY</button>
+          </Link>
         </div>
 
         <div className={styles.trustBadges}>

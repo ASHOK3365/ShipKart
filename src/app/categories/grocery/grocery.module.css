@@ -40,11 +40,18 @@
   letter-spacing: -0.5px;
 }
 
-.sideNav {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  flex: 1;
+.navSection {
+  margin-bottom: 2rem;
+}
+
+.sectionTitle {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #94A3B8;
+  letter-spacing: 1.5px;
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+  display: block;
 }
 
 .navItem {
