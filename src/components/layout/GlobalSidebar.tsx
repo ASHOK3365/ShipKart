@@ -32,6 +32,7 @@ const categoryIcons = [
   { icon: Smartphone, label: 'Mobiles', href: '/categories/mobiles' },
   { icon: Laptop, label: 'Electronics', href: '/categories/electronics' },
   { icon: Shirt, label: 'Fashion', href: '/categories/fashion' },
+  { icon: Sparkles, label: 'Beauty', href: '/categories/beauty' },
   { icon: Bike, label: 'Automotive', href: '/categories/automotive' },
 ];
 

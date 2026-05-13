@@ -14,7 +14,8 @@ export default function AppWrapper({ children }: { children: React.ReactNode }) 
   const isCustomLayoutPage = pathname === '/categories/grocery' || 
                              pathname === '/categories/mobiles' || 
                              pathname === '/categories/electronics' ||
-                             pathname === '/categories/fashion';
+                             pathname === '/categories/fashion' ||
+                             pathname === '/categories/beauty';
 
   if (isCustomLayoutPage) {
     return (
