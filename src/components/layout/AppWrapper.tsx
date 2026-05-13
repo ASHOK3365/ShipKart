@@ -15,7 +15,8 @@ export default function AppWrapper({ children }: { children: React.ReactNode }) 
                              pathname === '/categories/mobiles' || 
                              pathname === '/categories/electronics' ||
                              pathname === '/categories/fashion' ||
-                             pathname === '/categories/beauty';
+                             pathname === '/categories/beauty' ||
+                             pathname === '/categories/appliances';
 
   if (isCustomLayoutPage) {
     return (

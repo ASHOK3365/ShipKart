@@ -33,6 +33,7 @@ const categoryIcons = [
   { icon: Laptop, label: 'Electronics', href: '/categories/electronics' },
   { icon: Shirt, label: 'Fashion', href: '/categories/fashion' },
   { icon: Sparkles, label: 'Beauty', href: '/categories/beauty' },
+  { icon: LayoutGrid, label: 'Appliances', href: '/categories/appliances' },
   { icon: Bike, label: 'Automotive', href: '/categories/automotive' },
 ];
 
