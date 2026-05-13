@@ -1,277 +1,171 @@
 'use client';
-// Trigger HMR refresh for premium Appliances ecosystem
-import dynamic from 'next/dynamic';
-import React, { useState } from 'react';
-import Navbar from '@/components/layout/Navbar';
-import ProductGrid from '@/components/product/ProductGrid';
-import ProductCard from '@/components/product/ProductCard';
-
-const AIAssistant = dynamic(() => import('@/components/ui/AIAssistant'), {
-  ssr: false,
-  loading: () => null
-});
-
-const FlashDeals = dynamic(() => import('@/components/home/FlashDeals'), {
-  ssr: true,
-  loading: () => <div className="h-64 animate-pulse bg-slate-100 rounded-2xl" />
-});
-
-import { products } from '@/data/products';
-import ApplianceShowcase from '@/components/product/ApplianceShowcase';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { 
+  ArrowRight, 
+  Sparkles, 
+  Zap, 
+  Bot, 
+  Smartphone, 
+  Laptop, 
+  Shirt, 
+  Star, 
+  Heart,
+  TrendingUp,
+  Clock
+} from 'lucide-react';
 import styles from './page.module.css';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import SafeImage from '@/components/ui/SafeImage';
-import { ArrowRight, Sparkles, Zap, BrainCircuit, Headphones, Smartphone, ShoppingBag, Watch, Mic, Heart, Search, User, Camera, Share2 } from 'lucide-react';
 
-export default function Home() {
-  const [activeCategory, setActiveCategory] = useState('Home');
-  const [activeSubCategory, setActiveSubCategory] = useState('Home');
+const categories = [
+  { name: 'Grocery', icon: '🥦', color: '#E8F5E9', img: 'https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=400&auto=format&fit=crop' },
+  { name: 'Mobiles', icon: <Smartphone size={24} />, color: '#E3F2FD', img: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=400&auto=format&fit=crop' },
+  { name: 'Electronics', icon: <Laptop size={24} />, color: '#FFF3E0', img: 'https://images.unsplash.com/photo-1498049794561-7780e7231661?q=80&w=400&auto=format&fit=crop' },
+  { name: 'Appliances', icon: <Zap size={24} />, color: '#F3E5F5', img: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=400&auto=format&fit=crop' },
+  { name: 'Fashion', icon: <Shirt size={24} />, color: '#FCE4EC', img: 'https://images.unsplash.com/photo-1445205170230-053b830c6050?q=80&w=400&auto=format&fit=crop' },
+  { name: 'Beauty', icon: <Sparkles size={24} />, color: '#F3E5F5', img: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=400&auto=format&fit=crop' },
+];
 
-  React.useEffect(() => {
-    if (activeCategory === 'Home') setActiveSubCategory('Home');
-    else setActiveSubCategory('All');
-  }, [activeCategory]);
-
-  const { scrollYProgress } = useScroll();
-  const yHero = useTransform(scrollYProgress, [0, 1], [0, 300]);
-
-  const trendingProducts = products.filter(p => p.isTrending).slice(0, 5);
-  const aiPicks = products.filter(p => p.isBestSeller).slice(0, 5);
-  const flashDealProducts = products.filter(p => p.isFlashDeal).slice(0, 5);
-
-  // Category-specific content configuration
-  const categoryConfigs: Record<string, any> = {
-    Home: {
-      title: ["START YOUR", "JOURNEY"],
-      subtitle: "the ultimate online destination for all your footwear needs with the latest styles and trends!",
-      heroImage: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=800&auto=format&fit=crop",
-      pills: ['Home', 'Women', 'Men', 'Sale', 'Others'],
-      banner: ["ALWAYS", "UNIQUE", "WITH THE", "BEST"],
-      newArrival: "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?q=80&w=800&auto=format&fit=crop",
-      footerCats: ['Running shoes', 'Slippers', 'Platform sneakers', 'Sandals'],
-      footerImg: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=400&auto=format&fit=crop'
-    },
-    Grocery: {
-      isGrocerySpecific: true,
-      heroTitle: "Freshly delivered to your door",
-      heroSub: "Get organic produce and sustainably sourced groceries delivered at up to 45% off.",
-      promoCards: [
-        { title: "Save $29", sub: "Enjoy discount on all types of grocery items", color: "#fdf2f2", icon: "🎁" },
-        { title: "Discount 30%", sub: "Enjoy discount on all types of grocery items", color: "#fff7ed", icon: "🏷️" },
-        { title: "Up to 50%", sub: "Enjoy discount on all types of grocery items", color: "#f0f9ff", icon: "🚀" },
-        { title: "Free SHIP", sub: "Enjoy discount on all types of grocery items", color: "#faf5ff", icon: "🚚" }
-      ],
-      miniCats: [
-        { name: "Vegetable", sub: "Local market", img: "🥦" },
-        { name: "Snacks & Breads", sub: "In store delivery", img: "🥖" },
-        { name: "Fruits", sub: "Chemical free", img: "🍊" },
-        { name: "Chicken legs", sub: "Frozen Meat", img: "🍗" },
-        { name: "Milk & Dairy", sub: "Process food", img: "🥛" }
-      ],
-      pills: ['All', 'Vegetables', 'Snacks', 'Fruits', 'Meat', 'Dairy']
-    },
-    Mobile: {
-      title: ["FUTURE AT", "HAND"],
-      subtitle: "Experience the next generation of smartphones with cutting-edge technology.",
-      heroImage: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=800&auto=format&fit=crop",
-      pills: ['All', 'iPhone', 'Samsung', 'OnePlus', 'Accessories'],
-      banner: ["SMARTER", "DEVICES", "WITH THE", "TECH"],
-      newArrival: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?q=80&w=800&auto=format&fit=crop",
-      footerCats: ['Premium Phones', 'Tablets', 'Wearables', 'Laptops'],
-      footerImg: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=400&auto=format&fit=crop'
-    }
-  };
-
-  const currentConfig = categoryConfigs[activeCategory] || categoryConfigs.Home;
-
+const Home = () => {
   return (
-    <main className={styles.pageWrapper}>
-      <Navbar activeCategory={activeCategory} onCategoryChange={setActiveCategory} />
-      
-      <div className={styles.mainFloatingContainer}>
-        {activeCategory === 'Grocery' ? (
-          <div className={styles.groceryContent}>
-            {/* Grocery Hero */}
-            <section className={styles.groceryHero}>
-              <div className={styles.heroLeft}>
-                <h1>{currentConfig.heroTitle}</h1>
-                <p>{currentConfig.heroSub}</p>
-                <button className={styles.heroBtn}>Shop now</button>
-              </div>
-              <div className={styles.heroRight}>
-                <div className={styles.groceryBag}>🛍️</div>
-              </div>
-            </section>
+    <div className={styles.container}>
+      {/* SECTION 1: HERO BENTO GRID */}
+      <section className={styles.heroSection}>
+        <div className={styles.bentoGrid}>
+          {/* Main Hero Card */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className={`${styles.bentoCard} ${styles.heroMain}`}
+          >
+            <div className={styles.heroContent}>
+              <span className={styles.badge}>New Collection</span>
+              <h1 className={styles.heroTitle}>
+                Elevate Your <br /> 
+                <span className={styles.gradientText}>Everyday</span>
+              </h1>
+              <p className={styles.heroSub}>
+                Premium products curated for your lifestyle. Experience the future of commerce.
+              </p>
+              <button className="pill-button">
+                Shop Now <ArrowRight size={18} />
+              </button>
+            </div>
+            <div className={styles.heroVisual}>
+              <motion.div 
+                animate={{ y: [0, -20, 0] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                className={styles.floatingProduct}
+              >
+                <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?q=80&w=600&auto=format&fit=crop" alt="Sneaker" />
+              </motion.div>
+              <div className={styles.orb1} />
+              <div className={styles.orb2} />
+            </div>
+          </motion.div>
 
-            {/* Promo Grid */}
-            <section className={styles.promoGrid}>
-              {currentConfig.promoCards.map((promo: any, idx: number) => (
-                <div key={idx} className={styles.promoCard} style={{ backgroundColor: promo.color }}>
-                  <div className={styles.promoIcon}>{promo.icon}</div>
-                  <h4>{promo.title}</h4>
-                  <p>{promo.sub}</p>
-                </div>
-              ))}
-            </section>
+          {/* AI Assistant Card */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2 }}
+            className={`${styles.bentoCard} ${styles.aiCard}`}
+          >
+            <div className={styles.aiHeader}>
+              <div className={styles.aiOrb}>
+                <Bot size={24} color="white" />
+              </div>
+              <h3>AI Assistant</h3>
+            </div>
+            <div className={styles.aiBody}>
+              <p className={styles.aiGreeting}>Hi, I'm Nova ✨</p>
+              <p className={styles.aiText}>How can I help you today?</p>
+              <button className={styles.aiBtn}>Let's Chat &rarr;</button>
+            </div>
+          </motion.div>
 
-            {/* Mini Categories */}
-            <section className={styles.miniCatSection}>
-              {currentConfig.miniCats.map((cat: any, idx: number) => (
-                <div key={idx} className={styles.miniCatCard}>
-                  <div className={styles.miniCatInfo}>
-                    <h5>{cat.name}</h5>
-                    <span>{cat.sub}</span>
-                  </div>
-                  <div className={styles.miniCatImg}>{cat.img}</div>
-                </div>
-              ))}
-              <div className={styles.seeAllMini}>
-                <ArrowRight size={20} />
-                <span>See all</span>
-              </div>
-            </section>
+          {/* Mega Deal Card */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3 }}
+            className={`${styles.bentoCard} ${styles.dealCard}`}
+          >
+            <div className={styles.dealContent}>
+              <span className={styles.dealBadge}>Mega Deal</span>
+              <h4>Limited time offer</h4>
+              <p className={styles.dealDiscount}>Up to 60% Off</p>
+              <button className={styles.dealBtn}>Shop Now</button>
+            </div>
+            <div className={styles.dealImg}>
+              <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=200&auto=format&fit=crop" alt="Bag" />
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
-            {/* Dynamic Product Grid */}
-            <section className={styles.groceryProducts}>
-              <div className={styles.sectionHeader}>
-                <h2>You might need</h2>
-                <button className={styles.seeMore}>See more &rarr;</button>
+      {/* SECTION 2: CATEGORY BENTO */}
+      <section className={styles.categorySection}>
+        <div className={styles.sectionHeader}>
+          <h2>Shop By Category</h2>
+          <button className={styles.viewAll}>View All <ArrowRight size={16} /></button>
+        </div>
+        <div className={styles.categoryGrid}>
+          {categories.map((cat, idx) => (
+            <motion.div 
+              key={cat.name}
+              whileHover={{ y: -10 }}
+              className={styles.catCard}
+              style={{ background: cat.color }}
+            >
+              <div className={styles.catInfo}>
+                <div className={styles.catIcon}>{cat.icon}</div>
+                <h3>{cat.name}</h3>
               </div>
-              <div className={styles.productsGrid}>
-                {products.filter(p => p.category === 'Grocery').slice(0, 10).map(product => (
-                  <ProductCard key={product.id} product={product} />
-                ))}
+              <div className={styles.catVisual}>
+                <img src={cat.img} alt={cat.name} />
               </div>
-            </section>
+            </motion.div>
+          ))}
+        </div>
+      </section>
 
-            {/* Stay Home Banner */}
-            <section className={styles.stayHomeBanner}>
-              <div className={styles.bannerContent}>
-                <h2>Stay Home and Get All <br /> Your Essentials From <br /> Our Market!</h2>
-                <p>Download the app from app store or google play</p>
-                <div className={styles.appBtns}>
-                  <button className={styles.appBtn}>Google Play</button>
-                  <button className={styles.appBtn}>App Store</button>
-                </div>
-              </div>
-              <div className={styles.bannerVisual}>
-                 <div className={styles.deliveryPerson}>🚚</div>
-              </div>
-            </section>
+      {/* SECTION 3: TRENDING PRODUCTS */}
+      <section className={styles.trendingSection}>
+        <div className={styles.sectionHeader}>
+          <div className={styles.titleWithIcon}>
+            <TrendingUp size={24} className={styles.titleIcon} />
+            <h2>Trending Now</h2>
           </div>
-        ) : (
-          <>
-            {/* 1. REFINED HERO SECTION */}
-            <section className={styles.heroSection}>
-              <div className={styles.heroGrid}>
-                {/* Left Content */}
-                <div className={styles.heroMainCard}>
-                  <h1 className={styles.editorialTitle}>
-                    {currentConfig.title[0]} <br />
-                    <span className={styles.pillTitle}>{currentConfig.title[1]}</span>
-                  </h1>
-                  <p className={styles.editorialSubtitle}>
-                    {currentConfig.subtitle}
-                  </p>
-                  <div className={styles.socialMinimal}>
-                    <div className={styles.socialItem}><Camera size={14} /> <span>Gallery</span></div>
-                    <div className={styles.socialItem}><Share2 size={14} /> <span>Social</span></div>
-                  </div>
-                </div>
-
-                {/* Middle Stat */}
-                <div className={styles.heroStatCard}>
-                  <div className={styles.purpleCircle}>
-                    <span className={styles.statLarge}>100%</span>
-                    <span className={styles.statSmall}>Original high quality materials</span>
-                  </div>
-                </div>
-
-                {/* Right Visual */}
-                <div className={styles.heroVisualCard}>
-                   <SafeImage 
-                    src={currentConfig.heroImage} 
-                    alt="Product visual" 
-                    fill 
-                    style={{ objectFit: 'cover' }}
-                  />
-                  <button className={styles.shopNowBtn}>Shop now</button>
-                </div>
+          <div className={styles.countdown}>
+            <Clock size={16} />
+            <span>Ends in 12:45:32</span>
+          </div>
+        </div>
+        <div className={styles.productGrid}>
+          {[1, 2, 3, 4, 5].map((item) => (
+            <div key={item} className="bento-card">
+              <div className={styles.productImg}>
+                <img src={`https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?q=80&w=300&auto=format&fit=crop`} alt="Product" />
+                <button className={styles.wishlistBtn}><Heart size={18} /></button>
               </div>
-            </section>
-
-            {/* 2. UNIQUE MATERIALS BANNER */}
-            <section className={styles.uniqueBanner}>
-              <div className={styles.uniqueContent}>
-                <h2>{currentConfig.banner[0]} <span className={styles.hollowText}>{currentConfig.banner[1]}</span></h2>
-                <h3>{currentConfig.banner[2]} <span className={styles.hollowText}>{currentConfig.banner[3]}</span> MATERIALS</h3>
-              </div>
-              <button className={styles.viewAllBtn}>View all</button>
-            </section>
-
-            {/* 3. NEW COLLECTION & BEST SELLERS BENTO */}
-            <div className={styles.collectionGrid}>
-              {/* New Collection Vertical */}
-              <div className={styles.verticalCollection}>
-                <div className={styles.verticalHeader}>
-                  <h3>NEW ARRIVALS</h3>
+              <div className={styles.productInfo}>
+                <div className={styles.rating}>
+                  <Star size={12} fill="gold" stroke="gold" />
+                  <span>4.8 (12.4K)</span>
                 </div>
-                <div className={styles.verticalImage}>
-                  <SafeImage 
-                    src={currentConfig.newArrival} 
-                    alt="New" 
-                    fill 
-                    style={{ objectFit: 'cover' }}
-                  />
-                </div>
-              </div>
-
-              {/* Best Sellers Grid */}
-              <div className={styles.bestSellersContent}>
-                <div className={styles.bestSellersHeader}>
-                  <h3>BEST SELLERS</h3>
-                  <div className={styles.headerDot}></div>
-                </div>
-                <div className={styles.productFlex}>
-                  {products.filter(p => {
-                    const matchesCategory = activeCategory === 'Home' ? p.isBestSeller : p.category.toLowerCase() === activeCategory.toLowerCase();
-                    const matchesSub = activeSubCategory === 'All' || activeSubCategory === 'Home' ? true : (p.subCategory === activeSubCategory || p.brand === activeSubCategory);
-                    return matchesCategory && matchesSub;
-                  }).slice(0, 4).map(product => (
-                    <div key={product.id} className={styles.miniProductCard}>
-                      <ProductCard product={product} />
-                    </div>
-                  ))}
+                <h3>Apple AirPods Pro 2</h3>
+                <p className={styles.price}>₹18,990 <span className={styles.oldPrice}>₹24,900</span></p>
+                <div className={styles.productActions}>
+                  <button className={styles.buyBtn}>Add to Cart</button>
+                  <button className={styles.quickView}><Zap size={14} /></button>
                 </div>
               </div>
             </div>
-
-            {/* 4. FOOTER BENTO (Categories) */}
-            <section className={styles.footerBento}>
-              <div className={styles.categoryFooterHeader}>
-                <span>SHOP BY CATEGORY</span>
-              </div>
-              <div className={styles.catGridMini}>
-                {currentConfig.footerCats.map((cat: string) => (
-                  <div key={cat} className={styles.catBoxMini}>
-                    <span className={styles.catNameMini}>{cat}</span>
-                    <div className={styles.catImgMini}>
-                      <SafeImage 
-                        src={currentConfig.footerImg} 
-                        alt={cat} 
-                        fill 
-                        style={{ objectFit: 'contain' }}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-          </>
-        )}
-      </div>
-
-      <AIAssistant />
-    </main>
+          ))}
+        </div>
+      </section>
+    </div>
   );
-}
+};
+
+export default Home;

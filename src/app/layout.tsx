@@ -58,6 +58,14 @@ export const metadata: Metadata = {
 };
 
 
+import GlobalSidebar from "@/components/layout/GlobalSidebar";
+import Navbar from "@/components/layout/Navbar";
+import dynamic from 'next/dynamic';
+
+const AIAssistant = dynamic(() => import('@/components/ui/AIAssistant'), {
+  ssr: false
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -69,20 +77,51 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://images.unsplash.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#0F172A" />
+        <meta name="theme-color" content="#EDE8FF" />
       </head>
 
 
       <body className={inter.className}>
         <StructuredData data={orgData} />
         <ErrorBoundary>
-          {children}
+          <div className="app-container">
+            <GlobalSidebar />
+            <div className="main-viewport">
+              <Navbar />
+              <main className="page-content">
+                {children}
+              </main>
+            </div>
+          </div>
+          <AIAssistant />
         </ErrorBoundary>
+
+        <style jsx global>{`
+          .app-container {
+            display: flex;
+            min-height: 100vh;
+            background-color: var(--bg-primary);
+          }
+          .main-viewport {
+            flex: 1;
+            margin-left: 300px; /* Sidebar width + spacing */
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+          }
+          .page-content {
+            margin-top: 80px; /* Navbar height + spacing */
+            flex: 1;
+          }
+          @media (max-width: 1024px) {
+            .main-viewport {
+              margin-left: 0;
+            }
+          }
+        `}</style>
       </body>
-
-
     </html>
   );
 }

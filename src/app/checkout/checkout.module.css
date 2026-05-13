@@ -15,61 +15,64 @@
 }
 
 .contentWrapper {
-  max-width: 1300px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 3rem 6rem;
-  position: relative;
-  z-index: 1;
 }
 
 .backLink {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: var(--text-muted);
-  font-size: 0.9rem;
+  color: var(--text-secondary);
   font-weight: 600;
-  text-decoration: none;
   margin-bottom: 2rem;
-  transition: var(--transition);
+  transition: var(--transition-tactile);
 }
 
-.backLink:hover { color: var(--primary); }
+.backLink:hover {
+  color: var(--primary-accent);
+  transform: translateX(-5px);
+}
 
 /* Step Progress */
 .stepProgress {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0;
+  justify-content: space-between;
   margin-bottom: 3rem;
+  background: white;
+  padding: 1.5rem 3rem;
+  border-radius: 100px;
+  box-shadow: var(--shadow-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .stepItem {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.75rem 1.5rem;
-  border-radius: 14px;
-  background: transparent;
+  gap: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 700;
+  background: none;
   border: none;
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  font-weight: 600;
   cursor: pointer;
-  transition: var(--transition);
+  transition: var(--transition-tactile);
 }
 
 .stepCircle {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background: var(--bg-dark);
-  border: 2px solid var(--border);
+  background: var(--bg-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: var(--transition);
+  color: var(--text-secondary);
+  transition: var(--transition-tactile);
+}
+
+.stepActive {
+  color: var(--primary-accent);
 }
 
 .stepActive .stepCircle {

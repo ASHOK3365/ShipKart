@@ -46,7 +46,6 @@ export default function ProductDetailsPage() {
   return (
     <main className={styles.container}>
       <div className={styles.ambientBg}></div>
-      <Navbar activeCategory={product.category} onCategoryChange={() => {}} />
 
       <div className={styles.contentWrapper}>
         {/* 1. BREADCRUMBS */}

@@ -1,90 +1,72 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { Search, ShoppingCart, User, Menu, X, Sparkles, MapPin, Heart } from 'lucide-react';
-import SearchModal from '../ui/SearchModal';
-import CartDrawer from '../cart/CartDrawer';
-import { useCartStore } from '@/store/cartStore';
-import { useAuthStore } from '@/store/authStore';
+import { Search, ShoppingCart, Heart, Bell, Mic, Camera } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Navbar.module.css';
+import { useCartStore } from '@/store/cartStore';
 import Link from 'next/link';
 
-const categories = [
-  'Home', 'Grocery', 'Mobile', 'Electronics', 'Appliances', 'Clothing', 'Beauty', 'Two Wheeler'
-];
-
-const Navbar = ({ activeCategory, onCategoryChange }: { activeCategory: string, onCategoryChange: (cat: string) => void }) => {
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
+const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  
-  const { items, isCartOpen, openCart, closeCart } = useCartStore();
-  const { user, isAuthenticated } = useAuthStore();
-  
-  const cartItemCount = items.reduce((total, item) => total + item.quantity, 0);
+  const { items } = useCartStore();
+  const cartCount = items.reduce((acc, item) => acc + item.quantity, 0);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <>
-      <div className={styles.navWrapper}>
-        <nav className={`${styles.navbar} ${isScrolled ? styles.scrolled : ''}`}>
-          <div className={styles.container}>
-            {/* Logo Section */}
-            <div className={styles.logo} onClick={() => onCategoryChange('Home')}>
-              <div className={styles.logoIcon}>
-                <Sparkles size={16} />
-              </div>
-              <span className={styles.logoText}>Antigravity</span>
-            </div>
-
-            {/* Floating Category Pills */}
-            <div className={styles.navLinks}>
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  className={`${styles.navLink} ${activeCategory === cat ? styles.active : ''}`}
-                  onClick={() => onCategoryChange(cat)}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
-
-            {/* Right Actions */}
-            <div className={styles.actions}>
-              <button className={styles.actionBtn} onClick={() => setIsSearchOpen(true)}>
-                <Search size={18} />
-              </button>
-              
-              <button className={styles.actionBtn} onClick={openCart}>
-                <ShoppingCart size={18} />
-                {cartItemCount > 0 && <span className={styles.badge}>{cartItemCount}</span>}
-              </button>
-
-              <div className={styles.userSection}>
-                {isAuthenticated ? (
-                  <Link href="/account" className={styles.avatar}>
-                    <img src={user?.avatar} alt={user?.name} />
-                  </Link>
-                ) : (
-                  <Link href="/login" className={styles.loginPill}>
-                    <User size={14} />
-                    <span>Login</span>
-                  </Link>
-                )}
-              </div>
-            </div>
+    <div className={`${styles.navWrapper} ${isScrolled ? styles.scrolled : ''}`}>
+      <nav className={styles.navbar}>
+        <div className={styles.searchBar}>
+          <div className={styles.searchIcon}>
+            <Search size={18} />
           </div>
-        </nav>
-      </div>
+          <input 
+            type="text" 
+            placeholder="Search for products, brands and more..." 
+            className={styles.searchInput}
+          />
+          <div className={styles.searchActions}>
+            <button className={styles.iconBtn}><Mic size={18} /></button>
+            <button className={styles.iconBtn}><Camera size={18} /></button>
+          </div>
+        </div>
 
-      <SearchModal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
-      <CartDrawer isOpen={isCartOpen} onClose={closeCart} />
-    </>
+        <div className={styles.actions}>
+          <button className={styles.actionBtn}>
+            <Heart size={20} />
+          </button>
+          
+          <Link href="/cart" className={styles.actionBtn}>
+            <ShoppingCart size={20} />
+            {cartCount > 0 && (
+              <motion.span 
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                className={styles.badge}
+              >
+                {cartCount}
+              </motion.span>
+            )}
+          </Link>
+
+          <button className={styles.actionBtn}>
+            <Bell size={20} />
+          </button>
+
+          <div className={styles.profileBtn}>
+            <img 
+              src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=100&auto=format&fit=crop" 
+              alt="Profile" 
+              className={styles.avatar}
+            />
+          </div>
+        </div>
+      </nav>
+    </div>
   );
 };
 

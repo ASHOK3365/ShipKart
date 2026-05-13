@@ -1,0 +1,158 @@
+.sidebar {
+  width: 280px;
+  height: calc(100vh - 40px);
+  position: fixed;
+  left: 20px;
+  top: 20px;
+  background: var(--card-surface);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-primary);
+  z-index: 100;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 3rem;
+  padding-left: 0.5rem;
+}
+
+.logoIcon {
+  width: 40px;
+  height: 40px;
+  background: var(--primary-accent);
+  color: white;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 16px rgba(139, 124, 255, 0.3);
+}
+
+.logoText {
+  font-size: 1.5rem;
+  font-weight: 800;
+  font-family: var(--font-heading);
+  color: var(--text-primary);
+}
+
+.navSection {
+  margin-bottom: 2rem;
+}
+
+.sectionTitle {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+  padding-left: 0.5rem;
+}
+
+.navGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+  border-radius: 16px;
+  color: var(--text-secondary);
+  font-weight: 600;
+  transition: var(--transition-tactile);
+  position: relative;
+  cursor: pointer;
+}
+
+.navItem:hover {
+  background: var(--bg-secondary);
+  color: var(--primary-accent);
+}
+
+.navItem.active {
+  background: var(--primary-accent);
+  color: white;
+  box-shadow: 0 10px 20px rgba(139, 124, 255, 0.2);
+}
+
+.activeIndicator {
+  position: absolute;
+  right: 12px;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.footerNav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.promoCard {
+  background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  color: white;
+}
+
+.promoContent h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+}
+
+.promoContent p {
+  font-size: 0.85rem;
+  opacity: 0.9;
+  margin-bottom: 1rem;
+}
+
+.promoBtn {
+  background: white;
+  color: var(--primary-accent);
+  padding: 0.5rem 1rem;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border: none;
+}
+
+.promoVisual {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+@media (max-width: 1024px) {
+  .sidebar {
+    display: none;
+  }
+}
