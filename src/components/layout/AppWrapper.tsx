@@ -2,9 +2,9 @@ import { usePathname } from 'next/navigation';
 
 export default function AppWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const isGroceryPage = pathname === '/categories/grocery';
+  const isCustomLayoutPage = pathname === '/categories/grocery' || pathname === '/categories/mobiles';
 
-  if (isGroceryPage) {
+  if (isCustomLayoutPage) {
     return (
       <div className="app-container" style={{ padding: 0 }}>
         <main style={{ flex: 1, height: '100vh', overflow: 'hidden' }}>
