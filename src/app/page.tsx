@@ -45,140 +45,231 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <div className={styles.ambientBackground}></div>
+      <div className={styles.neuralOverlay}></div>
       <Navbar activeCategory={activeCategory} onCategoryChange={setActiveCategory} />
       
       <div className={styles.content}>
         {activeCategory === 'Home' ? (
           <div className={styles.homeContainer}>
-            {/* 1. CINEMATIC HERO SECTION */}
+            {/* 1. CINEMATIC BENTO HERO SECTION */}
             <section className={styles.hero}>
               <motion.div 
-                className={styles.heroContent}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                style={{ y: yHero }}
+                className={styles.heroMain}
+                initial={{ opacity: 0, scale: 0.9, y: 40 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
               >
-                <div className={styles.heroSubtitle}>
-                  <Sparkles size={16} /> THE FUTURE OF COMMERCE
+                <div className={styles.heroBadge}>
+                  <Sparkles size={14} className={styles.sparkleIcon} /> 
+                  <span>AI-POWERED ECOSYSTEM</span>
                 </div>
-                <h1>
-                  Shop Smarter <br />
-                  With <span className={styles.gradientText}>Antigravity AI.</span>
+                <h1 className={styles.heroTitle}>
+                  The Future of <br />
+                  <span className={styles.gradientText}>Intelligent Commerce.</span>
                 </h1>
-                <p>
-                  Experience a frictionless, predictive shopping ecosystem that anticipates your needs before you even realize them. Welcome to the billion-dollar standard.
+                <p className={styles.heroDescription}>
+                  Experience the next generation of shopping. Predictive, immersive, and elegantly designed for the modern era.
                 </p>
                 <div className={styles.heroActions}>
                   <motion.button 
-                    whileHover={{ scale: 1.05 }} 
+                    whileHover={{ scale: 1.05, boxShadow: '0 0 30px var(--primary-glow)' }} 
                     whileTap={{ scale: 0.95 }} 
                     className={styles.primaryBtn}
                   >
-                    Explore Products <ArrowRight size={20} />
+                    Start Exploring <ArrowRight size={20} />
                   </motion.button>
                   <motion.button 
-                    whileHover={{ scale: 1.05 }} 
+                    whileHover={{ scale: 1.05, background: 'rgba(255,255,255,0.1)' }} 
                     whileTap={{ scale: 0.95 }} 
                     className={styles.secondaryBtn}
                   >
-                    <BrainCircuit size={20} /> AI Recommendations
+                    <BrainCircuit size={20} /> Antigravity AI
                   </motion.button>
+                </div>
+                
+                <div className={styles.heroMainVisual}>
+                   <div className={styles.orbGlow}></div>
                 </div>
               </motion.div>
 
-              <div className={styles.heroVisual}>
-                <motion.div 
-                  className={`${styles.floatingProduct} ${styles.fp1}`}
-                  initial={{ opacity: 0, scale: 0.8, y: 100 }}
-                  animate={{ opacity: 1, scale: 1, y: [0, -20, 0] }}
-                  transition={{ 
-                    y: { repeat: Infinity, duration: 6, ease: "easeInOut" },
-                    opacity: { duration: 1, delay: 0.2 },
-                    scale: { duration: 1, delay: 0.2 }
-                  }}
-                >
-                  <img src="https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?q=80&w=600" alt="Premium Laptop" style={{ width: '100%', borderRadius: '8px' }} />
-                </motion.div>
-                
-                <motion.div 
-                  className={`${styles.floatingProduct} ${styles.fp2}`}
-                  initial={{ opacity: 0, scale: 0.8, x: 100 }}
-                  animate={{ opacity: 1, scale: 1, x: 0, y: [0, 20, 0] }}
-                  transition={{ 
-                    y: { repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 },
-                    opacity: { duration: 1, delay: 0.4 },
-                    scale: { duration: 1, delay: 0.4 },
-                    x: { duration: 1, delay: 0.4 }
-                  }}
-                >
-                  <img src="https://images.unsplash.com/photo-1606813907291-d86efa9b94db?q=80&w=400" alt="Gaming Console" style={{ width: '100%', borderRadius: '8px' }} />
-                </motion.div>
-                
-                <motion.div 
-                  className={`${styles.floatingProduct} ${styles.fp3}`}
-                  initial={{ opacity: 0, scale: 0.8, y: -100 }}
-                  animate={{ opacity: 1, scale: 1, y: [0, -15, 0] }}
-                  transition={{ 
-                    y: { repeat: Infinity, duration: 7, ease: "easeInOut", delay: 2 },
-                    opacity: { duration: 1, delay: 0.6 },
-                    scale: { duration: 1, delay: 0.6 }
-                  }}
-                >
-                  <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=400" alt="Premium Headphones" style={{ width: '100%', borderRadius: '8px' }} />
-                </motion.div>
+              <motion.div 
+                className={styles.heroSide}
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <div className={styles.heroSideHeader}>
+                  <Zap size={16} color="var(--cyan-accent)" />
+                  <span>PREDICTIVE SYNC</span>
+                </div>
+                <div className={styles.heroSideVisual}>
+                  <motion.div 
+                    className={styles.floatingProduct}
+                    animate={{ 
+                      y: [0, -20, 0],
+                      rotate: [0, 5, 0]
+                    }}
+                    transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
+                  >
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=800" alt="Featured" className={styles.heroImage} />
+                  </motion.div>
+                </div>
+                <div className={styles.heroSideFooter}>
+                  <h4>Neural Interface G1</h4>
+                  <p>98% Match for your style</p>
+                </div>
+              </motion.div>
+
+              {/* BENTO CATEGORIES - MORE DYNAMIC */}
+              <div className={styles.categoriesBento}>
+                {categories.map((cat, i) => (
+                  <motion.div 
+                    key={cat.name}
+                    className={`${styles.bentoCard} ${cat.colorClass}`}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5 + (i * 0.1), duration: 0.8 }}
+                    onClick={() => setActiveCategory(cat.name)}
+                    whileHover={{ y: -10, transition: { duration: 0.3 } }}
+                  >
+                    <div className={styles.bentoGlass}></div>
+                    <div className={styles.bentoContent}>
+                      <div className={styles.bentoHeader}>
+                        <div className={styles.bentoIconWrapper}>{cat.icon}</div>
+                        <span className={styles.bentoCount}>{cat.items}</span>
+                      </div>
+                      <h3>{cat.name}</h3>
+                      <div className={styles.bentoFooter}>
+                        <span>Explore Collection</span>
+                        <ArrowRight size={16} />
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
             </section>
 
-            {/* 2. AI COMMERCE BANNER */}
+            {/* 2. AI COMMERCE BANNER - HOLOGRAPHIC */}
             <motion.section 
               className={styles.aiBanner}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
             >
+              <div className={styles.aiBannerGlass}></div>
               <div className={styles.aiBannerContent}>
-                <h2>Powered by <br />Antigravity Brain</h2>
-                <p>Voice search, hyper-personalized feeds, and real-time smart pricing. It's not just a store; it's an intelligent assistant.</p>
-                <button className={styles.secondaryBtn} style={{ background: 'white', color: '#0F172A', border: 'none' }}>
-                  Try Voice Search
-                </button>
+                <div className={styles.aiStatus}>
+                  <div className={styles.pulseDot}></div>
+                  <span>ANTIGRAVITY BRAIN ACTIVE</span>
+                </div>
+                <h2>The Neural <br />Shopping OS</h2>
+                <p>Voice search, hyper-personalized feeds, and real-time smart pricing. It's not just a store; it's an intelligent assistant that learns your taste.</p>
+                <div className={styles.aiBannerActions}>
+                  <button className={styles.aiPrimaryBtn}>
+                    <Mic size={20} /> Try Voice Search
+                  </button>
+                  <button className={styles.aiSecondaryBtn}>
+                    Deep Learning Insights
+                  </button>
+                </div>
               </div>
               <div className={styles.aiBannerVisual}>
-                <div className={styles.aiFeatureCard}>
-                  <BrainCircuit size={32} />
-                  <h3>Smart Pricing</h3>
-                </div>
-                <div className={styles.aiFeatureCard}>
-                  <Zap size={32} />
-                  <h3>Instant Checkout</h3>
-                </div>
+                 <div className={styles.holoSphere}></div>
+                 <div className={styles.aiFeatureCards}>
+                    <div className={styles.miniCard}>
+                      <BrainCircuit size={20} />
+                      <span>Smart Pricing</span>
+                    </div>
+                    <div className={styles.miniCard}>
+                      <Zap size={20} />
+                      <span>Instant Sync</span>
+                    </div>
+                 </div>
               </div>
             </motion.section>
 
-            {/* 3. FLOATING CATEGORIES */}
-            <section className={styles.categoriesSection}>
+            {/* 3. FEATURED BENTO GRID - HIGH FIDELITY */}
+            <section className={styles.productSection}>
               <div className={styles.sectionHeader}>
                 <div>
-                  <h2>Immersive <br/>Ecosystems</h2>
-                  <p>Step into dedicated worlds for everything you need.</p>
+                  <span className={styles.sectionLabel}>CURATED SELECTION</span>
+                  <h2>Featured <br/>Flagships</h2>
+                  <p>Hand-picked innovation from across our ecosystem.</p>
+                </div>
+                <div className={styles.viewMore}>
+                   View All Collections <ArrowRight size={16} />
                 </div>
               </div>
-              <div className={styles.categoryGrid}>
-                {categories.map((cat, i) => (
-                  <motion.div 
-                    key={cat.name}
-                    className={`${styles.categoryCard} ${cat.colorClass}`}
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
-                  >
-                    <div className={styles.catIcon}>{cat.icon}</div>
-                    <h3>{cat.name}</h3>
-                    <span>{cat.items} <ArrowRight size={14} /></span>
-                  </motion.div>
-                ))}
+              
+              <div className={styles.featuredProductsBento}>
+                <motion.div 
+                  className={styles.featuredCardLarge}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  whileHover={{ y: -5 }}
+                >
+                  <div className={styles.cardHeader}>
+                    <span className={styles.featuredTag}>NEW ARRIVAL</span>
+                    <h3 className={styles.featuredTitle}>Vision Pro <br/>Max G3</h3>
+                    <p className={styles.featuredPrice}>₹3,49,999</p>
+                  </div>
+                  <div className={styles.largeProductVisual}>
+                     <img src="https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?q=80&w=800" alt="Vision Pro" />
+                     <div className={styles.glowAura}></div>
+                  </div>
+                  <div className={styles.cardFooter}>
+                    <button className={styles.buyBtn}>Pre-order Now</button>
+                  </div>
+                </motion.div>
+
+                <motion.div 
+                  className={styles.featuredCardSmall}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  whileHover={{ y: -5 }}
+                >
+                  <div className={styles.smallCardContent}>
+                    <span className={styles.featuredTag}>AUDIO</span>
+                    <h4>Bose Ultra <br/>QuietComfort</h4>
+                    <p className={styles.featuredPrice}>₹32,999</p>
+                  </div>
+                  <div className={styles.smallProductVisual}>
+                     <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=400" alt="Bose" />
+                  </div>
+                </motion.div>
+
+                <motion.div 
+                  className={styles.featuredCardSmall}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  whileHover={{ y: -5 }}
+                >
+                  <div className={styles.smallCardContent}>
+                    <span className={styles.featuredTag}>SMART HOME</span>
+                    <h4>Dyson Purifier <br/>Cool Gen 1</h4>
+                    <p className={styles.featuredPrice}>₹45,900</p>
+                  </div>
+                  <div className={styles.smallProductVisual}>
+                     <img src="https://images.unsplash.com/photo-1585333120167-081824d31451?q=80&w=400" alt="Dyson" />
+                  </div>
+                </motion.div>
+
+                <motion.div 
+                  className={styles.featuredCardMedium}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  whileHover={{ y: -5 }}
+                >
+                  <div className={styles.mediumCardContent}>
+                    <span className={styles.featuredTag}>MOBILE</span>
+                    <h3>Samsung S24 Ultra</h3>
+                    <p className={styles.featuredPrice}>₹1,29,999</p>
+                    <button className={styles.inlineBtn}>Experience <ArrowRight size={14} /></button>
+                  </div>
+                  <div className={styles.mediumProductVisual}>
+                    <img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?q=80&w=600" alt="S24 Ultra" />
+                  </div>
+                </motion.div>
               </div>
             </section>
 

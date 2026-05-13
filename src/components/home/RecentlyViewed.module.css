@@ -1,46 +1,50 @@
 .recentSection {
-  margin: 4rem 0;
-  padding: 0 2rem;
+  margin: 6rem 4rem;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 .titleGroup {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
 .icon {
-  color: #3B82F6;
+  color: var(--primary);
+  filter: drop-shadow(0 0 5px var(--primary-glow));
 }
 
 .titleGroup h2 {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: #0f172a;
+  font-size: 2rem;
+  font-weight: 900;
+  color: white;
+  letter-spacing: -0.02em;
 }
 
 .clearBtn {
   font-size: 0.85rem;
-  color: #64748b;
-  font-weight: 600;
+  color: var(--text-muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: var(--transition-smooth);
 }
 
 .clearBtn:hover {
-  color: #0f172a;
+  color: var(--luxury-accent);
 }
 
 .grid {
   display: flex;
-  gap: 1.5rem;
+  gap: 2rem;
   overflow-x: auto;
-  padding-bottom: 1rem;
+  padding-bottom: 2rem;
   scrollbar-width: none;
 }
 
@@ -49,5 +53,5 @@
 }
 
 .itemWrapper {
-  flex: 0 0 300px;
+  flex: 0 0 320px;
 }

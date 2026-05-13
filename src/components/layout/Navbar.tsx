@@ -38,35 +38,29 @@ const Navbar = ({ activeCategory, onCategoryChange }: { activeCategory: string, 
         <div className={styles.left}>
           <div className={styles.logo} onClick={() => onCategoryChange('Home')}>
             <div className={styles.logoIcon}>
-              <Sparkles size={22} strokeWidth={2.5} />
+              <Sparkles size={18} strokeWidth={2.5} />
             </div>
-            <div className={styles.logoTextWrapper}>
-              <span className={styles.logoText}>ShopKart</span>
-              <span className={styles.logoSubtext}>AI Powered</span>
-            </div>
+            <span className={styles.logoText}>ShopKart</span>
           </div>
         </div>
 
-        {/* Center: Category Navigation (Desktop) */}
+        {/* Center: Category Navigation */}
         <div className={styles.center}>
-          <div className={styles.navLinks}>
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                className={`${styles.navLink} ${activeCategory === cat ? styles.active : ''}`}
-                onClick={() => onCategoryChange(cat)}
-              >
-                {cat}
-                {activeCategory === cat && <div className={styles.activeIndicator} />}
-              </button>
-            ))}
-          </div>
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              className={`${styles.navLink} ${activeCategory === cat ? styles.active : ''}`}
+              onClick={() => onCategoryChange(cat)}
+            >
+              {cat}
+            </button>
+          ))}
         </div>
 
         {/* Right: Actions */}
         <div className={styles.right}>
-          <button className={styles.actionBtn} onClick={() => setIsSearchOpen(true)}>
-            <Search size={20} />
+          <button className={styles.searchBtn} onClick={() => setIsSearchOpen(true)}>
+            <Search size={18} />
           </button>
 
           <div className={styles.actionGroup}>
@@ -79,25 +73,19 @@ const Navbar = ({ activeCategory, onCategoryChange }: { activeCategory: string, 
               </Link>
             ) : (
               <Link href="/login" className={styles.actionBtn}>
-                <User size={20} />
+                <User size={18} />
                 <span>Login</span>
               </Link>
             )}
-            <button className={`${styles.actionBtn} ${styles.hideMobile}`}>
-              <Store size={20} />
-              <span>Seller</span>
-            </button>
+            
             <button className={styles.cartBtn} onClick={openCart}>
-              <div className={styles.cartIconWrapper}>
-                <ShoppingCart size={22} />
-                {cartItemCount > 0 && <span className={styles.cartBadge}>{cartItemCount}</span>}
-              </div>
-              <span className={styles.cartText}>Cart</span>
+              <ShoppingCart size={18} />
+              {cartItemCount > 0 && <span className={styles.cartBadge}>{cartItemCount}</span>}
             </button>
           </div>
 
           <button className={styles.mobileMenuBtn} onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
