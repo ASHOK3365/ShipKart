@@ -11,6 +11,51 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+  const isGrocery = product.category === 'Grocery';
+
+  if (isGrocery) {
+    const priceParts = product.price.toFixed(2).split('.');
+    
+    return (
+      <motion.div 
+        className={styles.groceryCard}
+        whileHover={{ y: -8 }}
+        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <div className={styles.groceryImageContainer}>
+          <SafeImage 
+            src={product.image} 
+            alt={product.name} 
+            fill 
+            className={styles.groceryImage}
+          />
+        </div>
+
+        <div className={styles.groceryInfo}>
+          <h3 className={styles.groceryName}>
+            {product.name} <span className={styles.grocerySub}>({product.brand || 'Local shop'})</span>
+          </h3>
+          <span className={styles.groceryWeight}>{product.weight || '500 gm.'}</span>
+          
+          <div className={styles.groceryPriceSection}>
+            <span className={styles.priceMain}>{priceParts[0]}</span>
+            <span className={styles.priceSup}>.{priceParts[1]}$</span>
+          </div>
+
+          <button 
+            className={styles.groceryAddBtn}
+            onClick={(e) => {
+              e.preventDefault();
+              console.log('Added:', product.name);
+            }}
+          >
+            <Plus size={20} />
+          </button>
+        </div>
+      </motion.div>
+    );
+  }
+
   return (
     <motion.div 
       className={styles.card}

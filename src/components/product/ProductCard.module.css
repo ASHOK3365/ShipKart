@@ -247,4 +247,92 @@
   background: var(--accent-purple);
   transform: scale(1.1) rotate(5deg);
   box-shadow: 0 12px 20px rgba(164, 141, 255, 0.3);
+}/* GROCERY SPECIFIC CARD */
+.groceryCard {
+  background: white;
+  border-radius: 40px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+  transition: var(--transition-tactile);
+}
+
+.groceryImageContainer {
+  position: relative;
+  height: 200px;
+  width: 100%;
+}
+
+.groceryImage {
+  object-fit: contain;
+}
+
+.groceryInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.groceryName {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  line-height: 1.3;
+}
+
+.grocerySub {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #666;
+}
+
+.groceryWeight {
+  font-size: 0.9rem;
+  color: #999;
+  font-weight: 600;
+}
+
+.groceryPriceSection {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 1rem 0;
+  color: #1a1a1a;
+}
+
+.priceMain {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.priceSup {
+  font-size: 1rem;
+  font-weight: 800;
+  margin-top: 0.2rem;
+}
+
+.groceryAddBtn {
+  width: 100%;
+  height: 60px;
+  background: #f8f9f2; /* Light cream from image */
+  border: none;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: var(--transition-tactile);
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.groceryAddBtn:hover {
+  background: #f0f1e8;
+  transform: translateY(-2px);
 }
