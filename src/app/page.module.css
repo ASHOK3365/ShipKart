@@ -353,14 +353,203 @@
   height: 120px;
 }
 
-@media (max-width: 1200px) {
-  .heroGrid { grid-template-columns: 1.5fr 1fr; }
-  .heroVisualCard { grid-column: span 2; }
+/* GROCERY CONTENT SPECIFIC */
+.groceryContent {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding: 1rem;
 }
 
-@media (max-width: 768px) {
-  .heroGrid { grid-template-columns: 1fr; }
-  .heroVisualCard { grid-column: auto; }
-  .collectionGrid { grid-template-columns: 1fr; }
-  .catGridMini { grid-template-columns: repeat(2, 1fr); }
+.groceryHero {
+  background: #004d40; /* Dark teal from image */
+  border-radius: 40px;
+  padding: 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  min-height: 400px;
+}
+
+.heroLeft h1 {
+  font-family: var(--font-editorial);
+  font-size: 3.5rem;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.heroLeft p {
+  font-size: 1.1rem;
+  opacity: 0.8;
+  max-width: 400px;
+  margin-bottom: 2rem;
+}
+
+.heroBtn {
+  background: #a5d6a7; /* Light green button */
+  color: #1a1a1a;
+  padding: 1rem 2.5rem;
+  border-radius: 99px;
+  border: none;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.groceryBag {
+  font-size: 8rem;
+}
+
+/* Promo Grid */
+.promoGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.promoCard {
+  padding: 2rem;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.promoIcon {
+  font-size: 2rem;
+}
+
+.promoCard h4 {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.promoCard p {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* Mini Categories */
+.miniCatSection {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  padding-bottom: 1rem;
+}
+
+.miniCatCard {
+  background: white;
+  border: 1px solid #eee;
+  padding: 1.5rem;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 200px;
+  cursor: pointer;
+  transition: var(--transition-tactile);
+}
+
+.miniCatCard:hover {
+  border-color: #a5d6a7;
+  transform: translateY(-4px);
+}
+
+.miniCatInfo h5 {
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.miniCatInfo span {
+  font-size: 0.75rem;
+  color: #999;
+}
+
+.miniCatImg {
+  font-size: 2rem;
+}
+
+.seeAllMini {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f0f9f0;
+  border-radius: 20px;
+  min-width: 80px;
+  color: #1a1a1a;
+  cursor: pointer;
+}
+
+/* Product Grid Area */
+.groceryProducts {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sectionHeader h2 {
+  font-family: var(--font-editorial);
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.seeMore {
+  background: transparent;
+  border: none;
+  color: #ff4d4d;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Stay Home Banner */
+.stayHomeBanner {
+  background: #2d1b4d; /* Deep purple/dark background */
+  border-radius: 40px;
+  padding: 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.bannerContent h2 {
+  font-family: var(--font-editorial);
+  font-size: 3rem;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.appBtns {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.appBtn {
+  background: black;
+  color: white;
+  padding: 0.8rem 1.5rem;
+  border-radius: 12px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.deliveryPerson {
+  font-size: 10rem;
 }

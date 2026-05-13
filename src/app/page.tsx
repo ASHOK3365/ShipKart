@@ -52,14 +52,23 @@ export default function Home() {
       footerImg: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=400&auto=format&fit=crop'
     },
     Grocery: {
-      title: ["FRESH FROM", "THE FARM"],
-      subtitle: "Organic produce and daily essentials delivered to your doorstep within minutes!",
-      heroImage: "https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=800&auto=format&fit=crop",
-      pills: ['All', 'Fruits', 'Vegetables', 'Dairy', 'Snacks'],
-      banner: ["ORGANIC", "LIVING", "FOR THE", "HEALTHY"],
-      newArrival: "https://images.unsplash.com/photo-1610348725531-843dff563e2c?q=80&w=800&auto=format&fit=crop",
-      footerCats: ['Fresh Fruits', 'Vegetables', 'Dairy Products', 'Exotic'],
-      footerImg: 'https://images.unsplash.com/photo-1597362868123-a55d3900224b?q=80&w=400&auto=format&fit=crop'
+      isGrocerySpecific: true,
+      heroTitle: "Freshly delivered to your door",
+      heroSub: "Get organic produce and sustainably sourced groceries delivered at up to 45% off.",
+      promoCards: [
+        { title: "Save $29", sub: "Enjoy discount on all types of grocery items", color: "#fdf2f2", icon: "🎁" },
+        { title: "Discount 30%", sub: "Enjoy discount on all types of grocery items", color: "#fff7ed", icon: "🏷️" },
+        { title: "Up to 50%", sub: "Enjoy discount on all types of grocery items", color: "#f0f9ff", icon: "🚀" },
+        { title: "Free SHIP", sub: "Enjoy discount on all types of grocery items", color: "#faf5ff", icon: "🚚" }
+      ],
+      miniCats: [
+        { name: "Vegetable", sub: "Local market", img: "🥦" },
+        { name: "Snacks & Breads", sub: "In store delivery", img: "🥖" },
+        { name: "Fruits", sub: "Chemical free", img: "🍊" },
+        { name: "Chicken legs", sub: "Frozen Meat", img: "🍗" },
+        { name: "Milk & Dairy", sub: "Process food", img: "🥛" }
+      ],
+      pills: ['All', 'Vegetables', 'Snacks', 'Fruits', 'Meat', 'Dairy']
     },
     Mobile: {
       title: ["FUTURE AT", "HAND"],
@@ -103,112 +112,186 @@ export default function Home() {
           </div>
         </header>
 
-        {/* 1. REFINED HERO SECTION */}
-        <section className={styles.heroSection}>
-          <div className={styles.heroGrid}>
-            {/* Left Content */}
-            <div className={styles.heroMainCard}>
-              <h1 className={styles.editorialTitle}>
-                {currentConfig.title[0]} <br />
-                <span className={styles.pillTitle}>{currentConfig.title[1]}</span>
-              </h1>
-              <p className={styles.editorialSubtitle}>
-                {currentConfig.subtitle}
-              </p>
-              <div className={styles.socialMinimal}>
-                <div className={styles.socialItem}><Camera size={14} /> <span>Gallery</span></div>
-                <div className={styles.socialItem}><Share2 size={14} /> <span>Social</span></div>
+        {activeCategory === 'Grocery' ? (
+          <div className={styles.groceryContent}>
+            {/* Grocery Hero */}
+            <section className={styles.groceryHero}>
+              <div className={styles.heroLeft}>
+                <h1>{currentConfig.heroTitle}</h1>
+                <p>{currentConfig.heroSub}</p>
+                <button className={styles.heroBtn}>Shop now</button>
               </div>
-            </div>
-
-            {/* Middle Stat */}
-            <div className={styles.heroStatCard}>
-              <div className={styles.purpleCircle}>
-                <span className={styles.statLarge}>100%</span>
-                <span className={styles.statSmall}>Original high quality materials</span>
+              <div className={styles.heroRight}>
+                <div className={styles.groceryBag}>🛍️</div>
               </div>
-            </div>
+            </section>
 
-            {/* Right Visual */}
-            <div className={styles.heroVisualCard}>
-               <SafeImage 
-                src={currentConfig.heroImage} 
-                alt="Product visual" 
-                fill 
-                style={{ objectFit: 'cover' }}
-              />
-              <button className={styles.shopNowBtn}>Shop now</button>
-            </div>
-          </div>
-        </section>
-
-        {/* 2. UNIQUE MATERIALS BANNER */}
-        <section className={styles.uniqueBanner}>
-          <div className={styles.uniqueContent}>
-            <h2>{currentConfig.banner[0]} <span className={styles.hollowText}>{currentConfig.banner[1]}</span></h2>
-            <h3>{currentConfig.banner[2]} <span className={styles.hollowText}>{currentConfig.banner[3]}</span> MATERIALS</h3>
-          </div>
-          <button className={styles.viewAllBtn}>View all</button>
-        </section>
-
-        {/* 3. NEW COLLECTION & BEST SELLERS BENTO */}
-        <div className={styles.collectionGrid}>
-          {/* New Collection Vertical */}
-          <div className={styles.verticalCollection}>
-            <div className={styles.verticalHeader}>
-              <h3>NEW ARRIVALS</h3>
-            </div>
-            <div className={styles.verticalImage}>
-              <SafeImage 
-                src={currentConfig.newArrival} 
-                alt="New" 
-                fill 
-                style={{ objectFit: 'cover' }}
-              />
-            </div>
-          </div>
-
-          {/* Best Sellers Grid */}
-          <div className={styles.bestSellersContent}>
-            <div className={styles.bestSellersHeader}>
-              <h3>BEST SELLERS</h3>
-              <div className={styles.headerDot}></div>
-            </div>
-            <div className={styles.productFlex}>
-              {products.filter(p => {
-                const matchesCategory = activeCategory === 'Home' ? p.isBestSeller : p.category.toLowerCase() === activeCategory.toLowerCase();
-                const matchesSub = activeSubCategory === 'All' || activeSubCategory === 'Home' ? true : (p.subCategory === activeSubCategory || p.brand === activeSubCategory);
-                return matchesCategory && matchesSub;
-              }).slice(0, 4).map(product => (
-                <div key={product.id} className={styles.miniProductCard}>
-                  <ProductCard product={product} />
+            {/* Promo Grid */}
+            <section className={styles.promoGrid}>
+              {currentConfig.promoCards.map((promo: any, idx: number) => (
+                <div key={idx} className={styles.promoCard} style={{ backgroundColor: promo.color }}>
+                  <div className={styles.promoIcon}>{promo.icon}</div>
+                  <h4>{promo.title}</h4>
+                  <p>{promo.sub}</p>
                 </div>
               ))}
-            </div>
-          </div>
-        </div>
+            </section>
 
-        {/* 4. FOOTER BENTO (Categories) */}
-        <section className={styles.footerBento}>
-          <div className={styles.categoryFooterHeader}>
-            <span>SHOP BY CATEGORY</span>
+            {/* Mini Categories */}
+            <section className={styles.miniCatSection}>
+              {currentConfig.miniCats.map((cat: any, idx: number) => (
+                <div key={idx} className={styles.miniCatCard}>
+                  <div className={styles.miniCatInfo}>
+                    <h5>{cat.name}</h5>
+                    <span>{cat.sub}</span>
+                  </div>
+                  <div className={styles.miniCatImg}>{cat.img}</div>
+                </div>
+              ))}
+              <div className={styles.seeAllMini}>
+                <ArrowRight size={20} />
+                <span>See all</span>
+              </div>
+            </section>
+
+            {/* Dynamic Product Grid */}
+            <section className={styles.groceryProducts}>
+              <div className={styles.sectionHeader}>
+                <h2>You might need</h2>
+                <button className={styles.seeMore}>See more &rarr;</button>
+              </div>
+              <div className={styles.productsGrid}>
+                {products.filter(p => p.category === 'Grocery').slice(0, 10).map(product => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            </section>
+
+            {/* Stay Home Banner */}
+            <section className={styles.stayHomeBanner}>
+              <div className={styles.bannerContent}>
+                <h2>Stay Home and Get All <br /> Your Essentials From <br /> Our Market!</h2>
+                <p>Download the app from app store or google play</p>
+                <div className={styles.appBtns}>
+                  <button className={styles.appBtn}>Google Play</button>
+                  <button className={styles.appBtn}>App Store</button>
+                </div>
+              </div>
+              <div className={styles.bannerVisual}>
+                 <div className={styles.deliveryPerson}>🚚</div>
+              </div>
+            </section>
           </div>
-          <div className={styles.catGridMini}>
-            {currentConfig.footerCats.map((cat: string) => (
-              <div key={cat} className={styles.catBoxMini}>
-                <span className={styles.catNameMini}>{cat}</span>
-                <div className={styles.catImgMini}>
-                  <SafeImage 
-                    src={currentConfig.footerImg} 
-                    alt={cat} 
+        ) : (
+          <>
+            {/* 1. REFINED HERO SECTION */}
+            <section className={styles.heroSection}>
+              <div className={styles.heroGrid}>
+                {/* Left Content */}
+                <div className={styles.heroMainCard}>
+                  <h1 className={styles.editorialTitle}>
+                    {currentConfig.title[0]} <br />
+                    <span className={styles.pillTitle}>{currentConfig.title[1]}</span>
+                  </h1>
+                  <p className={styles.editorialSubtitle}>
+                    {currentConfig.subtitle}
+                  </p>
+                  <div className={styles.socialMinimal}>
+                    <div className={styles.socialItem}><Camera size={14} /> <span>Gallery</span></div>
+                    <div className={styles.socialItem}><Share2 size={14} /> <span>Social</span></div>
+                  </div>
+                </div>
+
+                {/* Middle Stat */}
+                <div className={styles.heroStatCard}>
+                  <div className={styles.purpleCircle}>
+                    <span className={styles.statLarge}>100%</span>
+                    <span className={styles.statSmall}>Original high quality materials</span>
+                  </div>
+                </div>
+
+                {/* Right Visual */}
+                <div className={styles.heroVisualCard}>
+                   <SafeImage 
+                    src={currentConfig.heroImage} 
+                    alt="Product visual" 
                     fill 
-                    style={{ objectFit: 'contain' }}
+                    style={{ objectFit: 'cover' }}
+                  />
+                  <button className={styles.shopNowBtn}>Shop now</button>
+                </div>
+              </div>
+            </section>
+
+            {/* 2. UNIQUE MATERIALS BANNER */}
+            <section className={styles.uniqueBanner}>
+              <div className={styles.uniqueContent}>
+                <h2>{currentConfig.banner[0]} <span className={styles.hollowText}>{currentConfig.banner[1]}</span></h2>
+                <h3>{currentConfig.banner[2]} <span className={styles.hollowText}>{currentConfig.banner[3]}</span> MATERIALS</h3>
+              </div>
+              <button className={styles.viewAllBtn}>View all</button>
+            </section>
+
+            {/* 3. NEW COLLECTION & BEST SELLERS BENTO */}
+            <div className={styles.collectionGrid}>
+              {/* New Collection Vertical */}
+              <div className={styles.verticalCollection}>
+                <div className={styles.verticalHeader}>
+                  <h3>NEW ARRIVALS</h3>
+                </div>
+                <div className={styles.verticalImage}>
+                  <SafeImage 
+                    src={currentConfig.newArrival} 
+                    alt="New" 
+                    fill 
+                    style={{ objectFit: 'cover' }}
                   />
                 </div>
               </div>
-            ))}
-          </div>
-        </section>
+
+              {/* Best Sellers Grid */}
+              <div className={styles.bestSellersContent}>
+                <div className={styles.bestSellersHeader}>
+                  <h3>BEST SELLERS</h3>
+                  <div className={styles.headerDot}></div>
+                </div>
+                <div className={styles.productFlex}>
+                  {products.filter(p => {
+                    const matchesCategory = activeCategory === 'Home' ? p.isBestSeller : p.category.toLowerCase() === activeCategory.toLowerCase();
+                    const matchesSub = activeSubCategory === 'All' || activeSubCategory === 'Home' ? true : (p.subCategory === activeSubCategory || p.brand === activeSubCategory);
+                    return matchesCategory && matchesSub;
+                  }).slice(0, 4).map(product => (
+                    <div key={product.id} className={styles.miniProductCard}>
+                      <ProductCard product={product} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* 4. FOOTER BENTO (Categories) */}
+            <section className={styles.footerBento}>
+              <div className={styles.categoryFooterHeader}>
+                <span>SHOP BY CATEGORY</span>
+              </div>
+              <div className={styles.catGridMini}>
+                {currentConfig.footerCats.map((cat: string) => (
+                  <div key={cat} className={styles.catBoxMini}>
+                    <span className={styles.catNameMini}>{cat}</span>
+                    <div className={styles.catImgMini}>
+                      <SafeImage 
+                        src={currentConfig.footerImg} 
+                        alt={cat} 
+                        fill 
+                        style={{ objectFit: 'contain' }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          </>
+        )}
       </div>
 
       <AIAssistant />
