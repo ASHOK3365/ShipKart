@@ -2,40 +2,10 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { 
-  Home, 
-  LayoutGrid, 
-  Tag, 
-  Sparkles, 
-  ShoppingBag, 
-  Heart, 
-  User, 
-  HelpCircle,
-  Smartphone,
-  Laptop,
-  Shirt,
-  UtensilsCrossed,
-  Bike
-} from 'lucide-react';
+import { ShoppingBag, User, HelpCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import styles from './GlobalSidebar.module.css';
-
-const navItems = [
-  { icon: Home, label: 'Home', href: '/' },
-  { icon: LayoutGrid, label: 'Categories', href: '/categories' },
-  { icon: Tag, label: 'Deals', href: '/deals' },
-  { icon: Sparkles, label: 'New Arrivals', href: '/new-arrivals' },
-];
-
-const categoryIcons = [
-  { icon: UtensilsCrossed, label: 'Grocery', href: '/categories/grocery' },
-  { icon: Smartphone, label: 'Mobiles', href: '/categories/mobiles' },
-  { icon: Laptop, label: 'Electronics', href: '/categories/electronics' },
-  { icon: Shirt, label: 'Fashion', href: '/categories/fashion' },
-  { icon: Sparkles, label: 'Beauty', href: '/categories/beauty' },
-  { icon: LayoutGrid, label: 'Appliances', href: '/categories/appliances' },
-  { icon: Bike, label: 'Two Wheeler', href: '/categories/two-wheeler' },
-];
+import { NAV_ITEMS, CATEGORY_ITEMS } from '@/config/navigation';
 
 const GlobalSidebar = () => {
   const pathname = usePathname();
@@ -53,7 +23,7 @@ const GlobalSidebar = () => {
         <nav className={styles.navSection}>
           <span className={styles.sectionTitle}>MENU</span>
           <div className={styles.navGroup}>
-            {navItems.map((item) => {
+            {NAV_ITEMS.map((item) => {
               const isActive = pathname === item.href;
               return (
                 <Link key={item.label} href={item.href} className={`${styles.navItem} ${isActive ? styles.active : ''}`}>
@@ -69,12 +39,16 @@ const GlobalSidebar = () => {
         <nav className={styles.navSection}>
           <span className={styles.sectionTitle}>CATEGORIES</span>
           <div className={styles.navGroup}>
-            {categoryIcons.map((item) => (
-              <Link key={item.label} href={item.href || '#'} className={styles.navItem}>
-                <item.icon size={20} />
-                <span>{item.label}</span>
-              </Link>
-            ))}
+            {CATEGORY_ITEMS.map((item) => {
+              const isActive = pathname.startsWith(item.href);
+              return (
+                <Link key={item.label} href={item.href} className={`${styles.navItem} ${isActive ? styles.active : ''}`}>
+                  <item.icon size={20} />
+                  <span>{item.label}</span>
+                  {isActive && <motion.div layoutId="activeCategory" className={styles.activeIndicator} />}
+                </Link>
+              );
+            })}
           </div>
         </nav>
 

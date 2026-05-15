@@ -68,53 +68,7 @@ const BeautyPage = () => {
   return (
     <div className={styles.beautyLayout}>
       {/* LEFT SIDEBAR */}
-      <aside className={styles.leftSidebar}>
-        <Link href="/" className={styles.logo}>
-          <div className={styles.logoBox}>
-             <ShoppingBag size={24} color="#A78BFA" fill="#A78BFA" fillOpacity={0.2} />
-          </div>
-          <h2>Shipkart</h2>
-        </Link>
-
-        <div className={styles.sideNav}>
-          <div className={styles.navSection}>
-            <span className={styles.sectionTitle}>MENU</span>
-            {menuItems.map((item) => (
-              <Link key={item.label} href={item.href} className={styles.navItem}>
-                <item.icon size={20} />
-                <span>{item.label}</span>
-              </Link>
-            ))}
-          </div>
-
-          <div className={styles.navSection}>
-            <span className={styles.sectionTitle}>CATEGORIES</span>
-            {categoryItems.map((item) => (
-              <Link key={item.label} href={item.href} className={`${styles.navItem} ${item.active ? styles.active : ''}`}>
-                <item.icon size={20} />
-                <span>{item.label}</span>
-              </Link>
-            ))}
-          </div>
-          
-          <div className={styles.navSection}>
-            <span className={styles.sectionTitle}>ACCOUNT</span>
-            <Link href="/account" className={styles.navItem}>
-              <User size={20} />
-              <span>Profile</span>
-            </Link>
-          </div>
-        </div>
-
-        <div className={styles.beautySaleCard}>
-          <h3>Beauty Sale</h3>
-          <p>Up to 60% Off</p>
-          <button className={styles.shopNowBtn}>Shop Now <ArrowRight size={14} /></button>
-          <div className={styles.promoImg}>
-            <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=200&q=80" alt="Beauty Products" />
-          </div>
-        </div>
-      </aside>
+      
 
       {/* MAIN CONTENT */}
       <main className={styles.mainContent}>

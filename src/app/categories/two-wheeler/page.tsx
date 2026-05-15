@@ -41,48 +41,7 @@ export default function TwoWheelerPage() {
   return (
     <div className={styles.layout}>
       {/* LEFT SIDEBAR */}
-      <aside className={styles.leftSidebar}>
-        <Link href="/" className={styles.logo}>
-          <div className={styles.logoBox}>
-            <Bike size={24} color="#EF4444" fill="#EF4444" fillOpacity={0.2} />
-          </div>
-          <h2>Shipkart</h2>
-        </Link>
-
-        <div className={styles.sideNav}>
-          <div className={styles.navSection}>
-            <span className={styles.sectionTitle}>MENU</span>
-            {menuItems.map((item) => (
-              <Link key={item.label} href={item.href} className={styles.navItem}>
-                <item.icon size={20} />
-                <span>{item.label}</span>
-              </Link>
-            ))}
-          </div>
-          <div className={styles.navSection}>
-            <span className={styles.sectionTitle}>CATEGORIES</span>
-            {categoryItems.map((item) => (
-              <Link key={item.label} href={item.href} className={`${styles.navItem} ${item.active ? styles.active : ''}`}>
-                <item.icon size={20} />
-                <span>{item.label}</span>
-              </Link>
-            ))}
-          </div>
-          <div className={styles.navSection}>
-            <span className={styles.sectionTitle}>ACCOUNT</span>
-            <Link href="/account" className={styles.navItem}>
-              <User size={20} />
-              <span>Profile</span>
-            </Link>
-          </div>
-        </div>
-
-        <div className={styles.promoCard}>
-          <h3>Electric Revolution</h3>
-          <p>Get up to ₹25,000 Subsidy</p>
-          <button className={styles.shopNowBtn}>Explore EV <ArrowRight size={14} /></button>
-        </div>
-      </aside>
+      
 
       {/* MAIN CONTENT */}
       <main className={styles.mainContent}>

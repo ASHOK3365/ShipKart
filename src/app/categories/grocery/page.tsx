@@ -65,53 +65,7 @@ const GroceryPage = () => {
   return (
     <div className={styles.groceryLayout}>
       {/* LEFT SIDEBAR */}
-      <aside className={styles.leftSidebar}>
-        <Link href="/" className={styles.logo}>
-          <div className={styles.logoBox}>
-             <ShoppingBag size={24} color="#10B981" fill="#10B981" fillOpacity={0.2} />
-          </div>
-          <h2>Shipkart</h2>
-        </Link>
-
-        <div className={styles.sideNav}>
-          <div className={styles.navSection}>
-            <span className={styles.sectionTitle}>MENU</span>
-            {menuItems.map((item) => (
-              <Link key={item.label} href={item.href} className={styles.navItem}>
-                <item.icon size={20} />
-                <span>{item.label}</span>
-              </Link>
-            ))}
-          </div>
-
-          <div className={styles.navSection}>
-            <span className={styles.sectionTitle}>CATEGORIES</span>
-            {categoryItems.map((item) => (
-              <Link key={item.label} href={item.href} className={`${styles.navItem} ${item.active ? styles.active : ''}`}>
-                <item.icon size={20} />
-                <span>{item.label}</span>
-              </Link>
-            ))}
-          </div>
-          
-          <div className={styles.navSection}>
-            <span className={styles.sectionTitle}>ACCOUNT</span>
-            <Link href="/account" className={styles.navItem}>
-              <User size={20} />
-              <span>Profile</span>
-            </Link>
-          </div>
-        </div>
-
-        <div className={styles.freshSavingsCard}>
-          <h3>Fresh Savings</h3>
-          <p>Up to 50% Off</p>
-          <button className={styles.shopNowBtn}>Shop Now <ArrowRight size={14} /></button>
-          <div className={styles.promoImg}>
-            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=200&q=80" alt="Grocery Bag" />
-          </div>
-        </div>
-      </aside>
+      
 
       {/* MAIN CONTENT */}
       <main className={styles.mainContent}>
