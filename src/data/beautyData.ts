@@ -1,101 +1,122 @@
 import { Product } from './products';
 
-const brands = [
-  'MAC', 'Dior Beauty', 'Huda Beauty', 'Lakmé', 'Maybelline', 
-  'L’Oréal Paris', 'Nykaa Cosmetics', 'The Ordinary', 'Minimalist', 
-  'Cetaphil', 'Plum', 'Mamaearth', 'Rare Beauty', 'Charlotte Tilbury'
+// ========================================
+// BEAUTY — Real Cosmetics & Skincare Brands
+// Verified Unsplash images matched to product type
+// ========================================
+
+export const allBeautyProducts: Product[] = [
+  // --- SKINCARE ---
+  {
+    id: 'b-1', slug: 'cetaphil-moisturizer', name: 'Cetaphil Moisturizing Cream', brand: 'Cetaphil',
+    category: 'Beauty', subCategory: 'Moisturizer',
+    description: 'Clinically proven moisturizer for dry, sensitive skin.',
+    price: 389, originalPrice: 499, discount: 22, rating: 4.7, reviews: 12400,
+    image: 'https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?w=600&auto=format&fit=crop',
+    availability: 'in-stock', deliveryDate: 'Delivery by Tomorrow',
+    labels: ['BEST SELLER', 'DERMA TESTED'], isBestSeller: true,
+    specifications: { Type: 'Moisturizer', Skin: 'Dry & Sensitive', Volume: '250ml', Fragrance: 'Fragrance-Free' }
+  },
+  {
+    id: 'b-2', slug: 'minimalist-niacinamide', name: 'Minimalist 10% Niacinamide Serum', brand: 'Minimalist',
+    category: 'Beauty', subCategory: 'Serum',
+    description: 'Controls oil, minimizes pores, and reduces acne marks.',
+    price: 549, originalPrice: 649, discount: 15, rating: 4.6, reviews: 18200,
+    image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=600&auto=format&fit=crop',
+    availability: 'in-stock', deliveryDate: 'Delivery by Tomorrow',
+    labels: ['TRENDING', 'BEST SELLER'], isTrending: true, isBestSeller: true,
+    specifications: { Active: '10% Niacinamide + 1% Zinc', Skin: 'Oily & Acne-Prone', Volume: '30ml' }
+  },
+  {
+    id: 'b-3', slug: 'cetaphil-cleanser', name: 'Cetaphil Gentle Skin Cleanser', brand: 'Cetaphil',
+    category: 'Beauty', subCategory: 'Cleanser',
+    description: 'Soap-free, non-foaming face wash for all skin types.',
+    price: 350, originalPrice: 449, discount: 22, rating: 4.8, reviews: 9800,
+    image: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&auto=format&fit=crop',
+    availability: 'in-stock', deliveryDate: 'Delivery in 2 hours',
+    labels: ['DERMA TESTED'], isBestSeller: true,
+    specifications: { Type: 'Cleanser', Skin: 'All Types', Volume: '250ml', pH: 'Balanced' }
+  },
+
+  // --- MAKEUP ---
+  {
+    id: 'b-4', slug: 'mac-ruby-woo', name: 'MAC Ruby Woo Lipstick', brand: 'MAC',
+    category: 'Beauty', subCategory: 'Lipstick',
+    description: 'Iconic retro matte vivid red lipstick.',
+    price: 1950, originalPrice: 1950, discount: 0, rating: 4.9, reviews: 24500,
+    image: 'https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=600&auto=format&fit=crop',
+    availability: 'in-stock', deliveryDate: 'Delivery by Tomorrow',
+    labels: ['ICONIC', 'BEST SELLER'], isBestSeller: true,
+    colors: ['#8B0000', '#C71585', '#D2691E', '#FF69B4'],
+    specifications: { Finish: 'Retro Matte', Shade: 'Ruby Woo', Weight: '3g' }
+  },
+  {
+    id: 'b-5', slug: 'huda-beauty-palette', name: 'Huda Beauty Rose Gold Palette', brand: 'Huda Beauty',
+    category: 'Beauty', subCategory: 'Eyeshadow',
+    description: '18 shades of rose gold, mattes, shimmers, and glitters.',
+    price: 4950, originalPrice: 5500, discount: 10, rating: 4.7, reviews: 6200,
+    image: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=600&auto=format&fit=crop',
+    availability: 'in-stock', deliveryDate: 'Delivery in 3 days',
+    labels: ['PREMIUM', 'TRENDING'], isTrending: true,
+    specifications: { Shades: '18 (Matte, Shimmer, Glitter)', Type: 'Pressed Powder', Brand: 'Huda Beauty' }
+  },
+  {
+    id: 'b-6', slug: 'dior-lip-glow', name: 'Dior Addict Lip Glow', brand: 'Dior',
+    category: 'Beauty', subCategory: 'Lip Care',
+    description: 'Color-reviving lip balm with 97% natural origin.',
+    price: 3600, originalPrice: 3600, discount: 0, rating: 4.8, reviews: 4100,
+    image: 'https://images.unsplash.com/photo-1631214524020-7e18db9a8f92?w=600&auto=format&fit=crop',
+    availability: 'in-stock', deliveryDate: 'Delivery in 2 days',
+    labels: ['LUXURY', 'PREMIUM'],
+    colors: ['#FFB6C1', '#FF69B4', '#DC143C'],
+    specifications: { Finish: 'Glossy Balm', Origin: '97% Natural', SPF: '10' }
+  },
+
+  // --- FRAGRANCE ---
+  {
+    id: 'b-7', slug: 'dior-sauvage', name: 'Dior Sauvage EDT', brand: 'Dior',
+    category: 'Beauty', subCategory: 'Fragrance',
+    description: 'Bold, fresh, and powerful — the world\'s #1 men\'s fragrance.',
+    price: 8500, originalPrice: 9500, discount: 11, rating: 4.9, reviews: 15600,
+    image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?w=600&auto=format&fit=crop',
+    availability: 'in-stock', deliveryDate: 'Delivery by Tomorrow',
+    labels: ['LUXURY', 'BEST SELLER'], isBestSeller: true,
+    specifications: { Type: 'Eau de Toilette', Top: 'Bergamot, Pepper', Heart: 'Lavender, Sichuan', Base: 'Ambroxan, Cedar', Volume: '100ml' }
+  },
+
+  // --- HAIR CARE ---
+  {
+    id: 'b-8', slug: 'loreal-serum', name: "L'Oréal Extraordinary Oil Serum", brand: "L'Oréal",
+    category: 'Beauty', subCategory: 'Hair Care',
+    description: '6 micro-oils for frizz-free, glossy hair.',
+    price: 499, originalPrice: 650, discount: 23, rating: 4.5, reviews: 7800,
+    image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&auto=format&fit=crop',
+    availability: 'in-stock', deliveryDate: 'Delivery in 2 hours',
+    labels: ['BEST SELLER'],
+    specifications: { Type: 'Hair Serum', Benefit: 'Frizz Control + Shine', Volume: '100ml' }
+  },
+
+  // --- SUNSCREEN ---
+  {
+    id: 'b-9', slug: 'minimalist-sunscreen', name: 'Minimalist SPF 50 Sunscreen', brand: 'Minimalist',
+    category: 'Beauty', subCategory: 'Sunscreen',
+    description: 'Lightweight, no white cast, PA++++ protection.',
+    price: 449, originalPrice: 549, discount: 18, rating: 4.6, reviews: 11200,
+    image: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&auto=format&fit=crop',
+    availability: 'in-stock', deliveryDate: 'Delivery by Tomorrow',
+    labels: ['TRENDING', 'BEST SELLER'], isTrending: true,
+    specifications: { SPF: '50 PA++++', Type: 'Chemical', Finish: 'Matte', Volume: '50ml' }
+  },
+
+  // --- TOOLS ---
+  {
+    id: 'b-10', slug: 'dyson-airwrap', name: 'Dyson Airwrap Multi-Styler', brand: 'Dyson',
+    category: 'Beauty', subCategory: 'Styling Tools',
+    description: 'Curl, shape, smooth, and dry with no extreme heat.',
+    price: 45900, originalPrice: 45900, discount: 0, rating: 4.8, reviews: 3200,
+    image: 'https://images.unsplash.com/photo-1522338242992-e1a54f1f4569?w=600&auto=format&fit=crop',
+    availability: 'in-stock', deliveryDate: 'Delivery in 5 days',
+    labels: ['LUXURY', 'PREMIUM'],
+    specifications: { Motor: 'Dyson V9', Heat: 'Coanda Effect (No extreme heat)', Attachments: '6 Styling', Voltage: '220-240V' }
+  },
 ];
-
-const categories = [
-  { name: 'Skincare', sub: 'Care' },
-  { name: 'Makeup', sub: 'Cosmetics' },
-  { name: 'Perfumes', sub: 'Fragrance' },
-  { name: 'Hair Care', sub: 'Treatment' },
-  { name: 'Lipsticks', sub: 'Makeup' },
-  { name: 'Foundations', sub: 'Makeup' },
-  { name: 'Face Serums', sub: 'Skincare' },
-  { name: 'Sunscreens', sub: 'Skincare' },
-  { name: 'Eye Makeup', sub: 'Makeup' },
-  { name: 'Luxury Beauty Kits', sub: 'Premium' },
-  { name: 'Organic Beauty', sub: 'Natural' },
-  { name: 'Men’s Grooming', sub: 'Care' }
-];
-
-const skinTypes = ['All Skin Types', 'Oily', 'Dry', 'Sensitive', 'Combination'];
-const shades = ['NC15', 'NC20', 'NC25', 'NC30', 'NC35', 'NC40', 'Fair', 'Medium', 'Deep'];
-
-// Realistic Unsplash IDs for Beauty
-const beautyImages: Record<string, string[]> = {
-  'Skincare': ['1556228578-0d85b1a4d571', '1598440947619-2c35fc9aa908', '1612817288484-6f916006741a', '1570172236081-aba100c580ed'],
-  'Makeup': ['1522335789203-aabd1fc54bc9', '1512496015851-a90fb38ba796', '1616150829429-c1428256bc98', '1596462502278-27bfad450216'],
-  'Perfumes': ['1541643600914-78b084683601', '1594035910387-fea47794261f', '1585232351009-aa87416fca90', '1592945403244-b3fbafd7f539'],
-  'Hair Care': ['1527799822394-4d18c1710323', '1560869713-7d0a29430803', '1559599101-f09722fb4948', '1552337557-45792b2dd295'],
-  'Lipsticks': ['1586771107445-d3ca888129ff', '1591360236630-fdd8b37b3701', '1603126731744-118890209e99', '1608649171197-09d94943f55c'],
-  'Foundations': ['1615397024829-5144f3b9000a', '1599733594230-6b822483183b', '1599733589046-10170b09f525', '1615397024255-73479633e690'],
-  'Face Serums': ['1620916566398-39f1143ab7be', '1620916566453-9f8748950f83', '1620917670397-dc09e5b72182', '1620916566580-f0000a6c0b3c'],
-  'Sunscreens': ['1556229162-4211a76c0032', '1617897903246-719242758050', '1596462502278-27bfad450216', '1612817288484-6f916006741a'],
-  'Eye Makeup': ['1516975080664-ed2fc6a32937', '1591360236630-fdd8b37b3701', '1512496015851-a90fb38ba796', '1515688594390-b649af70d282'],
-  'Luxury Beauty Kits': ['1596462502278-27bfad450216', '1512496015851-a90fb38ba796', '1612817288484-6f916006741a', '1556228578-0d85b1a4d571'],
-  'Organic Beauty': ['1612817288484-6f916006741a', '1596462502278-27bfad450216', '1612817288484-6f916006741a', '1596462502278-27bfad450216'],
-  'Men’s Grooming': ['1567538095121-57d427e0f803', '1585922350739-143d21348959', '1599279062331-5d9f194c2380', '1567538095121-57d427e0f803']
-};
-
-const generateBeautyProducts = (): Product[] => {
-  const beauty: Product[] = [];
-  let idCount = 1;
-
-  categories.forEach(cat => {
-    brands.forEach((brand, bIdx) => {
-      const count = Math.random() > 0.5 ? 1 : 2;
-      
-      for (let i = 0; i < count; i++) {
-        const priceBase = cat.name === 'Perfumes' ? 4500 : 
-                          cat.name === 'Luxury Beauty Kits' ? 3500 : 
-                          cat.name === 'Foundations' ? 1200 : 
-                          cat.name === 'Face Serums' ? 600 : 350;
-        
-        const price = priceBase + (Math.floor(Math.random() * 40) * 100) + 99; // e.g. 599, 2299
-        const originalPrice = Math.floor(price * (1 + (0.2 + Math.random() * 0.3)));
-        const discount = Math.round(((originalPrice - price) / originalPrice) * 100);
-        
-        const imgList = beautyImages[cat.name] || beautyImages['Skincare'];
-        const imgId = imgList[idCount % imgList.length];
-
-        beauty.push({
-          id: `beauty-${idCount}`,
-          slug: `${brand.toLowerCase().replace(/\s/g, '-')}-${cat.name.toLowerCase().replace(/\s/g, '-')}-${idCount}`,
-          name: `${brand} ${cat.name.slice(0, -1)} ${idCount % 3 === 0 ? 'Ultra' : idCount % 2 === 0 ? 'Hydrate' : 'Glow'} Pro`,
-          brand: brand,
-          category: 'Beauty',
-          subCategory: cat.name,
-          description: `Achieve a flawless look with ${brand} ${cat.name}. Formulated with premium ingredients for visible results and a luxurious experience.`,
-          longDescription: `This ${brand} ${cat.name} represents the pinnacle of beauty science. Whether you're looking for skin rejuvenation, perfect coverage, or an enchanting fragrance, this product delivers excellence.\n\nKey Benefits:\n- Dermatologically Tested\n- Long-lasting Formula\n- Premium Packaging\n- Suitable for ${skinTypes[idCount % skinTypes.length]}`,
-          price: price,
-          originalPrice: originalPrice,
-          discount: discount,
-          rating: 4.3 + (Math.random() * 0.7),
-          reviews: Math.floor(Math.random() * 8000) + 200,
-          image: `https://images.unsplash.com/photo-${imgId}?q=80&w=800&auto=format&fit=crop`,
-          availability: 'in-stock',
-          deliveryDate: 'Delivery in 1-2 Days',
-          specifications: {
-            'Skin Type': skinTypes[idCount % skinTypes.length],
-            'Key Ingredient': idCount % 4 === 0 ? 'Vitamin C' : idCount % 3 === 0 ? 'Hyaluronic Acid' : 'Aloe Vera',
-            'Benefits': 'Glow & Hydration',
-            'Cruelty Free': 'Yes'
-          },
-          labels: idCount % 8 === 0 ? ['Best Seller'] : idCount % 6 === 0 ? ['Dermatologist Approved'] : ['Luxury Pick'],
-          isBestSeller: idCount % 8 === 0,
-          isTrending: idCount % 5 === 0,
-          isFlashDeal: idCount % 20 === 0,
-          weight: '150ml'
-        });
-        idCount++;
-      }
-    });
-  });
-
-  return beauty;
-};
-
-export const allBeautyProducts = generateBeautyProducts();

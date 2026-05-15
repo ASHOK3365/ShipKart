@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { 
-  Home, Tag, Sparkles, User, ShoppingBag, 
+  Home, Tag, Sparkles, User,
   ChevronLeft, Trash2, Heart, Plus, Minus,
   ChevronDown, ArrowRight, Grid, List, Bike, Gauge,
   UtensilsCrossed, Smartphone, Laptop, Shirt, LayoutGrid
@@ -28,17 +28,15 @@ const categoryItems = [
   { icon: Bike, label: 'Two Wheeler', href: '/categories/two-wheeler', active: true },
 ];
 
-const categoryPills = [
-  'All', 'Electric', 'Cruiser', 'Sports', 'Commuter', 'Scooter'
-];
+const categoryPills = ['All', 'Electric', 'Cruiser', 'Sports', 'Commuter', 'Scooter', 'Adventure'];
 
 export default function TwoWheelerPage() {
   const [activeTab, setActiveTab] = useState('All');
   const { items, updateQuantity, getSubtotal } = useCartStore();
 
-  const filteredProducts = activeTab === 'All' 
+  const filteredProducts = activeTab === 'All'
     ? allTwoWheelerProducts.slice(0, 12)
-    : allTwoWheelerProducts.filter(p => p.type === activeTab).slice(0, 12);
+    : allTwoWheelerProducts.filter(p => p.subCategory === activeTab).slice(0, 12);
 
   return (
     <div className={styles.layout}>
@@ -46,7 +44,7 @@ export default function TwoWheelerPage() {
       <aside className={styles.leftSidebar}>
         <Link href="/" className={styles.logo}>
           <div className={styles.logoBox}>
-             <Bike size={24} color="#EF4444" fill="#EF4444" fillOpacity={0.2} />
+            <Bike size={24} color="#EF4444" fill="#EF4444" fillOpacity={0.2} />
           </div>
           <h2>Shipkart</h2>
         </Link>
@@ -61,7 +59,6 @@ export default function TwoWheelerPage() {
               </Link>
             ))}
           </div>
-
           <div className={styles.navSection}>
             <span className={styles.sectionTitle}>CATEGORIES</span>
             {categoryItems.map((item) => (
@@ -71,7 +68,6 @@ export default function TwoWheelerPage() {
               </Link>
             ))}
           </div>
-          
           <div className={styles.navSection}>
             <span className={styles.sectionTitle}>ACCOUNT</span>
             <Link href="/account" className={styles.navItem}>
@@ -106,8 +102,8 @@ export default function TwoWheelerPage() {
 
         <div className={styles.categoryBar}>
           {categoryPills.map((cat) => (
-            <button 
-              key={cat} 
+            <button
+              key={cat}
               className={`${styles.catPill} ${activeTab === cat ? styles.catActive : ''}`}
               onClick={() => setActiveTab(cat)}
             >
@@ -118,14 +114,10 @@ export default function TwoWheelerPage() {
 
         <div className={styles.productGrid}>
           {filteredProducts.map((product) => (
-            <motion.div 
-              key={product.id} 
-              className={styles.productCard}
-              whileHover={{ y: -5 }}
-            >
+            <motion.div key={product.id} className={styles.productCard} whileHover={{ y: -5 }}>
               {product.discount > 0 && <div className={styles.discountBadge}>-{product.discount}%</div>}
               <button className={styles.wishlistBtn}><Heart size={18} /></button>
-              
+
               <Link href={`/product/${product.id}`} className={styles.imageLink}>
                 <div className={styles.productImg}>
                   <img src={product.image} alt={product.name} />
@@ -137,15 +129,19 @@ export default function TwoWheelerPage() {
                 <Link href={`/product/${product.id}`} style={{ textDecoration: 'none' }}>
                   <h3>{product.name}</h3>
                 </Link>
-                
+
                 <div className={styles.specsRow}>
-                  <div className={styles.spec}>
-                    <Gauge size={14} />
-                    <span>{product.topSpeed}</span>
-                  </div>
-                  <div className={styles.spec}>
-                    <span>{product.mileage}</span>
-                  </div>
+                  {product.specifications?.TopSpeed && (
+                    <div className={styles.spec}>
+                      <Gauge size={14} />
+                      <span>{product.specifications.TopSpeed}</span>
+                    </div>
+                  )}
+                  {(product.specifications?.Mileage || product.specifications?.Range) && (
+                    <div className={styles.spec}>
+                      <span>{product.specifications?.Mileage || product.specifications?.Range}</span>
+                    </div>
+                  )}
                 </div>
 
                 <div className={styles.priceRow}>
@@ -170,7 +166,7 @@ export default function TwoWheelerPage() {
         </div>
       </main>
 
-      {/* RIGHT SIDEBAR (CART/BOOKINGS) */}
+      {/* RIGHT SIDEBAR */}
       <aside className={styles.rightSidebar}>
         <div className={styles.cartHeader}>
           <Link href="/" className={styles.backBtn}><ChevronLeft size={20} /></Link>
@@ -181,9 +177,7 @@ export default function TwoWheelerPage() {
         <div className={styles.cartList}>
           {items.map((item) => (
             <div key={item.id} className={styles.cartItem}>
-              <div className={styles.itemImg}>
-                <img src={item.image} alt={item.name} />
-              </div>
+              <div className={styles.itemImg}><img src={item.image} alt={item.name} /></div>
               <div className={styles.itemInfo}>
                 <h4>{item.name}</h4>
                 <div className={styles.itemPrice}>₹{item.price.toLocaleString('en-IN')}</div>
@@ -197,16 +191,14 @@ export default function TwoWheelerPage() {
               </div>
             </div>
           ))}
-          {items.length === 0 && (
-            <div className={styles.emptyCart}>No bookings yet</div>
-          )}
+          {items.length === 0 && <div className={styles.emptyCart}>No bookings yet</div>}
         </div>
 
         {items.length > 0 && (
           <div className={styles.cartSummary}>
             <div className={styles.totalRow}>
               <span>TOTAL</span>
-              <strong>₹{(getSubtotal()).toLocaleString('en-IN')}</strong>
+              <strong>₹{getSubtotal().toLocaleString('en-IN')}</strong>
             </div>
             <Link href="/checkout">
               <button className={styles.payBtn}>PROCEED TO CHECKOUT</button>
