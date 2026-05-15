@@ -1,6 +1,6 @@
-export interface Product {
   id: string;
   slug?: string;
+  title?: string; // Aligned with user backend schema
   name: string;
   brand: string;
   category: string;
@@ -55,7 +55,11 @@ const generateProducts = (): Product[] => {
   allProducts.push(...allBeautyProducts);
   allProducts.push(...allTwoWheelerProducts);
 
-  return allProducts;
+  // Auto-fill title to match name for backend schema alignment
+  return allProducts.map(p => ({
+    ...p,
+    title: p.title || p.name
+  }));
 };
 
 export const products: Product[] = generateProducts();
