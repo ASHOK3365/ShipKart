@@ -11,24 +11,20 @@ import {
   Trash2, 
   ChevronLeft, 
   Plus, 
-  Minus,
-  LayoutGrid,
-  Home,
-  Tag,
-  Sparkles,
-  HelpCircle,
-  ShoppingBag,
-  Smartphone,
-  UtensilsCrossed,
-  Laptop,
-  ChevronDown,
-  ArrowRight,
-  ShieldCheck,
-  RotateCcw,
-  Truck,
-  Grid,
-  List,
-  Star
+  Minus, 
+  HelpCircle, 
+  Smartphone, 
+  UtensilsCrossed, 
+  Laptop, 
+  ChevronDown, 
+  ArrowRight, 
+  ShieldCheck, 
+  RotateCcw, 
+  Truck, 
+  Grid, 
+  List, 
+  Star, 
+  Shirt
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './fashion.module.css';
@@ -76,7 +72,7 @@ const FashionPage = () => {
           <div className={styles.logoBox}>
              <ShoppingBag size={24} color="#D946EF" fill="#D946EF" fillOpacity={0.2} />
           </div>
-          <h2>NovaMart</h2>
+          <h2>Shipkart</h2>
         </Link>
 
         <div className={styles.sideNav}>

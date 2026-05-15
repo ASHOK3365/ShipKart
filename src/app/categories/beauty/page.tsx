@@ -8,29 +8,23 @@ import {
   ShoppingBag, 
   Heart, 
   User, 
-  HelpCircle,
-  Plus,
+  HelpCircle, 
+  Plus, 
   Trash2, 
   ChevronLeft, 
-  Plus, 
-  Minus,
-  LayoutGrid,
-  Home,
-  Tag,
-  HelpCircle,
-  ShoppingBag,
-  Smartphone,
-  UtensilsCrossed,
-  Laptop,
-  Shirt,
-  ChevronDown,
-  ArrowRight,
-  ShieldCheck,
-  RotateCcw,
-  Truck,
-  Grid,
-  List,
-  Star,
+  Minus, 
+  Smartphone, 
+  UtensilsCrossed, 
+  Laptop, 
+  Shirt, 
+  ChevronDown, 
+  ArrowRight, 
+  ShieldCheck, 
+  RotateCcw, 
+  Truck, 
+  Grid, 
+  List, 
+  Star, 
   Info
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -79,7 +73,7 @@ const BeautyPage = () => {
           <div className={styles.logoBox}>
              <ShoppingBag size={24} color="#A78BFA" fill="#A78BFA" fillOpacity={0.2} />
           </div>
-          <h2>NovaMart</h2>
+          <h2>Shipkart</h2>
         </Link>
 
         <div className={styles.sideNav}>

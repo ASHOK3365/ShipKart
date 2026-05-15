@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import React, { useState } from 'react';
 import { 
   Home, 
@@ -11,23 +12,19 @@ import {
   Trash2, 
   ChevronLeft, 
   Plus, 
-  Minus,
-  LayoutGrid,
-  Home,
-  Tag,
-  Sparkles,
-  HelpCircle,
-  ShoppingBag,
-  Laptop,
-  Smartphone,
-  Shirt,
-  ChevronDown,
-  ArrowRight,
-  ShieldCheck,
-  RotateCcw,
-  Truck,
-  Grid,
-  List
+  Minus, 
+  HelpCircle, 
+  Laptop, 
+  Smartphone, 
+  Shirt, 
+  ChevronDown, 
+  ArrowRight, 
+  ShieldCheck, 
+  RotateCcw, 
+  Truck, 
+  Grid, 
+  List, 
+  UtensilsCrossed
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCartStore } from '@/store/cartStore';
@@ -73,7 +70,7 @@ const GroceryPage = () => {
           <div className={styles.logoBox}>
              <ShoppingBag size={24} color="#10B981" fill="#10B981" fillOpacity={0.2} />
           </div>
-          <h2>NovaMart</h2>
+          <h2>Shipkart</h2>
         </Link>
 
         <div className={styles.sideNav}>

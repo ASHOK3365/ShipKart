@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import React, { useState } from 'react';
 import { 
   Home, 
@@ -8,19 +9,22 @@ import {
   ShoppingBag, 
   Heart, 
   User, 
-  HelpCircle,
-  Plus,
-  Minus,
-  Trash2,
-  ChevronLeft,
-  ChevronDown,
-  ArrowRight,
-  ShieldCheck,
-  RotateCcw,
-  Truck,
-  Grid,
-  List,
-  Smartphone
+  HelpCircle, 
+  Plus, 
+  Minus, 
+  Trash2, 
+  ChevronLeft, 
+  ChevronDown, 
+  ArrowRight, 
+  ShieldCheck, 
+  RotateCcw, 
+  Truck, 
+  Grid, 
+  List, 
+  Smartphone, 
+  UtensilsCrossed, 
+  Laptop, 
+  Shirt
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './mobiles.module.css';
@@ -71,7 +75,7 @@ const MobilesPage = () => {
           <div className={styles.logoBox}>
              <ShoppingBag size={24} color="#8B5CF6" fill="#8B5CF6" fillOpacity={0.2} />
           </div>
-          <h2>NovaMart</h2>
+          <h2>Shipkart</h2>
         </Link>
 
         <div className={styles.sideNav}>

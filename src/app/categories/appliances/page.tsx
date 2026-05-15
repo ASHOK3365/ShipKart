@@ -8,29 +8,23 @@ import {
   ShoppingBag, 
   Heart, 
   User, 
-  HelpCircle,
-  Plus,
+  HelpCircle, 
+  Plus, 
   Trash2, 
   ChevronLeft, 
-  Plus, 
-  Minus,
-  Home,
-  Tag,
-  Sparkles,
-  HelpCircle,
-  ShoppingBag,
-  Smartphone,
-  UtensilsCrossed,
-  Laptop,
-  Shirt,
-  ChevronDown,
-  ArrowRight,
-  ShieldCheck,
-  RotateCcw,
-  Truck,
-  Grid,
-  List,
-  Star,
+  Minus, 
+  Smartphone, 
+  UtensilsCrossed, 
+  Laptop, 
+  Shirt, 
+  ChevronDown, 
+  ArrowRight, 
+  ShieldCheck, 
+  RotateCcw, 
+  Truck, 
+  Grid, 
+  List, 
+  Star, 
   Zap
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -79,7 +73,7 @@ const AppliancesPage = () => {
           <div className={styles.logoBox}>
              <ShoppingBag size={24} color="#3B82F6" fill="#3B82F6" fillOpacity={0.2} />
           </div>
-          <h2>NovaMart</h2>
+          <h2>Shipkart</h2>
         </Link>
 
         <div className={styles.sideNav}>
