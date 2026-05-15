@@ -18,7 +18,7 @@ const orgData = {
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.SITE_URL || 'http://localhost:3000'),
   title: "ShopKart AI | Premium AI-Powered E-commerce Ecosystem",
-  description: "Experience the future of commerce with Antigravity Brain. Predictive search, curated luxury products, and frictionless AI-assisted shopping.",
+  description: "Experience the future of commerce with AXOR AI. Predictive search, curated luxury products, and frictionless AI-assisted shopping.",
   keywords: ["ecommerce", "AI shopping", "luxury electronics", "smart appliances", "Antigravity AI"],
   authors: [{ name: "Antigravity Team" }],
   openGraph: {

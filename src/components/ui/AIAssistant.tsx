@@ -15,7 +15,7 @@ const AIAssistant = () => {
   const { getAIResponse, loading: aiLoading } = useAI();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { id: 1, text: "Quantum systems initialized. I am Antigravity Brain. How can I augment your shopping experience today?", sender: 'ai' }
+    { id: 1, text: "Quantum systems initialized. I am AXOR AI. How can I augment your shopping experience today?", sender: 'ai' }
   ]);
   const [inputValue, setInputValue] = useState('');
   const chatEndRef = useRef<HTMLDivElement>(null);
@@ -77,7 +77,7 @@ const AIAssistant = () => {
                   <Sparkles size={18} />
                 </div>
                 <div>
-                  <h3>Antigravity Brain</h3>
+                  <h3>AXOR AI</h3>
                   <div className={styles.statusRow}>
                     <div className={styles.pulseDot}></div>
                     <span>Neural Link Active</span>
@@ -122,7 +122,7 @@ const AIAssistant = () => {
               <div className={styles.inputContainer}>
                 <input
                   type="text"
-                  placeholder="Query Antigravity Brain..."
+                  placeholder="Query AXOR AI..."
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSend()}

@@ -336,7 +336,7 @@ export default function ProductDetailsPage() {
         <div className={styles.sectionBlock}>
           <div className={styles.aiRecBanner}>
             <div>
-              <h3>Antigravity Brain Suggests</h3>
+              <h3>AXOR AI Suggests</h3>
               <p>Based on your interest in {product.brand}, here are highly compatible accessories and alternatives.</p>
             </div>
             <button className={styles.btnSecondary} style={{ width: 'auto', border: 'none' }}>

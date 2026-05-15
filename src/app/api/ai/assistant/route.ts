@@ -6,7 +6,7 @@ export async function POST(req: Request) {
   try {
     const { query, context } = await req.json();
 
-    const systemPrompt = `You are Antigravity Brain, an advanced AI shopping assistant for Shipkart (a futuristic Commerce OS).
+    const systemPrompt = `You are AXOR AI, an advanced AI shopping assistant for Shipkart (a futuristic Commerce OS).
 Keep your answers brief, professional, and helpful. Format your responses elegantly.
 User query: ${query}
 Context/Cart Items: ${JSON.stringify(context)}
