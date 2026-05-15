@@ -3,7 +3,7 @@
   background-color: #F8FAFC;
   overflow-x: hidden;
   position: relative;
-  padding-top: 40px;
+  padding-top: 20px;
 }
 
 .ambientBg {
@@ -18,7 +18,7 @@
 .contentWrapper {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 4rem 8rem 4rem;
+  padding: 0 2rem 6rem 2rem;
   position: relative;
   z-index: 1;
 }
@@ -47,10 +47,10 @@
 }
 
 .title {
-  font-size: 3rem;
-  font-weight: 900;
-  color: var(--text-white);
-  letter-spacing: -0.03em;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
 }
 
 .stepIndicator {
@@ -108,7 +108,7 @@
 .emptyState h2 {
   font-size: 2.5rem;
   font-weight: 900;
-  color: var(--text-white);
+  color: var(--text-primary, #0F172A);
   margin-bottom: 1rem;
 }
 
@@ -123,8 +123,8 @@
 /* Layout */
 .layout {
   display: grid;
-  grid-template-columns: 1.5fr 1fr;
-  gap: 3rem;
+  grid-template-columns: 2fr 0.9fr;
+  gap: 2.5rem;
   align-items: start;
 }
 
@@ -150,9 +150,9 @@
 }
 
 .cardHeader h3 {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 800;
-  color: var(--text-white);
+  color: var(--text-primary);
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -200,9 +200,9 @@
 }
 
 .itemName {
-  font-size: 1.15rem;
-  font-weight: 800;
-  color: var(--text-white);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary, #0F172A);
   margin-bottom: 0.5rem;
   line-height: 1.3;
 }
@@ -215,9 +215,9 @@
 }
 
 .itemPrice {
-  font-size: 1.35rem;
-  font-weight: 900;
-  color: var(--text-white);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-primary, #0F172A);
 }
 
 .itemOriginal {
@@ -362,7 +362,7 @@
 .savedName {
   font-size: 0.85rem;
   font-weight: 700;
-  color: var(--text-white);
+  color: var(--text-primary, #0F172A);
   margin: 0.2rem 0;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -372,7 +372,7 @@
 .savedPrice {
   font-size: 0.95rem;
   font-weight: 800;
-  color: var(--text-white);
+  color: var(--text-primary, #0F172A);
 }
 
 .savedActions {
@@ -424,21 +424,21 @@
 .aiBlock {
   background: linear-gradient(135deg, rgba(91, 108, 255, 0.03), rgba(124, 77, 255, 0.03));
   border: 1px solid rgba(91, 108, 255, 0.12);
-  border-radius: 24px;
-  padding: 2rem;
+  border-radius: 20px;
+  padding: 1.5rem;
 }
 
 .aiBlockHeader {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.75rem;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
 }
 
 .aiIconWrap {
-  width: 44px;
-  height: 44px;
-  border-radius: 14px;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
   background: linear-gradient(135deg, rgba(91, 108, 255, 0.1), rgba(124, 77, 255, 0.1));
   display: flex;
   align-items: center;
@@ -447,9 +447,9 @@
 }
 
 .aiBlockHeader h3 {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   font-weight: 800;
-  color: var(--text-white);
+  color: var(--text-primary, #0F172A);
   margin-bottom: 0.15rem;
 }
 
@@ -461,16 +461,18 @@
 .recommendationGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .recCard {
   background: white;
-  border-radius: 16px;
-  padding: 1rem;
+  border-radius: 14px;
+  padding: 0.75rem;
   border: 1px solid var(--border);
   transition: var(--transition);
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
 }
 
 .recCard:hover {
@@ -480,22 +482,22 @@
 
 .recImage {
   width: 100%;
-  height: 100px;
-  border-radius: 12px;
-  background: var(--bg-dark);
+  height: 80px;
+  border-radius: 10px;
+  background: var(--bg-secondary, #F8FAFC);
   position: relative;
   overflow: hidden;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .recInfo h5 {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  color: var(--text-white);
+  color: var(--text-primary, #0F172A);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.2rem;
 }
 
 .recPricing {
@@ -506,9 +508,9 @@
 }
 
 .recPricing span:first-child {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 800;
-  color: var(--text-white);
+  color: var(--text-primary, #0F172A);
 }
 
 .recDiscount {
@@ -692,9 +694,9 @@
   margin-top: 1.5rem;
   padding-top: 1.5rem;
   border-top: 2px solid var(--border);
-  font-size: 1.4rem;
-  font-weight: 900;
-  color: var(--text-white);
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--text-primary);
 }
 
 .primaryBtn {
