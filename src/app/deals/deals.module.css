@@ -1,0 +1,281 @@
+.container {
+  padding: 1rem 0 4rem;
+}
+
+/* Hero Banner */
+.heroBanner {
+  background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
+  border-radius: 24px;
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  margin-bottom: 3rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.heroContent { position: relative; z-index: 1; }
+
+.heroTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
+  padding: 0.5rem 1rem;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.heroBanner h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-heading);
+}
+
+.heroBanner p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin-bottom: 1.5rem;
+}
+
+.heroTimer {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255,255,255,0.15);
+  padding: 0.75rem 1.5rem;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.heroVisual {
+  font-size: 6rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Sections */
+.section {
+  margin-bottom: 3rem;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.sectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.titleIcon { color: var(--primary-accent); }
+
+.sectionTitle h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.sectionSub {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+/* Deals Grid */
+.dealsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.dealCard {
+  background: white;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.dealCard:hover {
+  box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+  border-color: var(--primary-accent);
+}
+
+.dealLink {
+  text-decoration: none;
+  color: inherit;
+  flex: 1;
+}
+
+.dealImage {
+  height: 160px;
+  position: relative;
+  background: #F8FAFC;
+}
+
+.discountBadge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  background: #EF4444;
+  color: white;
+  padding: 0.25rem 0.6rem;
+  border-radius: 8px;
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.dealInfo {
+  padding: 1rem;
+}
+
+.dealBrand {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--primary-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.dealInfo h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0.25rem 0 0.5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dealPricing {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.dealPrice {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.dealOriginal {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-decoration: line-through;
+}
+
+.dealRating {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.addBtn {
+  width: calc(100% - 2rem);
+  margin: 0 1rem 1rem;
+  background: var(--primary-accent);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 0.7rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.addBtn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* Value Grid */
+.valueGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.valueCard {
+  display: flex;
+  gap: 1rem;
+  background: white;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  padding: 1rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.valueCard:hover {
+  box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+}
+
+.valueImage {
+  width: 90px;
+  height: 90px;
+  min-width: 90px;
+  border-radius: 14px;
+  background: #F8FAFC;
+  position: relative;
+  overflow: hidden;
+}
+
+.valueInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.valueInfo h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.saveBadge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #059669;
+  background: #ECFDF5;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+}
+
+@media (max-width: 1024px) {
+  .dealsGrid { grid-template-columns: repeat(2, 1fr); }
+  .valueGrid { grid-template-columns: repeat(2, 1fr); }
+  .heroBanner h1 { font-size: 2rem; }
+}
+
+@media (max-width: 640px) {
+  .dealsGrid { grid-template-columns: 1fr; }
+  .valueGrid { grid-template-columns: 1fr; }
+  .heroBanner { flex-direction: column; text-align: center; padding: 2rem; }
+  .heroVisual { font-size: 3rem; }
+}
