@@ -51,7 +51,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://images.unsplash.com" />
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#EDE8FF" />
+        <meta name="theme-color" content="#8B5CF6" />
       </head>
 
       <body className={inter.className}>

@@ -26,6 +26,7 @@ const categories = [
   { name: 'Appliances', icon: <Zap size={24} />, color: '#F3E5F5', href: '/categories/appliances', img: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=400&auto=format&fit=crop' },
   { name: 'Fashion', icon: <Shirt size={24} />, color: '#FCE4EC', href: '/categories/fashion', img: 'https://images.unsplash.com/photo-1445205170230-053b830c6050?q=80&w=400&auto=format&fit=crop' },
   { name: 'Beauty', icon: <Sparkles size={24} />, color: '#F3E5F5', href: '/categories/beauty', img: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=400&auto=format&fit=crop' },
+  { name: 'Two Wheeler', icon: '🏍️', color: '#FFEBEE', href: '/categories/two-wheeler', img: 'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?q=80&w=400&auto=format&fit=crop' },
 ];
 
 const trendingProducts = [

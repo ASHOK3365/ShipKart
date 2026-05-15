@@ -39,6 +39,7 @@ import { allMobileProducts, Smartphone } from './mobileData';
 import { allApplianceProducts } from './applianceData';
 import { allClothingProducts } from './clothingData';
 import { allBeautyProducts } from './beautyData';
+import { allTwoWheelerProducts } from './twoWheelerData';
 
 export type { Smartphone };
 
@@ -53,7 +54,7 @@ const generateProducts = () => {
   allProducts.push(...allApplianceProducts);
   allProducts.push(...allClothingProducts);
   allProducts.push(...allBeautyProducts);
-
+  allProducts.push(...allTwoWheelerProducts);
 
   // 4. ELECTRONICS (40 products)
 
@@ -90,34 +91,6 @@ const generateProducts = () => {
 
 
 
-  // 7. TWO WHEELER (25 products)
-  const bikeBrands = ['Honda', 'Hero', 'Yamaha', 'Royal Enfield', 'KTM', 'Bajaj', 'TVS'];
-  const bikeImages = [
-    '1558981403-c5f9899a28bc', '1547918129-9bc83606775b', '1568772585407-9361f9bf3a87',
-    '1449490126671-db0ad9c9d380', '1558981403-c5f9899a28bc', '1515777315835-281b94c9589f'
-  ];
-
-  for (let i = 1; i <= 25; i++) {
-    const brand = bikeBrands[i % bikeBrands.length];
-    allProducts.push({
-      id: `tw-${i}`,
-      name: `${brand} ${brand === 'Royal Enfield' ? 'Classic' : brand === 'KTM' ? 'Duke' : 'Cruiser'} ${250 + (i * 10)}cc`,
-      brand,
-      category: 'Two Wheeler',
-      subCategory: 'Bikes',
-      description: `Experience the thrill of the open road with ${brand}. Powerful engine meets superior comfort and safety.`,
-      price: 145000 + (i * 8000),
-      originalPrice: 175000 + (i * 9500),
-      discount: 10 + (i % 5),
-      rating: 4.7 + (Math.random() * 0.3),
-      reviews: 12000 + (i * 450),
-      image: `https://images.unsplash.com/photo-${bikeImages[i % bikeImages.length]}?q=80&w=800&auto=format&fit=crop`,
-      availability: 'in-stock',
-      deliveryDate: 'Home Delivery in 5-7 Days',
-      labels: ['Premium', 'High Speed'],
-      specifications: { 'Engine': `${250 + (i * 10)}cc`, 'Mileage': '35 kmpl', 'ABS': 'Dual Channel' }
-    });
-  }
 
   return allProducts;
 };

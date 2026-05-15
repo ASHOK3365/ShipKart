@@ -7,12 +7,13 @@ import {
   MessageCircle, Zap, Shield
 } from 'lucide-react';
 import { useCartStore } from '@/store/cartStore';
+import { useAI } from '@/hooks/useAI';
 import styles from './AIAssistant.module.css';
 
 const AIAssistant = () => {
   const { items } = useCartStore();
+  const { getAIResponse, loading: aiLoading } = useAI();
   const [isOpen, setIsOpen] = useState(false);
-  const [isTyping, setIsTyping] = useState(false);
   const [messages, setMessages] = useState([
     { id: 1, text: "Quantum systems initialized. I am Antigravity Brain. How can I augment your shopping experience today?", sender: 'ai' }
   ]);
@@ -21,7 +22,7 @@ const AIAssistant = () => {
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages, isTyping]);
+  }, [messages, aiLoading]);
 
   const handleSend = async () => {
     if (!inputValue.trim()) return;
@@ -29,32 +30,16 @@ const AIAssistant = () => {
     const userMessage = { id: Date.now(), text: inputValue, sender: 'user' };
     setMessages(prev => [...prev, userMessage]);
     setInputValue('');
-    setIsTyping(true);
 
-    try {
-      const response = await fetch('http://localhost:5000/api/v1/ai/assistant', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
-          query: inputValue,
-          context: { cart: items.map(i => i.name) }
-        })
-      });
-
-      const data = await response.json();
-      
-      const aiResponse = { 
-        id: Date.now() + 1, 
-        text: data.success ? data.data : "My neural link is currently fluctuating. Please re-synchronize.", 
-        sender: 'ai' 
-      };
-      
-      setMessages(prev => [...prev, aiResponse]);
-    } catch (error) {
-      setMessages(prev => [...prev, { id: Date.now()+1, text: "Critical error in AI core. Please check your connectivity.", sender: 'ai' }]);
-    } finally {
-      setIsTyping(false);
-    }
+    const responseText = await getAIResponse(inputValue, { cart: items.map(i => i.name) });
+    
+    const aiResponse = { 
+      id: Date.now() + 1, 
+      text: responseText || "My neural link is currently fluctuating. Please re-synchronize.", 
+      sender: 'ai' 
+    };
+    
+    setMessages(prev => [...prev, aiResponse]);
   };
 
   return (
@@ -119,7 +104,7 @@ const AIAssistant = () => {
                   {msg.sender === 'user' && <User size={14} className={styles.msgIcon} />}
                 </motion.div>
               ))}
-              {isTyping && (
+              {aiLoading && (
                 <div className={styles.aiMsg}>
                   <div className={styles.typingIndicator}>
                     <span></span><span></span><span></span>
