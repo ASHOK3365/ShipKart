@@ -1,6 +1,6 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { Search, ShoppingCart, Heart, Bell, Mic, Camera } from 'lucide-react';
+import { Search, ShoppingCart, Heart, Bell, Mic, Camera, ShoppingBag } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Navbar.module.css';
 import { useCartStore } from '@/store/cartStore';
@@ -20,6 +20,13 @@ const Navbar = () => {
   return (
     <div className={`${styles.navWrapper} ${isScrolled ? styles.scrolled : ''}`}>
       <nav className={styles.navbar}>
+        <Link href="/" className={styles.logo}>
+          <div className={styles.logoIcon}>
+            <ShoppingBag size={22} color="white" />
+          </div>
+          <span className={styles.logoText}>Shipkart</span>
+        </Link>
+
         <div className={styles.searchBar}>
           <div className={styles.searchIcon}>
             <Search size={18} />

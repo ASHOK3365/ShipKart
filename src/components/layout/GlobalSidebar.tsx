@@ -34,7 +34,7 @@ const categoryIcons = [
   { icon: Shirt, label: 'Fashion', href: '/categories/fashion' },
   { icon: Sparkles, label: 'Beauty', href: '/categories/beauty' },
   { icon: LayoutGrid, label: 'Appliances', href: '/categories/appliances' },
-  { icon: Bike, label: 'Automotive', href: '/categories/automotive' },
+  { icon: Bike, label: 'Two Wheeler', href: '/categories/two-wheeler' },
 ];
 
 const GlobalSidebar = () => {
@@ -45,9 +45,9 @@ const GlobalSidebar = () => {
       <div className={styles.container}>
         <div className={styles.logo}>
           <div className={styles.logoIcon}>
-            <Sparkles size={20} />
+            <ShoppingBag size={20} />
           </div>
-          <span className={styles.logoText}>Nova</span>
+          <span className={styles.logoText}>Shipkart</span>
         </div>
 
         <nav className={styles.navSection}>

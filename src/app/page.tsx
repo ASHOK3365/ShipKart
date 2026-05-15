@@ -95,29 +95,36 @@ const Home = () => {
             <div className={styles.aiBody}>
               <p className={styles.aiGreeting}>Hi, I'm Nova ✨</p>
               <p className={styles.aiText}>How can I help you today?</p>
-              <button className={styles.aiBtn}>Let's Chat &rarr;</button>
+              <button 
+                className={styles.aiBtn}
+                onClick={() => {
+                  const aiBtn = document.querySelector('[class*="floatingBtn"]');
+                  if (aiBtn) (aiBtn as HTMLElement).click();
+                }}
+              >
+                Let's Chat &rarr;
+              </button>
             </div>
           </motion.div>
 
-          {/* Mega Deal Card */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3 }}
-            className={`${styles.bentoCard} ${styles.dealCard}`}
-          >
-            <div className={styles.dealContent}>
-              <span className={styles.dealBadge}>Mega Deal</span>
-              <h4>Limited time offer</h4>
-              <p className={styles.dealDiscount}>Up to 60% Off</p>
-              <Link href="/categories/fashion">
+          <Link href="/categories/fashion" className={`${styles.bentoCard} ${styles.dealCard}`}>
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3 }}
+              style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
+            >
+              <div className={styles.dealContent}>
+                <span className={styles.dealBadge}>Mega Deal</span>
+                <h4>Limited time offer</h4>
+                <p className={styles.dealDiscount}>Up to 60% Off</p>
                 <button className={styles.dealBtn}>Shop Now</button>
-              </Link>
-            </div>
-            <div className={styles.dealImg}>
-              <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=200&auto=format&fit=crop" alt="Bag" />
-            </div>
-          </motion.div>
+              </div>
+              <div className={styles.dealImg}>
+                <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=200&auto=format&fit=crop" alt="Bag" />
+              </div>
+            </motion.div>
+          </Link>
         </div>
       </section>
 
@@ -125,7 +132,9 @@ const Home = () => {
       <section className={styles.categorySection}>
         <div className={styles.sectionHeader}>
           <h2>Shop By Category</h2>
-          <button className={styles.viewAll}>View All <ArrowRight size={16} /></button>
+          <Link href="/categories" className={styles.viewAll}>
+            View All <ArrowRight size={16} />
+          </Link>
         </div>
         <div className={styles.categoryGrid}>
           {categories.map((cat, idx) => (
