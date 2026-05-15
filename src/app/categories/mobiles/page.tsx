@@ -27,6 +27,7 @@ import {
   Shirt
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useCartStore } from '@/store/cartStore';
 import styles from './mobiles.module.css';
 
 const menuItems = [
