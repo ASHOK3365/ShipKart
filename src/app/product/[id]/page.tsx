@@ -2,7 +2,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { Star, ShieldCheck, Clock, Zap, Heart, Share2, ArrowRight, BrainCircuit, Activity, Smartphone, Box, Shield, ChevronRight } from 'lucide-react';
+import { 
+  Star, ShieldCheck, Clock, Zap, Heart, Share2, ArrowRight, BrainCircuit, 
+  Activity, Smartphone, Box, Shield, ChevronRight, Truck, Info, 
+  Award, Gauge, Droplets, Leaf, Fingerprint, Layers 
+} from 'lucide-react';
 import Navbar from '@/components/layout/Navbar';
 import AIAssistant from '@/components/ui/AIAssistant';
 import ProductCard from '@/components/product/ProductCard';
@@ -119,8 +123,77 @@ export default function ProductDetailsPage() {
             </div>
 
             <p className={styles.description}>{product.description}</p>
+            
+            {/* --- CATEGORY SPECIFIC INTERFACES --- */}
 
-            {/* Clothing Specific: Size & Color Selection */}
+            {/* 1. GROCERY: Freshness & Quantity */}
+            {product.category === 'Grocery' && (
+              <div className={styles.groceryMeta}>
+                <div className={styles.freshTag}>
+                  <Leaf size={16} /> 100% Organic & Fresh
+                </div>
+                <div className={styles.expiryBox}>
+                  <Clock size={14} /> Best before: 7 days from delivery
+                </div>
+                {product.nutritionInfo && (
+                  <div className={styles.nutritionTable}>
+                    <h4>Nutritional Information (per 100g)</h4>
+                    <div className={styles.nutriGrid}>
+                      {Object.entries(product.nutritionInfo).map(([key, val]) => (
+                        <div key={key} className={styles.nutriItem}>
+                          <span className={styles.nutriKey}>{key}</span>
+                          <span className={styles.nutriVal}>{val}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* 2. MOBILES & ELECTRONICS: Storage/RAM Variants */}
+            {(product.category === 'Mobiles' || product.category === 'Electronics') && (
+              <div className={styles.techVariants}>
+                <div className={styles.optionGroup}>
+                  <div className={styles.optionLabel}>Select Storage</div>
+                  <div className={styles.variantGrid}>
+                    {['128GB', '256GB', '512GB'].map(s => (
+                      <button key={s} className={s === product.storage ? styles.variantBtnActive : styles.variantBtn}>{s}</button>
+                    ))}
+                  </div>
+                </div>
+                <div className={styles.specHighlights}>
+                  <div className={styles.specMini}>
+                    <Activity size={18} />
+                    <span>{product.processor || 'A18 Pro'}</span>
+                  </div>
+                  <div className={styles.specMini}>
+                    <Smartphone size={18} />
+                    <span>{product.ram || '8GB RAM'}</span>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* 3. APPLIANCES: Energy Ratings & Warranty */}
+            {product.category === 'Appliances' && (
+              <div className={styles.applianceDetails}>
+                <div className={styles.energyCard}>
+                  <div className={styles.energyLabel}>Energy Rating</div>
+                  <div className={styles.energyStars}>
+                    {[1,2,3,4,5].map(s => (
+                      <Star key={s} size={24} fill={s <= (product.energyRating || 5) ? "#10B981" : "none"} stroke="#10B981" />
+                    ))}
+                    <span className={styles.energyValue}>{product.energyRating || 5} Star</span>
+                  </div>
+                </div>
+                <div className={styles.warrantyBadge}>
+                  <ShieldCheck size={20} /> {product.warranty || '10 Year Compressor Warranty'}
+                </div>
+              </div>
+            )}
+
+            {/* 4. CLOTHING: Size & Material */}
             {product.category === 'Clothing' && (
               <div className={styles.fashionOptions}>
                 <div className={styles.optionGroup}>
@@ -129,51 +202,57 @@ export default function ProductDetailsPage() {
                     <button className={styles.sizeGuideBtn}>Size Guide</button>
                   </div>
                   <div className={styles.sizeGrid}>
-                    {['XS', 'S', 'M', 'L', 'XL', 'XXL'].map(size => (
+                    {['S', 'M', 'L', 'XL', 'XXL'].map(size => (
                       <button key={size} className={styles.sizeBtn}>{size}</button>
                     ))}
                   </div>
                 </div>
-
-                {product.colors && product.colors.length > 0 && (
-                  <div className={styles.optionGroup}>
-                    <div className={styles.optionLabel}>Select Color</div>
-                    <div className={styles.colorGrid}>
-                      {product.colors.map((color, idx) => (
-                        <button 
-                          key={idx} 
-                          className={styles.colorCircle} 
-                          style={{ backgroundColor: color }}
-                        ></button>
-                      ))}
-                    </div>
-                  </div>
-                )}
+                <div className={styles.materialInfo}>
+                  <Layers size={18} /> Premium Breathable Fabric - Machine Washable
+                </div>
               </div>
             )}
 
-            {/* Beauty Specific: Shades & Skin Compatibility */}
+            {/* 5. BEAUTY: Shade Selector */}
             {product.category === 'Beauty' && (
-              <div className={styles.fashionOptions}>
-                {product.subCategory === 'Foundations' || product.subCategory === 'Lipsticks' || product.subCategory === 'Makeup' ? (
-                  <div className={styles.optionGroup}>
-                    <div className={styles.optionLabel}>Select Shade</div>
-                    <div className={styles.shadeGrid}>
-                      {['#FAD5B8', '#F3C096', '#E4A36E', '#C6804B', '#9B5A2F', '#71401D'].map((color, idx) => (
-                        <button key={idx} className={styles.colorCircle} style={{ backgroundColor: color }}></button>
-                      ))}
-                    </div>
+              <div className={styles.beautyOptions}>
+                <div className={styles.optionGroup}>
+                  <div className={styles.optionLabel}>Select Shade</div>
+                  <div className={styles.shadeGrid}>
+                    {['#FAD5B8', '#F3C096', '#E4A36E', '#C6804B', '#9B5A2F', '#71401D'].map((color, idx) => (
+                      <button key={idx} className={styles.colorCircle} style={{ backgroundColor: color }}></button>
+                    ))}
                   </div>
-                ) : (
-                  <div className={styles.optionGroup}>
-                    <div className={styles.optionLabel}>Skin Type Compatibility</div>
-                    <div className={styles.skinTypeGrid}>
-                      {['Oily', 'Dry', 'Sensitive', 'Normal'].map(type => (
-                        <span key={type} className={styles.skinBadge}>{type}</span>
-                      ))}
-                    </div>
+                </div>
+                <div className={styles.skinCareNote}>
+                  <Droplets size={18} /> Dermatologically Tested • All Skin Types
+                </div>
+              </div>
+            )}
+
+            {/* 6. TWO WHEELER: Vehicle Stats */}
+            {product.category === 'Two Wheeler' && (
+              <div className={styles.vehicleStats}>
+                <div className={styles.statGrid}>
+                  <div className={styles.statBox}>
+                    <Gauge size={20} />
+                    <span>{product.specifications?.['Mileage'] || '45 kmpl'}</span>
+                    <label>Mileage</label>
                   </div>
-                )}
+                  <div className={styles.statBox}>
+                    <Zap size={20} />
+                    <span>{product.specifications?.['Top Speed'] || '110 kmph'}</span>
+                    <label>Top Speed</label>
+                  </div>
+                  <div className={styles.statBox}>
+                    <Activity size={20} />
+                    <span>{product.specifications?.['Engine'] || '155cc'}</span>
+                    <label>Engine</label>
+                  </div>
+                </div>
+                <div className={styles.bookingNotice}>
+                  <Info size={16} /> Home delivery & RTO registration included
+                </div>
               </div>
             )}
 
@@ -186,7 +265,7 @@ export default function ProductDetailsPage() {
                   window.location.href = '/cart';
                 }}
               >
-                <Zap size={20} /> Buy Now
+                <Zap size={20} /> {product.category === 'Two Wheeler' ? 'Book Now' : 'Buy Now'}
               </button>
               <button 
                 className={styles.btnSecondary}
@@ -199,20 +278,26 @@ export default function ProductDetailsPage() {
               </button>
             </div>
 
+            {/* Offers Section */}
+            <div className={styles.offersSection}>
+              <h4 className={styles.offerTitle}>Available Offers</h4>
+              <div className={styles.offerCard}>
+                <Award size={18} className={styles.offerIcon} />
+                <p><strong>Bank Offer</strong> 10% instant discount on ICICI Bank Credit Cards</p>
+              </div>
+              <div className={styles.offerCard}>
+                <Zap size={18} className={styles.offerIcon} />
+                <p><strong>No Cost EMI</strong> Interest free payments up to 12 months</p>
+              </div>
+            </div>
+
             {/* Delivery & Warranty Meta */}
             <div className={styles.metaFeatures}>
               <div className={styles.metaFeature}>
-                <div className={styles.metaIcon}><Clock size={24} /></div>
+                <div className={styles.metaIcon}><Truck size={24} /></div>
                 <div className={styles.metaText}>
-                  <h4>Delivery</h4>
-                  <p>{product.deliveryDate || 'Within 2-4 business days'}</p>
-                </div>
-              </div>
-              <div className={styles.metaFeature}>
-                <div className={styles.metaIcon}><ShieldCheck size={24} /></div>
-                <div className={styles.metaText}>
-                  <h4>Warranty</h4>
-                  <p>{product.warranty || '1 Year Brand Warranty'}</p>
+                  <h4>Delivery Details</h4>
+                  <p>{product.category === 'Grocery' ? 'Fast delivery in 15 mins' : (product.deliveryDate || 'Delivery in 2-4 days')}</p>
                 </div>
               </div>
             </div>
