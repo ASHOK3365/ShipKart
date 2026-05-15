@@ -1,3 +1,4 @@
+export interface Product {
   id: string;
   slug?: string;
   title?: string; // Aligned with user backend schema
