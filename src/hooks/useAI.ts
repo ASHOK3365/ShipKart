@@ -8,7 +8,7 @@ export const useAI = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch('http://localhost:5000/api/ai/assistant', {
+      const response = await fetch('/api/ai/assistant', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query, context })
@@ -30,7 +30,7 @@ export const useAI = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch('http://localhost:5000/api/ai/recommendations', {
+      const response = await fetch('/api/ai/recommendations', {
         headers: { 
           'Authorization': `Bearer ${localStorage.getItem('token')}` 
         }
