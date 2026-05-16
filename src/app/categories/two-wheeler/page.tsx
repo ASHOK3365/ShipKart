@@ -1,56 +1,95 @@
 'use client';
-import React, { useState } from 'react';
+
+import React, { useState, useMemo, lazy, Suspense } from 'react';
 import Link from 'next/link';
 import { 
-  Home, Tag, Sparkles, User,
-  ChevronLeft, Trash2, Heart, Plus, Minus,
-  ChevronDown, ArrowRight, Grid, List, Bike, Gauge,
-  UtensilsCrossed, Smartphone, Laptop, Shirt, LayoutGrid
+  Heart, 
+  Trash2, 
+  ChevronLeft, 
+  Plus, 
+  Minus, 
+  ShoppingBag,
+  Grid, 
+  List, 
+  ShieldCheck, 
+  RotateCcw, 
+  Truck,
+  Bike
 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useCartStore } from '@/store/cartStore';
-import { allTwoWheelerProducts } from '@/data/twoWheelerData';
 import styles from './two-wheeler.module.css';
+import SafeImage from '@/components/ui/SafeImage';
+import { allTwoWheelerProducts } from '@/data/twoWheelerData';
 
-const menuItems = [
-  { icon: Home, label: 'Home', href: '/' },
-  { icon: Tag, label: 'Deals', href: '/deals' },
-  { icon: Sparkles, label: 'New Arrivals', href: '/new-arrivals' },
+const categoryPills = [
+  'All', 'Electric', 'Cruiser', 'Sports', 'Commuter', 'Scooter', 'Adventure'
 ];
 
-const categoryItems = [
-  { icon: UtensilsCrossed, label: 'Grocery', href: '/categories/grocery' },
-  { icon: Smartphone, label: 'Mobiles', href: '/categories/mobiles' },
-  { icon: Laptop, label: 'Electronics', href: '/categories/electronics' },
-  { icon: Shirt, label: 'Fashion', href: '/categories/fashion' },
-  { icon: Sparkles, label: 'Beauty', href: '/categories/beauty' },
-  { icon: LayoutGrid, label: 'Appliances', href: '/categories/appliances' },
-  { icon: Bike, label: 'Two Wheeler', href: '/categories/two-wheeler', active: true },
-];
+// Memoized Product Card to prevent unnecessary rerenders
+const ProductCard = React.memo(({ product, addItem }: any) => {
+  return (
+    <motion.div 
+      className={styles.productCard}
+      layout
+      initial={{ opacity: 0, scale: 0.9, y: 20 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.9, y: -20 }}
+      transition={{ duration: 0.3 }}
+    >
+      {product.discount > 0 && (
+        <div className={styles.discountBadge}>-{product.discount}%</div>
+      )}
+      <button className={styles.wishlistBtn}><Heart size={18} /></button>
+      <div className={styles.productImg}>
+        <SafeImage 
+          src={product.image} 
+          alt={product.name} 
+          fill 
+          style={{ objectFit: 'contain' }}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+      </div>
+      <div className={styles.productInfo}>
+        <h3>{product.name}</h3>
+        <span>{product.brand} - {product.description}</span>
+        <div className={styles.priceRow}>
+          <div>
+            <span className={styles.price}>₹{product.price.toLocaleString('en-IN')}</span>
+            {product.originalPrice > product.price && (
+              <span className={styles.oldPrice}>₹{product.originalPrice.toLocaleString('en-IN')}</span>
+            )}
+          </div>
+          <button className={styles.addBtn} onClick={() => addItem(product as any)}><Plus size={18} /></button>
+        </div>
+      </div>
+    </motion.div>
+  );
+});
 
-const categoryPills = ['All', 'Electric', 'Cruiser', 'Sports', 'Commuter', 'Scooter', 'Adventure'];
+ProductCard.displayName = 'ProductCard';
 
-export default function TwoWheelerPage() {
+const TwoWheelerPage = () => {
   const [activeTab, setActiveTab] = useState('All');
-  const { items, updateQuantity, getSubtotal } = useCartStore();
+  const { items, addItem, removeItem, updateQuantity, getSubtotal } = useCartStore();
 
-  const filteredProducts = activeTab === 'All'
-    ? allTwoWheelerProducts.slice(0, 12)
-    : allTwoWheelerProducts.filter(p => p.subCategory === activeTab).slice(0, 12);
+  const filteredProducts = useMemo(() => {
+    if (activeTab === 'All') return allTwoWheelerProducts;
+    return allTwoWheelerProducts.filter(p => p.subCategory === activeTab);
+  }, [activeTab]);
 
   return (
-    <div className={styles.layout}>
-      {/* LEFT SIDEBAR */}
-      
-
+    <div className={styles.twoWheelerLayout}>
       {/* MAIN CONTENT */}
       <main className={styles.mainContent}>
         <header className={styles.header}>
           <div className={styles.headerLeft}>
-            <div className={styles.headerIcon}><Bike size={32} color="#EF4444" /></div>
+            <div className={styles.headerIcon}>
+              <Bike size={32} color="#EF4444" />
+            </div>
             <div>
-              <h1>Two Wheelers</h1>
-              <p>Find your perfect ride. Book online, ride anywhere.</p>
+              <h1>Premium Two Wheelers</h1>
+              <p>Configure and book your dream ride today.</p>
             </div>
           </div>
           <div className={styles.headerActions}>
@@ -61,110 +100,127 @@ export default function TwoWheelerPage() {
 
         <div className={styles.categoryBar}>
           {categoryPills.map((cat) => (
-            <button
-              key={cat}
+            <motion.button 
+              key={cat} 
               className={`${styles.catPill} ${activeTab === cat ? styles.catActive : ''}`}
               onClick={() => setActiveTab(cat)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               {cat}
-            </button>
+            </motion.button>
           ))}
         </div>
 
-        <div className={styles.productGrid}>
-          {filteredProducts.map((product) => (
-            <motion.div key={product.id} className={styles.productCard} whileHover={{ y: -5 }}>
-              {product.discount > 0 && <div className={styles.discountBadge}>-{product.discount}%</div>}
-              <button className={styles.wishlistBtn}><Heart size={18} /></button>
+        <motion.div 
+          className={styles.productGrid}
+          layout
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredProducts.map((product) => (
+              <ProductCard key={product.id} product={product} addItem={addItem} />
+            ))}
+          </AnimatePresence>
+        </motion.div>
 
-              <Link href={`/product/${product.id}`} className={styles.imageLink}>
-                <div className={styles.productImg}>
-                  <img src={product.image} alt={product.name} />
-                </div>
-              </Link>
-
-              <div className={styles.productInfo}>
-                <div className={styles.brandBadge}>{product.brand}</div>
-                <Link href={`/product/${product.id}`} style={{ textDecoration: 'none' }}>
-                  <h3>{product.name}</h3>
-                </Link>
-
-                <div className={styles.specsRow}>
-                  {product.specifications?.TopSpeed && (
-                    <div className={styles.spec}>
-                      <Gauge size={14} />
-                      <span>{product.specifications.TopSpeed}</span>
-                    </div>
-                  )}
-                  {(product.specifications?.Mileage || product.specifications?.Range) && (
-                    <div className={styles.spec}>
-                      <span>{product.specifications?.Mileage || product.specifications?.Range}</span>
-                    </div>
-                  )}
-                </div>
-
-                <div className={styles.priceRow}>
-                  <div>
-                    <span className={styles.price}>₹{product.price.toLocaleString('en-IN')}</span>
-                    {product.originalPrice > product.price && (
-                      <span className={styles.oldPrice}>₹{product.originalPrice.toLocaleString('en-IN')}</span>
-                    )}
-                  </div>
-                  <Link href={`/product/${product.id}`}>
-                    <button className={styles.addBtn}>Book Now</button>
-                  </Link>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        <div className={styles.showMore}>
-          <span>View All Models</span>
-          <ChevronDown size={18} />
-        </div>
+        {filteredProducts.length === 0 && (
+          <div className={styles.emptyState}>
+            <p>No products found in this category.</p>
+          </div>
+        )}
       </main>
 
-      {/* RIGHT SIDEBAR */}
+      {/* RIGHT SIDEBAR (CART) */}
       <aside className={styles.rightSidebar}>
         <div className={styles.cartHeader}>
           <Link href="/" className={styles.backBtn}><ChevronLeft size={20} /></Link>
-          <h2>YOUR BOOKINGS</h2>
+          <h2>GARAGE</h2>
           <button className={styles.trashBtn} onClick={() => useCartStore.getState().clearCart()}><Trash2 size={20} /></button>
         </div>
 
         <div className={styles.cartList}>
-          {items.map((item) => (
-            <div key={item.id} className={styles.cartItem}>
-              <div className={styles.itemImg}><img src={item.image} alt={item.name} /></div>
-              <div className={styles.itemInfo}>
-                <h4>{item.name}</h4>
-                <div className={styles.itemPrice}>₹{item.price.toLocaleString('en-IN')}</div>
-              </div>
-              <div className={styles.itemActions}>
-                <div className={styles.qtyBox}>
-                  <button onClick={() => updateQuantity(item.id, item.quantity - 1)}><Minus size={14} /></button>
-                  <span>{item.quantity}</span>
-                  <button onClick={() => updateQuantity(item.id, item.quantity + 1)}><Plus size={14} /></button>
+          <AnimatePresence>
+            {items.map((item) => (
+              <motion.div 
+                key={item.id} 
+                className={styles.cartItem}
+                layout
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+              >
+                <div className={styles.itemImg}>
+                  <SafeImage 
+                    src={item.image} 
+                    alt={item.name} 
+                    fill 
+                    style={{ objectFit: 'contain' }} 
+                    sizes="60px"
+                  />
                 </div>
-              </div>
+                <div className={styles.itemInfo}>
+                  <h4>{item.name}</h4>
+                  <div className={styles.itemPrice}>₹{item.price.toLocaleString('en-IN')}</div>
+                </div>
+                <div className={styles.itemActions}>
+                  <div className={styles.qtyBox}>
+                    <button onClick={() => updateQuantity(item.id, item.quantity - 1)}><Minus size={14} /></button>
+                    <span>{item.quantity}</span>
+                    <button onClick={() => updateQuantity(item.id, item.quantity + 1)}><Plus size={14} /></button>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+          {items.length === 0 && (
+            <div className={styles.emptyCart}>
+              <ShoppingBag size={48} opacity={0.2} color="#EF4444" />
+              <p>Your garage is empty</p>
             </div>
-          ))}
-          {items.length === 0 && <div className={styles.emptyCart}>No bookings yet</div>}
+          )}
         </div>
 
         {items.length > 0 && (
           <div className={styles.cartSummary}>
+            <div className={styles.summaryRow}>
+              <span>Delivered To:</span>
+              <strong>Showroom</strong>
+            </div>
+            <div className={styles.summaryRow}>
+              <span>Handling Charges:</span>
+              <strong>Free</strong>
+            </div>
             <div className={styles.totalRow}>
               <span>TOTAL</span>
               <strong>₹{getSubtotal().toLocaleString('en-IN')}</strong>
             </div>
             <Link href="/checkout">
-              <button className={styles.payBtn}>PROCEED TO CHECKOUT</button>
+              <button className={styles.payBtn}>PROCEED TO BOOK</button>
             </Link>
           </div>
         )}
+
+        <div className={styles.trustBadges}>
+          <div className={styles.badgeItem}>
+            <div className={styles.badgeIcon}><ShieldCheck size={14} /></div>
+            <span>100% Authentic</span>
+          </div>
+          <div className={styles.badgeItem}>
+            <div className={styles.badgeIcon}><RotateCcw size={14} /></div>
+            <span>Easy Returns</span>
+          </div>
+          <div className={styles.badgeItem}>
+            <div className={styles.badgeIcon}><Truck size={14} /></div>
+            <span>Home Delivery</span>
+          </div>
+          <div className={styles.badgeItem}>
+            <div className={styles.badgeIcon}><ShieldCheck size={14} /></div>
+            <span>Secure Booking</span>
+          </div>
+        </div>
       </aside>
     </div>
   );
-}
+};
+
+export default TwoWheelerPage;
