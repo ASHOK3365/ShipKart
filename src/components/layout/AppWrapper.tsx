@@ -6,6 +6,7 @@ import FloatingBackground from './FloatingBackground';
 import GlobalSidebar from './GlobalSidebar';
 import Navbar from './Navbar';
 import AIAssistant from '../ui/AIAssistant';
+import CategoryThemeProvider from './CategoryThemeProvider';
 
 export default function AppWrapper({ children }: { children: React.ReactNode }) {
   const theme = useThemeStore((state) => state.theme);
@@ -16,6 +17,7 @@ export default function AppWrapper({ children }: { children: React.ReactNode }) 
 
   return (
     <div className={`app-wrapper ${theme}-theme`}>
+      <CategoryThemeProvider />
       <FloatingBackground />
       <AmbientOrbSystem />
       <div className="app-container">

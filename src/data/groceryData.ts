@@ -1,165 +1,50 @@
 import { Product } from './products';
 
-// ========================================
-// GROCERY — Realistic Indian Quick-Commerce Data
-// Verified Unsplash images matched to product type
-// ========================================
-
 export const allGroceryProducts: Product[] = [
-  // --- FRUITS ---
-  {
-    id: 'g-1', slug: 'organic-banana-pack', name: 'Organic Robusta Banana', brand: 'FreshNest',
-    category: 'Grocery', subCategory: 'Fruits',
-    description: 'Naturally ripened, chemical-free bananas from certified organic farms.',
-    price: 45, originalPrice: 60, discount: 25, rating: 4.8, reviews: 1240,
-    image: 'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 15 mins',
-    labels: ['ORGANIC', 'FARM FRESH'], weight: '500g',
-    nutritionInfo: { Calories: '89 kcal', Potassium: '358 mg', Carbs: '23g', Fiber: '2.6g' }
-  },
-  {
-    id: 'g-2', slug: 'alphonso-mango', name: 'Ratnagiri Alphonso Mango', brand: 'Nature Basket',
-    category: 'Grocery', subCategory: 'Fruits',
-    description: 'The King of Mangoes — handpicked from Ratnagiri orchards.',
-    price: 899, originalPrice: 1200, discount: 25, rating: 4.9, reviews: 850,
-    image: 'https://images.unsplash.com/photo-1553279768-865429fa0078?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery by Tomorrow',
-    labels: ['PREMIUM', 'BEST SELLER'], weight: '1.5kg (6 pcs)', isTrending: true
-  },
-  {
-    id: 'g-3', slug: 'red-apple-washington', name: 'Washington Red Apples', brand: 'Daily Fresh',
-    category: 'Grocery', subCategory: 'Fruits',
-    description: 'Crisp, sweet and juicy imported Washington apples.',
-    price: 249, originalPrice: 299, discount: 16, rating: 4.7, reviews: 2100,
-    image: 'https://images.unsplash.com/photo-1560806887-1e4cd07c405d?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 15 mins',
-    labels: ['IMPORTED'], weight: '1kg'
-  },
-  {
-    id: 'g-4', slug: 'avocado-hass', name: 'Imported Hass Avocado', brand: 'Urban Harvest',
-    category: 'Grocery', subCategory: 'Fruits',
-    description: 'Creamy Hass avocados, perfect for toast and guacamole.',
-    price: 399, originalPrice: 499, discount: 20, rating: 4.6, reviews: 420,
-    image: 'https://images.unsplash.com/photo-1523049673857-eb18f1d80b77?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 30 mins',
-    labels: ['HEALTHY', 'PREMIUM'], weight: '2 pcs'
-  },
+  // --- FRUITS & VEGETABLES ---
+  { id: 'g-1', slug: 'organic-bananas', name: 'Organic Bananas', price: 60, originalPrice: 80, discount: 25, rating: 4.8, reviews: 1200, image: 'https://images.unsplash.com/photo-1603833665858-e61d17a86224?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Fruits & Vegetables', weight: '1kg', description: 'Fresh organic bananas.' },
+  { id: 'g-2', slug: 'fresh-apples', name: 'Fresh Apples', price: 150, originalPrice: 200, discount: 25, rating: 4.7, reviews: 850, image: 'https://images.unsplash.com/photo-1560806887-1e4cd07c405d?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Fruits & Vegetables', weight: '1kg', description: 'Crisp and sweet fresh apples.' },
+  { id: 'g-3', slug: 'premium-mangoes', name: 'Premium Mangoes', price: 400, originalPrice: 500, discount: 20, rating: 4.9, reviews: 900, image: 'https://images.unsplash.com/photo-1553279768-865429fa0078?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Fruits & Vegetables', weight: '1kg', description: 'Sweet premium mangoes.' },
+  { id: 'g-4', slug: 'hass-avocados', name: 'Hass Avocados', price: 350, originalPrice: 450, discount: 22, rating: 4.8, reviews: 600, image: 'https://images.unsplash.com/photo-1523049673857-eb18f1d80b77?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Fruits & Vegetables', weight: '500g', description: 'Creamy Hass Avocados.' },
+  { id: 'g-5', slug: 'tomatoes', name: 'Tomatoes', price: 40, originalPrice: 60, discount: 33, rating: 4.6, reviews: 1500, image: 'https://images.unsplash.com/photo-1546470427-0d4db154ceb8?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Fruits & Vegetables', weight: '1kg', description: 'Farm fresh tomatoes.' },
+  { id: 'g-6', slug: 'potatoes', name: 'Potatoes', price: 60, originalPrice: 80, discount: 25, rating: 4.7, reviews: 1800, image: 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Fruits & Vegetables', weight: '2kg', description: 'Fresh potatoes.' },
+  { id: 'g-7', slug: 'carrots', name: 'Carrots', price: 30, originalPrice: 50, discount: 40, rating: 4.5, reviews: 1100, image: 'https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Fruits & Vegetables', weight: '500g', description: 'Crunchy orange carrots.' },
+  { id: 'g-8', slug: 'onions', name: 'Onions', price: 45, originalPrice: 65, discount: 30, rating: 4.6, reviews: 2000, image: 'https://images.unsplash.com/photo-1618512496248-a07fe83aa8cb?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Fruits & Vegetables', weight: '1kg', description: 'Fresh onions.' },
+  { id: 'g-9', slug: 'spinach-bundle', name: 'Spinach Bundle', price: 20, originalPrice: 30, discount: 33, rating: 4.7, reviews: 950, image: 'https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Fruits & Vegetables', weight: '1 Bundle', description: 'Fresh spinach bundle.' },
+  { id: 'g-10', slug: 'broccoli', name: 'Broccoli', price: 80, originalPrice: 120, discount: 33, rating: 4.8, reviews: 800, image: 'https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Fruits & Vegetables', weight: '500g', description: 'Fresh green broccoli.' },
 
-  // --- VEGETABLES ---
-  {
-    id: 'g-5', slug: 'fresh-tomatoes', name: 'Farm Fresh Tomatoes', brand: 'FarmRoot',
-    category: 'Grocery', subCategory: 'Vegetables',
-    description: 'Firm and juicy tomatoes for daily cooking.',
-    price: 32, originalPrice: 45, discount: 28, rating: 4.6, reviews: 3400,
-    image: 'https://images.unsplash.com/photo-1546470427-0d4db154ceb8?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 10 mins',
-    labels: ['FARM FRESH'], weight: '1kg'
-  },
-  {
-    id: 'g-6', slug: 'organic-spinach', name: 'Organic Baby Spinach', brand: 'Organic Hub',
-    category: 'Grocery', subCategory: 'Vegetables',
-    description: 'Fresh organic leafy greens, rich in iron and vitamins.',
-    price: 55, originalPrice: 75, discount: 26, rating: 4.7, reviews: 1800,
-    image: 'https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 15 mins',
-    labels: ['ORGANIC', 'HEALTHY'], weight: '250g'
-  },
-  {
-    id: 'g-7', slug: 'broccoli-premium', name: 'Premium Broccoli', brand: 'Green Valley',
-    category: 'Grocery', subCategory: 'Vegetables',
-    description: 'Nutrient-rich, compact green broccoli heads.',
-    price: 120, originalPrice: 150, discount: 20, rating: 4.8, reviews: 540,
-    image: 'https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 20 mins',
-    labels: ['PREMIUM', 'HEALTHY'], weight: '300g'
-  },
+  // --- DAIRY & EGGS ---
+  { id: 'g-11', slug: 'fresh-milk', name: 'Fresh Milk', price: 65, originalPrice: 70, discount: 7, rating: 4.9, reviews: 3000, image: 'https://images.unsplash.com/photo-1563636619-e9143da7973b?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Dairy & Eggs', weight: '1L', description: 'Fresh full cream milk.' },
+  { id: 'g-12', slug: 'farm-eggs', name: 'Farm Eggs', price: 90, originalPrice: 110, discount: 18, rating: 4.8, reviews: 2500, image: 'https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Dairy & Eggs', weight: '12 pcs', description: 'Fresh farm eggs.' },
+  { id: 'g-13', slug: 'amul-butter', name: 'Amul Butter', price: 250, originalPrice: 260, discount: 4, rating: 4.9, reviews: 4000, image: 'https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Dairy & Eggs', weight: '500g', description: 'Classic Amul butter.' },
+  { id: 'g-14', slug: 'yogurt-cup', name: 'Yogurt Cup', price: 40, originalPrice: 50, discount: 20, rating: 4.7, reviews: 1500, image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Dairy & Eggs', weight: '1 Cup', description: 'Creamy yogurt cup.' },
+  { id: 'g-15', slug: 'paneer', name: 'Paneer', price: 95, originalPrice: 110, discount: 13, rating: 4.8, reviews: 1800, image: 'https://plus.unsplash.com/premium_photo-1663840251781-424a56a6ec19?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Dairy & Eggs', weight: '250g', description: 'Fresh malai paneer.' },
+  { id: 'g-16', slug: 'cheese-slices', name: 'Cheese Slices', price: 130, originalPrice: 150, discount: 13, rating: 4.8, reviews: 2200, image: 'https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Dairy & Eggs', weight: '200g', description: 'Processed cheese slices.' },
+  { id: 'g-17', slug: 'cream-pack', name: 'Cream Pack', price: 65, originalPrice: 75, discount: 13, rating: 4.7, reviews: 1000, image: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Dairy & Eggs', weight: '250ml', description: 'Fresh cooking cream.' },
 
-  // --- DAIRY ---
-  {
-    id: 'g-8', slug: 'amul-milk', name: 'Amul Gold Full Cream Milk', brand: 'Amul',
-    category: 'Grocery', subCategory: 'Dairy',
-    description: 'Fresh and creamy full cream milk — India\'s favourite.',
-    price: 68, originalPrice: 70, discount: 3, rating: 4.9, reviews: 12000,
-    image: 'https://images.unsplash.com/photo-1563636619-e9143da7973b?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 10 mins',
-    labels: ['BEST SELLER'], weight: '1L', isBestSeller: true
-  },
-  {
-    id: 'g-9', slug: 'greek-yogurt', name: 'Epigamia Greek Yogurt', brand: 'Epigamia',
-    category: 'Grocery', subCategory: 'Dairy',
-    description: 'High protein, low fat natural Greek yogurt.',
-    price: 60, originalPrice: 75, discount: 20, rating: 4.7, reviews: 3200,
-    image: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 15 mins',
-    labels: ['HEALTHY', 'PREMIUM'], weight: '90g'
-  },
-  {
-    id: 'g-10', slug: 'organic-eggs', name: 'Free Range Organic Eggs', brand: 'Organic Hub',
-    category: 'Grocery', subCategory: 'Dairy',
-    description: 'Hormone-free, farm-fresh organic eggs.',
-    price: 95, originalPrice: 120, discount: 21, rating: 4.8, reviews: 2300,
-    image: 'https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery by Tomorrow',
-    labels: ['ORGANIC'], weight: 'Pack of 6'
-  },
-
-  // --- BAKERY & SNACKS ---
-  {
-    id: 'g-11', slug: 'sourdough-bread', name: 'Artisan Sourdough Bread', brand: 'Baker Street',
-    category: 'Grocery', subCategory: 'Bakery',
-    description: 'Hand-crafted sourdough with a perfect crust.',
-    price: 189, originalPrice: 249, discount: 24, rating: 4.7, reviews: 780,
-    image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 30 mins',
-    labels: ['ARTISAN', 'FRESH TODAY'], weight: '400g'
-  },
-  {
-    id: 'g-12', slug: 'california-almonds', name: 'Premium California Almonds', brand: 'Happilo',
-    category: 'Grocery', subCategory: 'Snacks',
-    description: 'Slow roasted, lightly salted California almonds.',
-    price: 299, originalPrice: 399, discount: 25, rating: 4.9, reviews: 4500,
-    image: 'https://images.unsplash.com/photo-1508061253366-f7da158b6d46?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 15 mins',
-    labels: ['PREMIUM', 'BEST SELLER'], weight: '250g', isBestSeller: true
-  },
+  // --- SNACKS & BRANDED FOODS ---
+  { id: 'g-18', slug: 'lays-chips', name: "Lay's Chips", price: 20, originalPrice: 20, discount: 0, rating: 4.8, reviews: 5000, image: 'https://images.unsplash.com/photo-1566478989037-e8065b263bc3?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Snacks & Branded Foods', weight: '50g', description: 'Classic salted potato chips.' },
+  { id: 'g-19', slug: 'oreo-cookies', name: 'Oreo Cookies', price: 30, originalPrice: 35, discount: 14, rating: 4.8, reviews: 3500, image: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Snacks & Branded Foods', weight: '120g', description: 'Chocolate sandwich cookies.' },
+  { id: 'g-20', slug: 'cadbury-dairy-milk', name: 'Cadbury Dairy Milk', price: 80, originalPrice: 85, discount: 5, rating: 4.9, reviews: 6000, image: 'https://images.unsplash.com/photo-1621316490606-258285513d71?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Snacks & Branded Foods', weight: '100g', description: 'Smooth chocolate bar.' },
+  { id: 'g-21', slug: 'maggi-noodles', name: 'Maggi Noodles', price: 14, originalPrice: 14, discount: 0, rating: 4.9, reviews: 8000, image: 'https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Snacks & Branded Foods', weight: '70g', description: 'Instant noodles.' },
+  { id: 'g-22', slug: 'almonds', name: 'Almonds', price: 300, originalPrice: 400, discount: 25, rating: 4.8, reviews: 2000, image: 'https://images.unsplash.com/photo-1508061253366-f7da158b6d46?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Snacks & Branded Foods', weight: '250g', description: 'Premium almonds.' },
+  { id: 'g-23', slug: 'protein-bars', name: 'Protein Bars', price: 100, originalPrice: 120, discount: 16, rating: 4.6, reviews: 1200, image: 'https://images.unsplash.com/photo-1622484211148-524f2b963e69?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Snacks & Branded Foods', weight: '1 Bar', description: 'High protein energy bar.' },
+  { id: 'g-24', slug: 'biscuits', name: 'Biscuits', price: 25, originalPrice: 30, discount: 16, rating: 4.7, reviews: 2500, image: 'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Snacks & Branded Foods', weight: '150g', description: 'Digestive biscuits.' },
 
   // --- BEVERAGES ---
-  {
-    id: 'g-13', slug: 'cold-brew-coffee', name: 'Sleepy Owl Cold Brew', brand: 'Sleepy Owl',
-    category: 'Grocery', subCategory: 'Beverages',
-    description: '12-hour steeped smooth cold brew from Arabica beans.',
-    price: 199, originalPrice: 250, discount: 20, rating: 4.7, reviews: 920,
-    image: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 20 mins',
-    labels: ['PREMIUM'], weight: '200ml'
-  },
-  {
-    id: 'g-14', slug: 'green-tea', name: 'Organic Green Tea', brand: 'Organic India',
-    category: 'Grocery', subCategory: 'Beverages',
-    description: 'Pure Tulsi Green Tea with natural antioxidants.',
-    price: 210, originalPrice: 275, discount: 23, rating: 4.6, reviews: 5600,
-    image: 'https://images.unsplash.com/photo-1556881286-fc6915169721?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 15 mins',
-    labels: ['ORGANIC', 'HEALTHY'], weight: '25 bags'
-  },
+  { id: 'g-25', slug: 'coffee-powder', name: 'Coffee Powder', price: 150, originalPrice: 180, discount: 16, rating: 4.8, reviews: 3000, image: 'https://images.unsplash.com/photo-1559525839-b184a4d698c7?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Beverages', weight: '100g', description: 'Instant coffee powder.' },
+  { id: 'g-26', slug: 'green-tea', name: 'Green Tea', price: 120, originalPrice: 150, discount: 20, rating: 4.7, reviews: 1800, image: 'https://images.unsplash.com/photo-1556881286-fc6915169721?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Beverages', weight: '25 Bags', description: 'Organic green tea.' },
+  { id: 'g-27', slug: 'coca-cola', name: 'Coca-Cola', price: 40, originalPrice: 40, discount: 0, rating: 4.7, reviews: 4000, image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Beverages', weight: '750ml', description: 'Carbonated soft drink.' },
+  { id: 'g-28', slug: 'orange-juice', name: 'Orange Juice', price: 110, originalPrice: 130, discount: 15, rating: 4.6, reviews: 1500, image: 'https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Beverages', weight: '1L', description: '100% natural orange juice.' },
+  { id: 'g-29', slug: 'red-bull', name: 'Red Bull', price: 115, originalPrice: 125, discount: 8, rating: 4.8, reviews: 2200, image: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Beverages', weight: '250ml', description: 'Energy drink.' },
+  { id: 'g-30', slug: 'mineral-water', name: 'Mineral Water', price: 20, originalPrice: 20, discount: 0, rating: 4.9, reviews: 5000, image: 'https://images.unsplash.com/photo-1523362628745-0c100150b504?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Beverages', weight: '1L', description: 'Packaged drinking water.' },
 
-  // --- PANTRY ---
-  {
-    id: 'g-15', slug: 'organic-honey', name: 'Wild Forest Organic Honey', brand: 'Dabur',
-    category: 'Grocery', subCategory: 'Pantry',
-    description: 'Unprocessed, raw forest honey — 100% pure.',
-    price: 350, originalPrice: 450, discount: 22, rating: 4.8, reviews: 3200,
-    image: 'https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery by Tomorrow',
-    labels: ['ORGANIC', 'PREMIUM'], weight: '500g'
-  },
-  {
-    id: 'g-16', slug: 'peanut-butter', name: 'Alpino Natural Peanut Butter', brand: 'Alpino',
-    category: 'Grocery', subCategory: 'Pantry',
-    description: '100% roasted peanuts, no added oil or sugar.',
-    price: 349, originalPrice: 449, discount: 22, rating: 4.7, reviews: 6800,
-    image: 'https://images.unsplash.com/photo-1612187256592-a93824e5f0e4?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 30 mins',
-    labels: ['HEALTHY', 'BEST SELLER'], weight: '1kg', isBestSeller: true
-  },
+  // --- STAPLES ---
+  { id: 'g-31', slug: 'rice', name: 'Rice', price: 350, originalPrice: 450, discount: 22, rating: 4.8, reviews: 4000, image: 'https://images.unsplash.com/photo-1586201375761-83865001e8ac?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Staples', weight: '5kg', description: 'Premium Basmati Rice.' },
+  { id: 'g-32', slug: 'wheat-flour', name: 'Wheat Flour', price: 220, originalPrice: 260, discount: 15, rating: 4.8, reviews: 3500, image: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Staples', weight: '5kg', description: 'Whole wheat chakki atta.' },
+  { id: 'g-33', slug: 'sugar', name: 'Sugar', price: 45, originalPrice: 55, discount: 18, rating: 4.7, reviews: 2000, image: 'https://images.unsplash.com/photo-1581428982868-e410dd147a90?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Staples', weight: '1kg', description: 'Refined crystal sugar.' },
+  { id: 'g-34', slug: 'toor-dal', name: 'Toor Dal', price: 160, originalPrice: 200, discount: 20, rating: 4.7, reviews: 2500, image: 'https://images.unsplash.com/photo-1585994273868-b7a9f7d23d8c?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Staples', weight: '1kg', description: 'Unpolished Toor Dal.' },
+  { id: 'g-35', slug: 'cooking-oil', name: 'Cooking Oil', price: 140, originalPrice: 180, discount: 22, rating: 4.8, reviews: 3000, image: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Staples', weight: '1L', description: 'Refined sunflower oil.' },
+  { id: 'g-36', slug: 'salt', name: 'Salt', price: 20, originalPrice: 25, discount: 20, rating: 4.9, reviews: 4000, image: 'https://images.unsplash.com/photo-1621316490606-258285513d71?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Staples', weight: '1kg', description: 'Iodized salt.' },
+  { id: 'g-37', slug: 'mixed-spices', name: 'Mixed Spices', price: 80, originalPrice: 100, discount: 20, rating: 4.8, reviews: 1500, image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600&auto=format&fit=crop', category: 'Grocery', subCategory: 'Staples', weight: '100g', description: 'Garam masala powder.' },
 ];
