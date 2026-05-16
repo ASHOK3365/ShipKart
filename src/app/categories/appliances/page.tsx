@@ -1,83 +1,51 @@
 'use client';
-import React, { useState } from 'react';
+import Link from 'next/link';
+import React, { useState, useMemo } from 'react';
 import { 
-  Home, 
-  LayoutGrid, 
-  Tag, 
-  Sparkles, 
-  ShoppingBag, 
   Heart, 
-  User, 
-  HelpCircle, 
-  Plus, 
   Trash2, 
   ChevronLeft, 
+  Plus, 
   Minus, 
-  Smartphone, 
-  UtensilsCrossed, 
-  Laptop, 
-  Shirt, 
-  ChevronDown, 
-  ArrowRight, 
-  ShieldCheck, 
-  RotateCcw, 
-  Truck, 
+  ShoppingBag,
   Grid, 
   List, 
-  Star, 
-  Zap
+  ShieldCheck, 
+  RotateCcw, 
+  Truck,
+  WashingMachine
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useCartStore } from '@/store/cartStore';
 import styles from './appliances.module.css';
-
-const menuItems = [
-  { icon: Home, label: 'Home', href: '/' },
-  { icon: Tag, label: 'Deals', href: '/deals' },
-  { icon: Sparkles, label: 'New Arrivals', href: '/new-arrivals' },
-];
-
-const categoryItems = [
-  { icon: UtensilsCrossed, label: 'Grocery', href: '/categories/grocery' },
-  { icon: Smartphone, label: 'Mobiles', href: '/categories/mobiles' },
-  { icon: Laptop, label: 'Electronics', href: '/categories/electronics' },
-  { icon: Shirt, label: 'Fashion', href: '/categories/fashion' },
-  { icon: Sparkles, label: 'Beauty', href: '/categories/beauty' },
-  { icon: LayoutGrid, label: 'Appliances', href: '/categories/appliances', active: true },
-];
+import SafeImage from '@/components/ui/SafeImage';
+import { allApplianceProducts } from '@/data/applianceData';
 
 const categoryPills = [
   'All', 'Refrigerators', 'Washing Machines', 'Air Conditioners', 'Microwaves', 'Small Appliances'
-];
-
-import { useCartStore } from '@/store/cartStore';
-import Link from 'next/link';
-
-const applianceProducts = [
-  { id: 'a1', name: 'Samsung 658L Side by Side Refrigerator', brand: 'Samsung', price: 74990, originalPrice: 91990, discount: '-18%', rating: 4.6, reviews: '1.2K', image: 'https://images.unsplash.com/photo-1571175484658-51214a586174?auto=format&fit=crop&w=400&q=80', description: 'Samsung 658L Side by Side Refrigerator with AI Inverter.', category: 'Refrigerators' },
-  { id: 'a2', name: 'LG 8kg Front Load Washing Machine', brand: 'LG', price: 29990, originalPrice: 37990, discount: '-20%', rating: 4.7, reviews: '980', image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=400&q=80', description: 'LG 8kg Front Load Washing Machine with Steam.', category: 'Washing Machines' },
-  { id: 'a3', name: 'Daikin 1.5 Ton 3 Star Inverter AC', brand: 'Daikin', price: 36990, originalPrice: 43500, discount: '-15%', rating: 4.5, reviews: '1.1K', image: 'https://images.unsplash.com/photo-1585336139118-2847e06822fc?auto=format&fit=crop&w=400&q=80', description: 'Daikin 1.5 Ton Inverter AC with PM2.5 filter.', category: 'Air Conditioners' },
-  { id: 'a4', name: 'Samsung 28L Convection Microwave Oven', brand: 'Samsung', price: 13990, originalPrice: 15990, discount: '-12%', rating: 4.6, reviews: '856', image: 'https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?auto=format&fit=crop&w=400&q=80', description: 'Samsung 28L Microwave Oven with Slim Fry.', category: 'Microwaves' },
-  { id: 'a5', name: 'Kent Grand+ UV Water Purifier', brand: 'Kent', price: 15490, originalPrice: 17200, discount: '-10%', rating: 4.6, reviews: '732', image: 'https://images.unsplash.com/photo-1585837575652-267c041d77d4?auto=format&fit=crop&w=400&q=80', description: 'Kent Grand+ RO+UV+UF water purifier.', category: 'Small Appliances' },
-  { id: 'a6', name: 'Philips 4.2L Air Fryer Essential', brand: 'Philips', price: 6790, originalPrice: 8690, discount: '-22%', rating: 4.7, reviews: '1.3K', image: 'https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?auto=format&fit=crop&w=400&q=80', description: 'Philips 4.2L Air Fryer with Rapid Air Technology.', category: 'Small Appliances' },
 ];
 
 const AppliancesPage = () => {
   const [activeTab, setActiveTab] = useState('All');
   const { items, addItem, removeItem, updateQuantity, getSubtotal } = useCartStore();
 
+  const filteredProducts = useMemo(() => {
+    if (activeTab === 'All') return allApplianceProducts;
+    return allApplianceProducts.filter(p => p.subCategory === activeTab);
+  }, [activeTab]);
+
   return (
     <div className={styles.appliancesLayout}>
-      {/* LEFT SIDEBAR */}
-      
-
       {/* MAIN CONTENT */}
       <main className={styles.mainContent}>
         <header className={styles.header}>
           <div className={styles.headerLeft}>
-            <div className={styles.headerIcon}><Zap size={32} color="#3B82F6" /></div>
+            <div className={styles.headerIcon}>
+              <WashingMachine size={32} color="#64748B" />
+            </div>
             <div>
-              <h1>Appliances</h1>
-              <p>Upgrade your home with smart & efficient appliances.</p>
+              <h1>Premium Appliances</h1>
+              <p>Upgrade your home with smart, efficient appliances.</p>
             </div>
           </div>
           <div className={styles.headerActions}>
@@ -88,50 +56,69 @@ const AppliancesPage = () => {
 
         <div className={styles.categoryBar}>
           {categoryPills.map((cat) => (
-            <button 
+            <motion.button 
               key={cat} 
               className={`${styles.catPill} ${activeTab === cat ? styles.catActive : ''}`}
               onClick={() => setActiveTab(cat)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               {cat}
-            </button>
+            </motion.button>
           ))}
         </div>
 
-        <div className={styles.productGrid}>
-          {applianceProducts.map((product) => (
-            <motion.div 
-              key={product.id} 
-              className={styles.productCard}
-              whileHover={{ y: -5 }}
-            >
-              <div className={styles.discountBadge}>{product.discount}</div>
-              <button className={styles.wishlistBtn}><Heart size={18} /></button>
-              <div className={styles.productImg}>
-                <img src={product.image} alt={product.name} />
-              </div>
-              <div className={styles.productInfo}>
-                <h3>{product.name}</h3>
-                <div className={styles.ratingRow}>
-                  <Star size={14} fill="#FBBF24" color="#FBBF24" />
-                  <span>{product.rating} ({product.reviews})</span>
+        <motion.div 
+          className={styles.productGrid}
+          layout
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredProducts.map((product, index) => (
+              <motion.div 
+                key={product.id} 
+                className={styles.productCard}
+                layout
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9, y: -20 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+              >
+                {product.discount > 0 && (
+                  <div className={styles.discountBadge}>-{product.discount}%</div>
+                )}
+                <button className={styles.wishlistBtn}><Heart size={18} /></button>
+                <div className={styles.productImg}>
+                  <SafeImage 
+                    src={product.image} 
+                    alt={product.name} 
+                    fill 
+                    style={{ objectFit: 'contain' }}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
                 </div>
-                <div className={styles.priceRow}>
-                  <div>
-                    <span className={styles.price}>₹{product.price.toLocaleString('en-IN')}</span>
-                    <span className={styles.oldPrice}>₹{product.originalPrice.toLocaleString('en-IN')}</span>
+                <div className={styles.productInfo}>
+                  <h3>{product.name}</h3>
+                  <span>{product.brand} - {product.description}</span>
+                  <div className={styles.priceRow}>
+                    <div>
+                      <span className={styles.price}>₹{product.price.toLocaleString('en-IN')}</span>
+                      {product.originalPrice > product.price && (
+                        <span className={styles.oldPrice}>₹{product.originalPrice.toLocaleString('en-IN')}</span>
+                      )}
+                    </div>
+                    <button className={styles.addBtn} onClick={() => addItem(product as any)}><Plus size={18} /></button>
                   </div>
-                  <button className={styles.addBtn} onClick={() => addItem(product as any)}><Plus size={18} /></button>
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
 
-        <div className={styles.showMore}>
-          <span>Show More Products</span>
-          <ChevronDown size={18} />
-        </div>
+        {filteredProducts.length === 0 && (
+          <div className={styles.emptyState}>
+            <p>No products found in this category.</p>
+          </div>
+        )}
       </main>
 
       {/* RIGHT SIDEBAR (CART) */}
@@ -140,51 +127,74 @@ const AppliancesPage = () => {
           <Link href="/" className={styles.backBtn}><ChevronLeft size={20} /></Link>
           <h2>CART</h2>
           <button className={styles.trashBtn} onClick={() => useCartStore.getState().clearCart()}><Trash2 size={20} /></button>
-         </div>
+        </div>
 
         <div className={styles.cartList}>
-          {items.map((item) => (
-            <div key={item.id} className={styles.cartItem}>
-              <div className={styles.itemImg}>
-                <img src={item.image} alt={item.name} />
-              </div>
-              <div className={styles.itemInfo}>
-                <h4>{item.name}</h4>
-                <div className={styles.itemPrice}>₹{item.price.toLocaleString('en-IN')}</div>
-              </div>
-              <div className={styles.itemActions}>
-                <div className={styles.qtyBox}>
-                  <button onClick={() => updateQuantity(item.id, item.quantity - 1)}><Minus size={14} /></button>
-                  <span>{item.quantity}</span>
-                  <button onClick={() => updateQuantity(item.id, item.quantity + 1)}><Plus size={14} /></button>
+          <AnimatePresence>
+            {items.map((item) => (
+              <motion.div 
+                key={item.id} 
+                className={styles.cartItem}
+                layout
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+              >
+                <div className={styles.itemImg}>
+                  <SafeImage 
+                    src={item.image} 
+                    alt={item.name} 
+                    fill 
+                    style={{ objectFit: 'contain' }} 
+                    sizes="60px"
+                  />
                 </div>
-              </div>
+                <div className={styles.itemInfo}>
+                  <h4>{item.name}</h4>
+                  <div className={styles.itemPrice}>₹{item.price.toLocaleString('en-IN')}</div>
+                </div>
+                <div className={styles.itemActions}>
+                  <div className={styles.qtyBox}>
+                    <button onClick={() => updateQuantity(item.id, item.quantity - 1)}><Minus size={14} /></button>
+                    <span>{item.quantity}</span>
+                    <button onClick={() => updateQuantity(item.id, item.quantity + 1)}><Plus size={14} /></button>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+          {items.length === 0 && (
+            <div className={styles.emptyCart}>
+              <ShoppingBag size={48} opacity={0.2} color="#64748B" />
+              <p>Your cart is empty</p>
             </div>
-          ))}
+          )}
         </div>
 
-        <div className={styles.cartSummary}>
-          <div className={styles.summaryRow}>
-            <span>Delivered To:</span>
-            <strong>Home</strong>
+        {items.length > 0 && (
+          <div className={styles.cartSummary}>
+            <div className={styles.summaryRow}>
+              <span>Delivered To:</span>
+              <strong>Home</strong>
+            </div>
+            <div className={styles.summaryRow}>
+              <span>Delivery Charges:</span>
+              <strong>Free</strong>
+            </div>
+            <div className={styles.totalRow}>
+              <span>TOTAL</span>
+              <strong>₹{getSubtotal().toLocaleString('en-IN')}</strong>
+            </div>
+            <Link href="/checkout">
+              <button className={styles.payBtn}>PROCEED TO PAY</button>
+            </Link>
           </div>
-          <div className={styles.summaryRow}>
-            <span>Delivery Charges:</span>
-            <strong>₹99</strong>
-          </div>
-          <div className={styles.totalRow}>
-            <span>TOTAL</span>
-            <strong>₹{(getSubtotal() + 99).toLocaleString('en-IN')}</strong>
-          </div>
-          <Link href="/checkout">
-            <button className={styles.payBtn}>PROCEED TO PAY</button>
-          </Link>
-        </div>
+        )}
 
         <div className={styles.trustBadges}>
           <div className={styles.badgeItem}>
             <div className={styles.badgeIcon}><ShieldCheck size={14} /></div>
-            <span>100% Original Products</span>
+            <span>100% Authentic</span>
           </div>
           <div className={styles.badgeItem}>
             <div className={styles.badgeIcon}><RotateCcw size={14} /></div>

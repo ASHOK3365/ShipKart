@@ -1,120 +1,39 @@
 import { Product } from './products';
 
-// ========================================
-// APPLIANCES — Real Home Appliance Brands
-// Verified Unsplash images matched to product type
-// ========================================
+export interface ApplianceProduct extends Product {
+  brand: string;
+}
 
-export const allApplianceProducts: Product[] = [
+export const allApplianceProducts: ApplianceProduct[] = [
   // --- REFRIGERATORS ---
-  {
-    id: 'a-1', slug: 'samsung-french-door', name: 'Samsung 670L French Door Refrigerator', brand: 'Samsung',
-    category: 'Appliances', subCategory: 'Refrigerators',
-    description: 'Spacious French door with Twin Cooling Plus technology.',
-    price: 184999, originalPrice: 209999, discount: 12, rating: 4.7, reviews: 2400,
-    image: 'https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 5-7 days',
-    labels: ['PREMIUM'], warranty: '10 Year Compressor Warranty', energyRating: 3,
-    specifications: { Capacity: '670L', Type: 'French Door', Cooling: 'Twin Cooling Plus', Inverter: 'Digital Inverter' }
-  },
-  {
-    id: 'a-2', slug: 'lg-double-door', name: 'LG 340L Frost Free Double Door', brand: 'LG',
-    category: 'Appliances', subCategory: 'Refrigerators',
-    description: 'Smart Inverter compressor with Door Cooling+.',
-    price: 38990, originalPrice: 46990, discount: 17, rating: 4.6, reviews: 8900,
-    image: 'https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 3-5 days',
-    labels: ['BEST SELLER'], warranty: '10 Year Compressor Warranty', energyRating: 4, isBestSeller: true,
-    specifications: { Capacity: '340L', Type: 'Double Door', Cooling: 'Door Cooling+', Inverter: 'Smart Inverter' }
-  },
+  { id: 'a-1', slug: 'samsung-side-by-side', name: 'Samsung 658L Side-by-Side Refrigerator', brand: 'Samsung', availability: 'in-stock', price: 79990, originalPrice: 110000, discount: 27, rating: 4.8, reviews: 3400, image: 'https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?w=600&auto=format&fit=crop', category: 'Appliances', subCategory: 'Refrigerators', description: 'SpaceMax Technology, Inverter Compressor.' },
+  { id: 'a-2', slug: 'lg-double-door', name: 'LG 343L Double Door Refrigerator', brand: 'LG', availability: 'in-stock', price: 34990, originalPrice: 42990, discount: 18, rating: 4.6, reviews: 5200, image: 'https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=600&auto=format&fit=crop', category: 'Appliances', subCategory: 'Refrigerators', description: 'Smart Inverter, Convertible 2-in-1.' },
+  { id: 'a-3', slug: 'whirlpool-refrigerator', name: 'Whirlpool 265L Refrigerator', brand: 'Whirlpool', availability: 'in-stock', price: 24990, originalPrice: 30990, discount: 19, rating: 4.5, reviews: 4100, image: 'https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?w=600&auto=format&fit=crop', category: 'Appliances', subCategory: 'Refrigerators', description: 'Intellisense Inverter Technology.' },
+  { id: 'a-4', slug: 'haier-frost-free', name: 'Haier 325L Frost-Free Refrigerator', brand: 'Haier', availability: 'in-stock', price: 29990, originalPrice: 38990, discount: 23, rating: 4.4, reviews: 1800, image: 'https://images.unsplash.com/photo-1571175443880-49e1d25b2bc5?w=600&auto=format&fit=crop', category: 'Appliances', subCategory: 'Refrigerators', description: 'Bottom mounted refrigerator.' },
 
   // --- WASHING MACHINES ---
-  {
-    id: 'a-3', slug: 'lg-front-load-washer', name: 'LG 8kg Front Load Washer', brand: 'LG',
-    category: 'Appliances', subCategory: 'Washing Machines',
-    description: 'AI DD motor detects fabric and optimizes wash cycles.',
-    price: 42990, originalPrice: 54990, discount: 22, rating: 4.7, reviews: 5600,
-    image: 'https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 5-7 days',
-    labels: ['AI POWERED'], warranty: '2 Year + 10 Year Motor', energyRating: 5,
-    specifications: { Capacity: '8kg', Type: 'Front Load', Motor: 'AI DD Inverter', Speed: '1400 RPM' }
-  },
-  {
-    id: 'a-4', slug: 'samsung-top-load', name: 'Samsung 7kg Top Load Washer', brand: 'Samsung',
-    category: 'Appliances', subCategory: 'Washing Machines',
-    description: 'Wobble technology for gentle yet powerful cleaning.',
-    price: 18990, originalPrice: 24990, discount: 24, rating: 4.5, reviews: 7200,
-    image: 'https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 3-5 days',
-    labels: ['VALUE PICK', 'BEST SELLER'], warranty: '2 Year + 5 Year Motor', energyRating: 4, isBestSeller: true,
-    specifications: { Capacity: '7kg', Type: 'Top Load', Motor: 'Digital Inverter', Pulsator: 'Wobble' }
-  },
+  { id: 'a-5', slug: 'lg-front-load', name: 'LG 8kg Front Load Washing Machine', brand: 'LG', availability: 'in-stock', price: 32990, originalPrice: 40990, discount: 19, rating: 4.7, reviews: 8500, image: 'https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=600&auto=format&fit=crop', category: 'Appliances', subCategory: 'Washing Machines', description: 'AI Direct Drive, 6 Motion.' },
+  { id: 'a-6', slug: 'samsung-top-load', name: 'Samsung 7kg Top Load', brand: 'Samsung', availability: 'in-stock', price: 15990, originalPrice: 21500, discount: 25, rating: 4.5, reviews: 12000, image: 'https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=600&auto=format&fit=crop', category: 'Appliances', subCategory: 'Washing Machines', description: 'Digital Inverter, Diamond Drum.' },
+  { id: 'a-7', slug: 'bosch-front-load', name: 'Bosch 7kg Front Load', brand: 'Bosch', availability: 'in-stock', price: 29990, originalPrice: 39990, discount: 25, rating: 4.8, reviews: 6200, image: 'https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=600&auto=format&fit=crop', category: 'Appliances', subCategory: 'Washing Machines', description: 'Inbuilt Heater, AntiTangle.' },
+  { id: 'a-8', slug: 'ifb-washing-machine', name: 'IFB 8kg Front Load', brand: 'IFB', availability: 'in-stock', price: 34990, originalPrice: 42990, discount: 18, rating: 4.6, reviews: 4500, image: 'https://images.unsplash.com/photo-1626806787461-102c1bfaaea1?w=600&auto=format&fit=crop', category: 'Appliances', subCategory: 'Washing Machines', description: 'Aqua Energie, 3D Wash.' },
 
   // --- AIR CONDITIONERS ---
-  {
-    id: 'a-5', slug: 'daikin-1-5ton-inverter', name: 'Daikin 1.5 Ton 5-Star Inverter AC', brand: 'Daikin',
-    category: 'Appliances', subCategory: 'Air Conditioners',
-    description: 'Premium 5-star inverter split AC with Coanda airflow.',
-    price: 46990, originalPrice: 56990, discount: 18, rating: 4.8, reviews: 4100,
-    image: 'https://images.unsplash.com/photo-1631545806609-45df03ace523?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery + Installation in 5-7 days',
-    labels: ['5 STAR', 'PREMIUM'], warranty: '10 Year Compressor Warranty', energyRating: 5,
-    specifications: { Capacity: '1.5 Ton', Rating: '5 Star', Refrigerant: 'R-32', Compressor: 'Swing Inverter' }
-  },
-  {
-    id: 'a-6', slug: 'voltas-1-5ton-ac', name: 'Voltas 1.5 Ton 3-Star Split AC', brand: 'Voltas',
-    category: 'Appliances', subCategory: 'Air Conditioners',
-    description: 'Affordable cooling with copper condenser and anti-dust filter.',
-    price: 32999, originalPrice: 42999, discount: 23, rating: 4.4, reviews: 9800,
-    image: 'https://images.unsplash.com/photo-1631545806609-45df03ace523?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery + Installation in 3-5 days',
-    labels: ['VALUE PICK', 'BEST SELLER'], warranty: '5 Year Compressor Warranty', energyRating: 3, isBestSeller: true,
-    specifications: { Capacity: '1.5 Ton', Rating: '3 Star', Condenser: 'Copper', Filter: 'Anti-Dust' }
-  },
+  { id: 'a-9', slug: 'daikin-inverter-ac', name: 'Daikin 1.5 Ton Inverter AC', brand: 'Daikin', availability: 'in-stock', price: 37990, originalPrice: 52990, discount: 28, rating: 4.7, reviews: 6100, image: 'https://images.unsplash.com/photo-1626245366479-50c5d57b297b?w=600&auto=format&fit=crop', category: 'Appliances', subCategory: 'Air Conditioners', description: '5 Star, PM 2.5 Filter.' },
+  { id: 'a-10', slug: 'lg-dual-inverter', name: 'LG 1.5 Ton Dual Inverter AC', brand: 'LG', availability: 'in-stock', price: 39990, originalPrice: 55990, discount: 28, rating: 4.8, reviews: 8500, image: 'https://images.unsplash.com/photo-1626245366479-50c5d57b297b?w=600&auto=format&fit=crop', category: 'Appliances', subCategory: 'Air Conditioners', description: 'AI Convertible 6-in-1.' },
+  { id: 'a-11', slug: 'voltas-split-ac', name: 'Voltas 1.5 Ton Split AC', brand: 'Voltas', availability: 'in-stock', price: 31990, originalPrice: 48990, discount: 34, rating: 4.4, reviews: 11000, image: 'https://images.unsplash.com/photo-1626245366479-50c5d57b297b?w=600&auto=format&fit=crop', category: 'Appliances', subCategory: 'Air Conditioners', description: '3 Star, Anti Dust Filter.' },
+  { id: 'a-12', slug: 'samsung-smart-ac', name: 'Samsung 1.5 Ton Smart AC', brand: 'Samsung', availability: 'in-stock', price: 35990, originalPrice: 50990, discount: 29, rating: 4.6, reviews: 5200, image: 'https://images.unsplash.com/photo-1626245366479-50c5d57b297b?w=600&auto=format&fit=crop', category: 'Appliances', subCategory: 'Air Conditioners', description: 'WindFree Cooling, Wi-Fi.' },
 
-  // --- KITCHEN ---
-  {
-    id: 'a-7', slug: 'philips-air-fryer', name: 'Philips Air Fryer HD9270', brand: 'Philips',
-    category: 'Appliances', subCategory: 'Kitchen',
-    description: 'Rapid Air technology — crispy frying with up to 90% less fat.',
-    price: 7999, originalPrice: 9999, discount: 20, rating: 4.6, reviews: 6200,
-    image: 'https://images.unsplash.com/photo-1585515320310-259814833e62?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery by Tomorrow',
-    labels: ['BEST SELLER'], warranty: '2 Year Philips Warranty', isBestSeller: true,
-    specifications: { Capacity: '4.1L', Technology: 'Rapid Air', Power: '1400W', Temp: 'Up to 200°C' }
-  },
-  {
-    id: 'a-8', slug: 'instant-pot-duo', name: 'Instant Pot Duo 7-in-1', brand: 'Instant Pot',
-    category: 'Appliances', subCategory: 'Kitchen',
-    description: 'Pressure cooker, slow cooker, rice cooker, steamer & more.',
-    price: 8499, originalPrice: 11999, discount: 29, rating: 4.7, reviews: 4500,
-    image: 'https://images.unsplash.com/photo-1585515320310-259814833e62?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 2 days',
-    labels: ['MULTI-USE'], warranty: '1 Year Warranty',
-    specifications: { Capacity: '6L', Functions: '7-in-1', Programs: '13 Smart Programs', Power: '1000W' }
-  },
+  // --- MICROWAVES ---
+  { id: 'a-13', slug: 'panasonic-microwave', name: 'Panasonic 27L Convection', brand: 'Panasonic', availability: 'in-stock', price: 11990, originalPrice: 15990, discount: 25, rating: 4.5, reviews: 3100, image: 'https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=600&auto=format&fit=crop', category: 'Appliances', subCategory: 'Microwaves', description: 'Zero Oil Cooking, Magic Grill.' },
+  { id: 'a-14', slug: 'samsung-convection', name: 'Samsung 28L Convection', brand: 'Samsung', availability: 'in-stock', price: 12490, originalPrice: 16500, discount: 24, rating: 4.7, reviews: 5400, image: 'https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=600&auto=format&fit=crop', category: 'Appliances', subCategory: 'Microwaves', description: 'Curd Any Time, Slim Fry.' },
+  { id: 'a-15', slug: 'ifb-microwave', name: 'IFB 30L Convection Microwave', brand: 'IFB', availability: 'in-stock', price: 14990, originalPrice: 18990, discount: 21, rating: 4.6, reviews: 2900, image: 'https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=600&auto=format&fit=crop', category: 'Appliances', subCategory: 'Microwaves', description: 'Multi-stage cooking, Timer.' },
+  { id: 'a-16', slug: 'lg-smart-microwave', name: 'LG 32L Charcoal Microwave', brand: 'LG', availability: 'in-stock', price: 17990, originalPrice: 22990, discount: 21, rating: 4.8, reviews: 3800, image: 'https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=600&auto=format&fit=crop', category: 'Appliances', subCategory: 'Microwaves', description: 'Healthy Heart Auto Cook.' },
 
-  // --- VACUUM ---
-  {
-    id: 'a-9', slug: 'dyson-v15', name: 'Dyson V15 Detect Absolute', brand: 'Dyson',
-    category: 'Appliances', subCategory: 'Vacuum Cleaners',
-    description: 'Laser reveals invisible dust. Most powerful suction.',
-    price: 62900, originalPrice: 62900, discount: 0, rating: 4.9, reviews: 1800,
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 5 days',
-    labels: ['LUXURY', 'PREMIUM'],  warranty: '2 Year Dyson Warranty',
-    specifications: { Suction: '230 AW', Runtime: '60 min', Filtration: 'Whole-machine HEPA', Display: 'LCD Piezo Sensor' }
-  },
-
-  // --- TV ---
-  {
-    id: 'a-10', slug: 'sony-bravia-55', name: 'Sony Bravia 55" 4K OLED', brand: 'Sony',
-    category: 'Appliances', subCategory: 'Televisions',
-    description: 'Cognitive Processor XR with perfect blacks and 120Hz.',
-    price: 129990, originalPrice: 149990, discount: 13, rating: 4.8, reviews: 2400,
-    image: 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 5-7 days',
-    labels: ['PREMIUM'], warranty: '3 Year Sony Warranty',
-    specifications: { Size: '55"', Panel: '4K OLED', Refresh: '120Hz', Processor: 'Cognitive XR', HDR: 'Dolby Vision + Atmos' }
-  },
+  // --- SMALL APPLIANCES ---
+  { id: 'a-17', slug: 'dyson-vacuum', name: 'Dyson V12 Detect Slim', brand: 'Dyson', availability: 'in-stock', price: 55900, originalPrice: 55900, discount: 0, rating: 4.9, reviews: 1500, image: 'https://images.unsplash.com/photo-1558317374-067fb5f30001?w=600&auto=format&fit=crop', category: 'Appliances', subCategory: 'Small Appliances', description: 'Laser reveals microscopic dust.' },
+  { id: 'a-18', slug: 'philips-mixer', name: 'Philips Mixer Grinder', brand: 'Philips', availability: 'in-stock', price: 3499, originalPrice: 4299, discount: 18, rating: 4.5, reviews: 18000, image: 'https://images.unsplash.com/photo-1585255476317-5e60d3dce05a?w=600&auto=format&fit=crop', category: 'Appliances', subCategory: 'Small Appliances', description: '750W, 3 Jars, Turbo motor.' },
+  { id: 'a-19', slug: 'air-fryer', name: 'Philips Essential Air Fryer', brand: 'Philips', availability: 'in-stock', price: 7999, originalPrice: 9999, discount: 20, rating: 4.8, reviews: 12000, image: 'https://images.unsplash.com/photo-1621217036660-85f0962b1a13?w=600&auto=format&fit=crop', category: 'Appliances', subCategory: 'Small Appliances', description: 'Rapid Air Technology.' },
+  { id: 'a-20', slug: 'coffee-maker', name: 'De\'Longhi Espresso Machine', brand: 'De\'Longhi', availability: 'in-stock', price: 14990, originalPrice: 18990, discount: 21, rating: 4.7, reviews: 3100, image: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=600&auto=format&fit=crop', category: 'Appliances', subCategory: 'Small Appliances', description: '15 bar pump pressure.' },
+  { id: 'a-21', slug: 'electric-kettle', name: 'Pigeon Electric Kettle', brand: 'Pigeon', availability: 'in-stock', price: 599, originalPrice: 1195, discount: 49, rating: 4.4, reviews: 25000, image: 'https://images.unsplash.com/photo-1595333069352-7b194fb84f67?w=600&auto=format&fit=crop', category: 'Appliances', subCategory: 'Small Appliances', description: '1.5 Litre, Stainless Steel.' },
+  { id: 'a-22', slug: 'toaster', name: 'Morphy Richards Toaster', brand: 'Morphy Richards', availability: 'in-stock', price: 1499, originalPrice: 2195, discount: 31, rating: 4.5, reviews: 8200, image: 'https://images.unsplash.com/photo-1594244249110-38829ba5fa6a?w=600&auto=format&fit=crop', category: 'Appliances', subCategory: 'Small Appliances', description: '2 Slice Pop-up Toaster.' },
 ];
