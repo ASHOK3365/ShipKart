@@ -1,120 +1,48 @@
 import { Product } from './products';
 
-// ========================================
-// ELECTRONICS — Real Audio/Tech Products
-// Verified Unsplash images matched to product type
-// ========================================
+export interface ElectronicProduct extends Product {
+  brand: string;
+}
 
-export const allElectronicsProducts: Product[] = [
+export const allElectronicsProducts: ElectronicProduct[] = [
   // --- HEADPHONES ---
-  {
-    id: 'e-1', slug: 'sony-wh1000xm5', name: 'Sony WH-1000XM5', brand: 'Sony',
-    category: 'Electronics', subCategory: 'Headphones',
-    description: 'Industry-leading noise cancellation with 30hr battery.',
-    price: 24990, originalPrice: 34990, discount: 29, rating: 4.9, reviews: 15100,
-    image: 'https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery by Tomorrow',
-    labels: ['BEST SELLER', 'PREMIUM'], warranty: '1 Year Sony Warranty', isBestSeller: true,
-    specifications: { Driver: '30mm', ANC: 'Yes (Auto NC Optimizer)', Battery: '30 Hours', Bluetooth: '5.3', Weight: '250g' }
-  },
-  {
-    id: 'e-2', slug: 'airpods-pro-2', name: 'Apple AirPods Pro 2', brand: 'Apple',
-    category: 'Electronics', subCategory: 'Earbuds',
-    description: 'Active Noise Cancellation, Adaptive Audio, USB-C.',
-    price: 24900, originalPrice: 24900, discount: 0, rating: 4.8, reviews: 12400,
-    image: 'https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 2 hours',
-    labels: ['PREMIUM', 'BEST SELLER'], warranty: '1 Year Apple Warranty', isBestSeller: true,
-    specifications: { ANC: 'Active + Transparency', Battery: '6hrs (30hrs with case)', Chip: 'H2', Water: 'IPX4' }
-  },
-  {
-    id: 'e-3', slug: 'bose-qc-ultra', name: 'Bose QuietComfort Ultra', brand: 'Bose',
-    category: 'Electronics', subCategory: 'Headphones',
-    description: 'Immersive spatial audio with world-class noise cancellation.',
-    price: 29990, originalPrice: 34900, discount: 14, rating: 4.8, reviews: 4200,
-    image: 'https://images.unsplash.com/photo-1546435770-a3e426ff472b?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery by Tomorrow',
-    labels: ['PREMIUM'], warranty: '1 Year Bose Warranty',
-    specifications: { ANC: 'World-Class', Audio: 'Immersive Spatial', Battery: '24 Hours', Bluetooth: '5.3' }
-  },
+  { id: 'e-1', slug: 'sony-wh1000xm5', name: 'Sony WH-1000XM5', brand: 'Sony', availability: 'in-stock', price: 24999, originalPrice: 29990, discount: 16, rating: 4.8, reviews: 3450, image: 'https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=600&auto=format&fit=crop', category: 'Electronics', subCategory: 'Headphones', description: 'Industry leading noise cancellation.' },
+  { id: 'e-2', slug: 'bose-qc-ultra', name: 'Bose QuietComfort Ultra', brand: 'Bose', availability: 'in-stock', price: 29999, originalPrice: 34999, discount: 14, rating: 4.7, reviews: 1200, image: 'https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=600&auto=format&fit=crop', category: 'Electronics', subCategory: 'Headphones', description: 'Spatial audio and world-class ANC.' },
+  { id: 'e-3', slug: 'airpods-max', name: 'Apple AirPods Max', brand: 'Apple', availability: 'in-stock', price: 59900, originalPrice: 59900, discount: 0, rating: 4.9, reviews: 4500, image: 'https://images.unsplash.com/photo-1613040809024-b4ef7ba99bc3?w=600&auto=format&fit=crop', category: 'Electronics', subCategory: 'Headphones', description: 'High-fidelity audio, active noise cancellation.' },
+  { id: 'e-4', slug: 'jbl-tune-770nc', name: 'JBL Tune 770NC', brand: 'JBL', availability: 'in-stock', price: 8999, originalPrice: 9999, discount: 10, rating: 4.5, reviews: 5600, image: 'https://images.unsplash.com/photo-1612222869049-d8ec83637a3c?w=600&auto=format&fit=crop', category: 'Electronics', subCategory: 'Headphones', description: 'Adaptive noise cancelling.' },
+  { id: 'e-5', slug: 'sennheiser-momentum-4', name: 'Sennheiser Momentum 4', brand: 'Sennheiser', availability: 'in-stock', price: 34999, originalPrice: 38999, discount: 10, rating: 4.8, reviews: 2100, image: 'https://images.unsplash.com/photo-1599669454699-248893623440?w=600&auto=format&fit=crop', category: 'Electronics', subCategory: 'Headphones', description: 'Exceptional sound quality, 60h battery.' },
+
+  // --- SMARTWATCHES ---
+  { id: 'e-6', slug: 'apple-watch-9', name: 'Apple Watch Series 9', brand: 'Apple', availability: 'in-stock', price: 41900, originalPrice: 41900, discount: 0, rating: 4.9, reviews: 8900, image: 'https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?w=600&auto=format&fit=crop', category: 'Electronics', subCategory: 'Smartwatches', description: 'S9 chip, double tap gesture.' },
+  { id: 'e-7', slug: 'galaxy-watch-6', name: 'Samsung Galaxy Watch 6', brand: 'Samsung', availability: 'in-stock', price: 29999, originalPrice: 33999, discount: 11, rating: 4.7, reviews: 4200, image: 'https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=600&auto=format&fit=crop', category: 'Electronics', subCategory: 'Smartwatches', description: 'Advanced sleep tracking, body composition.' },
+  { id: 'e-8', slug: 'oneplus-watch-2', name: 'OnePlus Watch 2', brand: 'OnePlus', availability: 'in-stock', price: 24999, originalPrice: 27999, discount: 10, rating: 4.6, reviews: 1500, image: 'https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600&auto=format&fit=crop', category: 'Electronics', subCategory: 'Smartwatches', description: '100-hour battery life.' },
+  { id: 'e-9', slug: 'noise-colorfit', name: 'Noise ColorFit Pro', brand: 'Noise', availability: 'in-stock', price: 2999, originalPrice: 4999, discount: 40, rating: 4.3, reviews: 15000, image: 'https://images.unsplash.com/photo-1617043786394-f977fa12eddf?w=600&auto=format&fit=crop', category: 'Electronics', subCategory: 'Smartwatches', description: '1.85" Display, BT calling.' },
+  { id: 'e-10', slug: 'fireboltt-visionary', name: 'Fire-Boltt Visionary', brand: 'Fire-Boltt', availability: 'in-stock', price: 3499, originalPrice: 5999, discount: 41, rating: 4.4, reviews: 12000, image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&auto=format&fit=crop', category: 'Electronics', subCategory: 'Smartwatches', description: 'AMOLED display, 100+ sports modes.' },
+
+  // --- CAMERAS ---
+  { id: 'e-11', slug: 'sony-a7iv', name: 'Sony Alpha A7 IV', brand: 'Sony', availability: 'in-stock', price: 214990, originalPrice: 224990, discount: 4, rating: 4.9, reviews: 1250, image: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600&auto=format&fit=crop', category: 'Electronics', subCategory: 'Cameras', description: '33MP full-frame hybrid camera.' },
+  { id: 'e-12', slug: 'canon-eos-r6', name: 'Canon EOS R6 Mark II', brand: 'Canon', availability: 'in-stock', price: 209995, originalPrice: 215995, discount: 2, rating: 4.8, reviews: 980, image: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600&auto=format&fit=crop', category: 'Electronics', subCategory: 'Cameras', description: '40 fps continuous shooting.' },
+  { id: 'e-13', slug: 'nikon-z6ii', name: 'Nikon Z6 II', brand: 'Nikon', availability: 'in-stock', price: 164990, originalPrice: 174990, discount: 5, rating: 4.8, reviews: 1100, image: 'https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=600&auto=format&fit=crop', category: 'Electronics', subCategory: 'Cameras', description: '24.5MP multimedia powerhouse.' },
+  { id: 'e-14', slug: 'fujifilm-xt5', name: 'Fujifilm X-T5', brand: 'Fujifilm', availability: 'in-stock', price: 154999, originalPrice: 169999, discount: 8, rating: 4.9, reviews: 750, image: 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600&auto=format&fit=crop', category: 'Electronics', subCategory: 'Cameras', description: '40MP APS-C sensor, classic dials.' },
 
   // --- SPEAKERS ---
-  {
-    id: 'e-4', slug: 'jbl-charge-5', name: 'JBL Charge 5', brand: 'JBL',
-    category: 'Electronics', subCategory: 'Speakers',
-    description: 'Portable Bluetooth speaker with 20hr playtime and IP67.',
-    price: 14999, originalPrice: 18999, discount: 21, rating: 4.7, reviews: 8200,
-    image: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery by Tomorrow',
-    labels: ['BEST SELLER'], warranty: '1 Year JBL Warranty', isBestSeller: true,
-    specifications: { Output: '40W', Battery: '20 Hours', Waterproof: 'IP67', Driver: '52mm x 70mm' }
-  },
-  {
-    id: 'e-5', slug: 'marshall-stanmore-iii', name: 'Marshall Stanmore III', brand: 'Marshall',
-    category: 'Electronics', subCategory: 'Speakers',
-    description: 'Iconic design meets powerful room-filling sound.',
-    price: 39999, originalPrice: 44999, discount: 11, rating: 4.8, reviews: 1800,
-    image: 'https://images.unsplash.com/photo-1545454675-3531b543be5d?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 3 days',
-    labels: ['PREMIUM'], warranty: '2 Year Marshall Warranty',
-    specifications: { Output: '80W', Connectivity: 'Bluetooth 5.2 + 3.5mm', Design: 'Iconic Retro' }
-  },
+  { id: 'e-15', slug: 'jbl-flip-6', name: 'JBL Flip 6', brand: 'JBL', availability: 'in-stock', price: 11999, originalPrice: 13999, discount: 14, rating: 4.7, reviews: 6500, image: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600&auto=format&fit=crop', category: 'Electronics', subCategory: 'Speakers', description: 'Waterproof portable Bluetooth speaker.' },
+  { id: 'e-16', slug: 'bose-soundlink', name: 'Bose SoundLink Flex', brand: 'Bose', availability: 'in-stock', price: 15900, originalPrice: 15900, discount: 0, rating: 4.8, reviews: 3200, image: 'https://images.unsplash.com/photo-1589003071515-d18d0526e0b7?w=600&auto=format&fit=crop', category: 'Electronics', subCategory: 'Speakers', description: 'Astonishing sound. Wherever life takes you.' },
+  { id: 'e-17', slug: 'sony-srs', name: 'Sony SRS-XB43', brand: 'Sony', availability: 'in-stock', price: 16990, originalPrice: 19990, discount: 15, rating: 4.6, reviews: 2400, image: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=600&auto=format&fit=crop', category: 'Electronics', subCategory: 'Speakers', description: 'Extra bass portable wireless speaker.' },
+  { id: 'e-18', slug: 'marshall-emberton', name: 'Marshall Emberton II', brand: 'Marshall', availability: 'in-stock', price: 17499, originalPrice: 17499, discount: 0, rating: 4.9, reviews: 1800, image: 'https://images.unsplash.com/photo-1545454675-3531b543be5d?w=600&auto=format&fit=crop', category: 'Electronics', subCategory: 'Speakers', description: 'Iconic design, 30+ hours playtime.' },
 
-  // --- GAMING ---
-  {
-    id: 'e-6', slug: 'logitech-g502x', name: 'Logitech G502 X Plus', brand: 'Logitech',
-    category: 'Electronics', subCategory: 'Gaming',
-    description: 'Wireless gaming mouse with LIGHTFORCE hybrid switches.',
-    price: 13995, originalPrice: 16495, discount: 15, rating: 4.7, reviews: 3400,
-    image: 'https://images.unsplash.com/photo-1527814050087-3793815479db?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery by Tomorrow',
-    labels: ['GAMING'], warranty: '2 Year Logitech Warranty',
-    specifications: { Sensor: 'HERO 25K', DPI: '25,600', Battery: '130 Hours', Weight: '106g' }
-  },
-  {
-    id: 'e-7', slug: 'logitech-mx-keys', name: 'Logitech MX Keys S', brand: 'Logitech',
-    category: 'Electronics', subCategory: 'Peripherals',
-    description: 'Premium wireless keyboard with smart backlighting.',
-    price: 12495, originalPrice: 14995, discount: 17, rating: 4.8, reviews: 2600,
-    image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 2 days',
-    labels: ['PREMIUM'], warranty: '2 Year Warranty',
-    specifications: { Type: 'Low-profile', Connectivity: 'Bluetooth + USB', Battery: '10 Days', Backlit: 'Smart Proximity' }
-  },
+  // --- LAPTOPS ---
+  { id: 'e-19', slug: 'macbook-air-m3', name: 'Apple MacBook Air M3', brand: 'Apple', availability: 'in-stock', price: 114900, originalPrice: 114900, discount: 0, rating: 4.9, reviews: 3200, image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&auto=format&fit=crop', category: 'Electronics', subCategory: 'Laptops', description: 'Supercharged by M3, 18h battery.' },
+  { id: 'e-20', slug: 'dell-xps-13', name: 'Dell XPS 13', brand: 'Dell', availability: 'in-stock', price: 139990, originalPrice: 145990, discount: 4, rating: 4.7, reviews: 1800, image: 'https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=600&auto=format&fit=crop', category: 'Electronics', subCategory: 'Laptops', description: 'Premium ultrabook with InfinityEdge display.' },
+  { id: 'e-21', slug: 'asus-rog', name: 'ASUS ROG Zephyrus G14', brand: 'ASUS', availability: 'in-stock', price: 154990, originalPrice: 169990, discount: 8, rating: 4.8, reviews: 2100, image: 'https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=600&auto=format&fit=crop', category: 'Electronics', subCategory: 'Laptops', description: 'Ultimate gaming performance in compact form.' },
+  { id: 'e-22', slug: 'lenovo-legion', name: 'Lenovo Legion Pro 5', brand: 'Lenovo', availability: 'in-stock', price: 144990, originalPrice: 159990, discount: 9, rating: 4.7, reviews: 2500, image: 'https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=600&auto=format&fit=crop', category: 'Electronics', subCategory: 'Laptops', description: 'Esports ready performance.' },
+  { id: 'e-23', slug: 'hp-spectre', name: 'HP Spectre x360', brand: 'HP', availability: 'in-stock', price: 129990, originalPrice: 139990, discount: 7, rating: 4.6, reviews: 1500, image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&auto=format&fit=crop', category: 'Electronics', subCategory: 'Laptops', description: 'Premium 2-in-1 convertible.' },
 
-  // --- TABLETS ---
-  {
-    id: 'e-8', slug: 'ipad-air-m2', name: 'Apple iPad Air M2', brand: 'Apple',
-    category: 'Electronics', subCategory: 'Tablets',
-    description: 'M2 chip, 11" Liquid Retina, Apple Pencil Pro support.',
-    price: 59900, originalPrice: 59900, discount: 0, rating: 4.8, reviews: 3400,
-    image: 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery by Tomorrow',
-    labels: ['PREMIUM', 'NEW LAUNCH'], isTrending: true,
-    specifications: { Chip: 'Apple M2', Display: '11" Liquid Retina', Storage: '128GB', Camera: '12MP Wide' }
-  },
-
-  // --- MONITORS ---
-  {
-    id: 'e-9', slug: 'samsung-odyssey-g5', name: 'Samsung Odyssey G5 27"', brand: 'Samsung',
-    category: 'Electronics', subCategory: 'Monitors',
-    description: '27" QHD 165Hz curved gaming monitor.',
-    price: 22990, originalPrice: 29990, discount: 23, rating: 4.6, reviews: 1900,
-    image: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 3 days',
-    labels: ['GAMING'], warranty: '3 Year Samsung Warranty',
-    specifications: { Resolution: '2560x1440 QHD', Refresh: '165Hz', Panel: 'VA Curved', Response: '1ms' }
-  },
-
-  // --- SMARTWATCH ---
-  {
-    id: 'e-10', slug: 'apple-watch-series-10', name: 'Apple Watch Series 10', brand: 'Apple',
-    category: 'Electronics', subCategory: 'Smartwatch',
-    description: 'Thinnest Apple Watch ever with advanced health sensors.',
-    price: 46900, originalPrice: 46900, discount: 0, rating: 4.8, reviews: 2100,
-    image: 'https://images.unsplash.com/photo-1434493789847-2f02dc6ca35d?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery by Tomorrow',
-    labels: ['NEW LAUNCH', 'PREMIUM'], isTrending: true,
-    specifications: { Display: '46mm Always-On OLED', Sensors: 'SpO2, ECG, Temp', Water: '50m', Chip: 'S10 SiP' }
-  },
+  // --- ACCESSORIES ---
+  { id: 'e-24', slug: 'logitech-gpro', name: 'Logitech G Pro X Superlight', brand: 'Logitech', availability: 'in-stock', price: 12995, originalPrice: 13995, discount: 7, rating: 4.9, reviews: 5600, image: 'https://images.unsplash.com/photo-1527814050087-3793815479db?w=600&auto=format&fit=crop', category: 'Electronics', subCategory: 'Accessories', description: 'Ultra-lightweight wireless gaming mouse.' },
+  { id: 'e-25', slug: 'keychron-k2', name: 'Keychron K2 Mechanical Keyboard', brand: 'Keychron', availability: 'in-stock', price: 8999, originalPrice: 9999, discount: 10, rating: 4.8, reviews: 3400, image: 'https://images.unsplash.com/photo-1595225476474-87563907a212?w=600&auto=format&fit=crop', category: 'Electronics', subCategory: 'Accessories', description: 'Wireless mechanical keyboard for Mac/Windows.' },
+  { id: 'e-26', slug: 'samsung-t7', name: 'Samsung T7 1TB SSD', brand: 'Samsung', availability: 'in-stock', price: 8999, originalPrice: 12999, discount: 30, rating: 4.8, reviews: 12000, image: 'https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=600&auto=format&fit=crop', category: 'Electronics', subCategory: 'Accessories', description: 'Portable SSD, speeds up to 1050MB/s.' },
+  { id: 'e-27', slug: 'logitech-brio', name: 'Logitech Brio 4K Webcam', brand: 'Logitech', availability: 'in-stock', price: 18995, originalPrice: 19995, discount: 5, rating: 4.6, reviews: 2100, image: 'https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=600&auto=format&fit=crop', category: 'Electronics', subCategory: 'Accessories', description: 'Ultra HD web camera for video conferencing.' },
+  { id: 'e-28', slug: 'anker-usb-hub', name: 'Anker USB-C Hub', brand: 'Anker', availability: 'in-stock', price: 4999, originalPrice: 5999, discount: 16, rating: 4.7, reviews: 8900, image: 'https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=600&auto=format&fit=crop', category: 'Electronics', subCategory: 'Accessories', description: '7-in-1 USB C adapter with 4K HDMI.' },
+  { id: 'e-29', slug: 'anker-powercore', name: 'Anker PowerCore 20000', brand: 'Anker', availability: 'in-stock', price: 5499, originalPrice: 6999, discount: 21, rating: 4.8, reviews: 15000, image: 'https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=600&auto=format&fit=crop', category: 'Electronics', subCategory: 'Accessories', description: 'High-capacity portable charger.' },
 ];
