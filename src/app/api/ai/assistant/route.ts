@@ -30,7 +30,7 @@ INTENT DETECTION:
 - Gift Intent: Looking for gifts.
 
 CATALOG KNOWLEDGE:
-Available Products: ${JSON.stringify(catalog.slice(0, 100))}
+Available Products: ${JSON.stringify(catalog.slice(0, 40))}
 
 RESPONSE FORMAT:
 You MUST respond with a SINGLE JSON OBJECT ONLY. 
@@ -68,7 +68,10 @@ Current Cart: ${JSON.stringify(context.cart)}
       body: JSON.stringify({
         contents: [{
           parts: [{ text: systemPrompt }]
-        }]
+        }],
+        generationConfig: {
+          response_mime_type: "application/json"
+        }
       })
     });
 
