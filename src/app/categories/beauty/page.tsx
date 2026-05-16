@@ -1,83 +1,51 @@
 'use client';
-import React, { useState } from 'react';
+import Link from 'next/link';
+import React, { useState, useMemo } from 'react';
 import { 
-  Home, 
-  LayoutGrid, 
-  Tag, 
-  Sparkles, 
-  ShoppingBag, 
   Heart, 
-  User, 
-  HelpCircle, 
-  Plus, 
   Trash2, 
   ChevronLeft, 
+  Plus, 
   Minus, 
-  Smartphone, 
-  UtensilsCrossed, 
-  Laptop, 
-  Shirt, 
-  ChevronDown, 
-  ArrowRight, 
-  ShieldCheck, 
-  RotateCcw, 
-  Truck, 
+  ShoppingBag,
   Grid, 
   List, 
-  Star, 
-  Info
+  ShieldCheck, 
+  RotateCcw, 
+  Truck,
+  Sparkles
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useCartStore } from '@/store/cartStore';
 import styles from './beauty.module.css';
-
-const menuItems = [
-  { icon: Home, label: 'Home', href: '/' },
-  { icon: Tag, label: 'Deals', href: '/deals' },
-  { icon: Sparkles, label: 'New Arrivals', href: '/new-arrivals' },
-];
-
-const categoryItems = [
-  { icon: UtensilsCrossed, label: 'Grocery', href: '/categories/grocery' },
-  { icon: Smartphone, label: 'Mobiles', href: '/categories/mobiles' },
-  { icon: Laptop, label: 'Electronics', href: '/categories/electronics' },
-  { icon: Shirt, label: 'Fashion', href: '/categories/fashion' },
-  { icon: Sparkles, label: 'Beauty', href: '/categories/beauty', active: true },
-  { icon: LayoutGrid, label: 'Appliances', href: '/categories/appliances' },
-];
+import SafeImage from '@/components/ui/SafeImage';
+import { allBeautyProducts } from '@/data/beautyData';
 
 const categoryPills = [
   'All', 'Skincare', 'Makeup', 'Haircare', 'Fragrances', 'Bath & Body', 'Tools & Brushes'
-];
-
-import { useCartStore } from '@/store/cartStore';
-import Link from 'next/link';
-
-const beautyProducts = [
-  { id: 'b1', name: 'Advanced Night Repair', brand: 'Estée Lauder', price: 6720, originalPrice: 8400, discount: '-20%', rating: 4.8, reviews: '1.2K', image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=400&q=80', description: 'Powerful nighttime renewal serum.', category: 'Skincare' },
-  { id: 'b2', name: 'Moisture Surge 100H', brand: 'Clinique', price: 2975, originalPrice: 3500, discount: '-15%', rating: 4.7, reviews: '982', image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=400&q=80', description: 'Oil-free gel-cream moisturizer.', category: 'Skincare' },
-  { id: 'b3', name: 'Lakmé 9 to 5 CC Cream', brand: 'Lakmé', price: 386, originalPrice: 429, discount: '-10%', rating: 4.6, reviews: '1.5K', image: 'https://images.unsplash.com/photo-1596462502278-27bfdc4033c8?auto=format&fit=crop&w=400&q=80', description: 'Instant skin stylist CC cream.', category: 'Makeup' },
-  { id: 'b4', name: 'Miss Dior Blooming Bouquet', brand: 'Dior', price: 8999, originalPrice: 11999, discount: '-25%', rating: 4.9, reviews: '876', image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=400&q=80', description: 'Fresh and sparkling floral fragrance.', category: 'Fragrances' },
-  { id: 'b5', name: 'Studio Fix Fluid Foundation', brand: 'MAC', price: 2550, originalPrice: 3000, discount: '-15%', rating: 4.7, reviews: '2.1K', image: 'https://images.unsplash.com/photo-1596462502278-27bfdc4033c8?auto=format&fit=crop&w=400&q=80', description: 'Long-wearing matte foundation.', category: 'Makeup' },
-  { id: 'b6', name: 'Matte Revolution Lipstick', brand: 'Charlotte Tilbury', price: 3060, originalPrice: 3400, discount: '-10%', rating: 4.8, reviews: '1.1K', image: 'https://images.unsplash.com/photo-1586776977607-310e9c725c37?auto=format&fit=crop&w=400&q=80', description: 'Iconic matte finish lipstick.', category: 'Makeup' },
 ];
 
 const BeautyPage = () => {
   const [activeTab, setActiveTab] = useState('All');
   const { items, addItem, removeItem, updateQuantity, getSubtotal } = useCartStore();
 
+  const filteredProducts = useMemo(() => {
+    if (activeTab === 'All') return allBeautyProducts;
+    return allBeautyProducts.filter(p => p.subCategory === activeTab);
+  }, [activeTab]);
+
   return (
     <div className={styles.beautyLayout}>
-      {/* LEFT SIDEBAR */}
-      
-
       {/* MAIN CONTENT */}
       <main className={styles.mainContent}>
         <header className={styles.header}>
           <div className={styles.headerLeft}>
-            <div className={styles.headerIcon}>🧴</div>
+            <div className={styles.headerIcon}>
+              <Sparkles size={32} color="#EC4899" />
+            </div>
             <div>
-              <h1>Beauty</h1>
-              <p>Glow with the best. Premium beauty & personal care.</p>
+              <h1>Luxury Beauty</h1>
+              <p>Explore premium skincare, makeup, and fragrances.</p>
             </div>
           </div>
           <div className={styles.headerActions}>
@@ -88,104 +56,145 @@ const BeautyPage = () => {
 
         <div className={styles.categoryBar}>
           {categoryPills.map((cat) => (
-            <button 
+            <motion.button 
               key={cat} 
               className={`${styles.catPill} ${activeTab === cat ? styles.catActive : ''}`}
               onClick={() => setActiveTab(cat)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               {cat}
-            </button>
+            </motion.button>
           ))}
         </div>
 
-        <div className={styles.productGrid}>
-          {beautyProducts.map((product) => (
-            <motion.div 
-              key={product.id} 
-              className={styles.productCard}
-              whileHover={{ y: -5 }}
-            >
-              <div className={styles.discountBadge}>{product.discount}</div>
-              <button className={styles.wishlistBtn}><Heart size={18} /></button>
-              <div className={styles.productImg}>
-                <img src={product.image} alt={product.name} />
-              </div>
-              <div className={styles.productInfo}>
-                <span className={styles.brandName}>{product.brand}</span>
-                <h3>{product.name}</h3>
-                <div className={styles.ratingRow}>
-                  <Star size={14} fill="#FBBF24" color="#FBBF24" />
-                  <span>{product.rating} ({product.reviews})</span>
+        <motion.div 
+          className={styles.productGrid}
+          layout
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredProducts.map((product, index) => (
+              <motion.div 
+                key={product.id} 
+                className={styles.productCard}
+                layout
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9, y: -20 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+              >
+                {product.discount > 0 && (
+                  <div className={styles.discountBadge}>-{product.discount}%</div>
+                )}
+                <button className={styles.wishlistBtn}><Heart size={18} /></button>
+                <div className={styles.productImg}>
+                  <SafeImage 
+                    src={product.image} 
+                    alt={product.name} 
+                    fill 
+                    style={{ objectFit: 'cover' }}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
                 </div>
-                <div className={styles.priceRow}>
-                  <div>
-                    <span className={styles.price}>₹{product.price.toLocaleString('en-IN')}</span>
-                    <span className={styles.oldPrice}>₹{product.originalPrice.toLocaleString('en-IN')}</span>
+                <div className={styles.productInfo}>
+                  <h3>{product.name}</h3>
+                  <span>{product.brand} - {product.description}</span>
+                  <div className={styles.priceRow}>
+                    <div>
+                      <span className={styles.price}>₹{product.price.toLocaleString('en-IN')}</span>
+                      {product.originalPrice > product.price && (
+                        <span className={styles.oldPrice}>₹{product.originalPrice.toLocaleString('en-IN')}</span>
+                      )}
+                    </div>
+                    <button className={styles.addBtn} onClick={() => addItem(product as any)}><Plus size={18} /></button>
                   </div>
-                  <button className={styles.addBtn} onClick={() => addItem(product as any)}><Plus size={18} /></button>
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
 
-        <div className={styles.showMore}>
-          <span>Show More Products</span>
-          <ChevronDown size={18} />
-        </div>
+        {filteredProducts.length === 0 && (
+          <div className={styles.emptyState}>
+            <p>No products found in this category.</p>
+          </div>
+        )}
       </main>
 
       {/* RIGHT SIDEBAR (CART) */}
       <aside className={styles.rightSidebar}>
         <div className={styles.cartHeader}>
           <Link href="/" className={styles.backBtn}><ChevronLeft size={20} /></Link>
-          <h2>CART</h2>
+          <h2>BAG</h2>
           <button className={styles.trashBtn} onClick={() => useCartStore.getState().clearCart()}><Trash2 size={20} /></button>
         </div>
 
         <div className={styles.cartList}>
-          {items.map((item) => (
-            <div key={item.id} className={styles.cartItem}>
-              <div className={styles.itemImg}>
-                <img src={item.image} alt={item.name} />
-              </div>
-              <div className={styles.itemInfo}>
-                <h4>{item.name}</h4>
-                <div className={styles.itemPrice}>₹{item.price.toLocaleString('en-IN')}</div>
-              </div>
-              <div className={styles.itemActions}>
-                <div className={styles.qtyBox}>
-                  <button onClick={() => updateQuantity(item.id, item.quantity - 1)}><Minus size={14} /></button>
-                  <span>{item.quantity}</span>
-                  <button onClick={() => updateQuantity(item.id, item.quantity + 1)}><Plus size={14} /></button>
+          <AnimatePresence>
+            {items.map((item) => (
+              <motion.div 
+                key={item.id} 
+                className={styles.cartItem}
+                layout
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+              >
+                <div className={styles.itemImg}>
+                  <SafeImage 
+                    src={item.image} 
+                    alt={item.name} 
+                    fill 
+                    style={{ objectFit: 'cover' }} 
+                    sizes="60px"
+                  />
                 </div>
-              </div>
+                <div className={styles.itemInfo}>
+                  <h4>{item.name}</h4>
+                  <div className={styles.itemPrice}>₹{item.price.toLocaleString('en-IN')}</div>
+                </div>
+                <div className={styles.itemActions}>
+                  <div className={styles.qtyBox}>
+                    <button onClick={() => updateQuantity(item.id, item.quantity - 1)}><Minus size={14} /></button>
+                    <span>{item.quantity}</span>
+                    <button onClick={() => updateQuantity(item.id, item.quantity + 1)}><Plus size={14} /></button>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+          {items.length === 0 && (
+            <div className={styles.emptyCart}>
+              <ShoppingBag size={48} opacity={0.2} color="#EC4899" />
+              <p>Your beauty bag is empty</p>
             </div>
-          ))}
+          )}
         </div>
 
-        <div className={styles.cartSummary}>
-          <div className={styles.summaryRow}>
-            <span>Delivered To:</span>
-            <strong>Home</strong>
+        {items.length > 0 && (
+          <div className={styles.cartSummary}>
+            <div className={styles.summaryRow}>
+              <span>Delivered To:</span>
+              <strong>Home</strong>
+            </div>
+            <div className={styles.summaryRow}>
+              <span>Delivery Charges:</span>
+              <strong>Free</strong>
+            </div>
+            <div className={styles.totalRow}>
+              <span>TOTAL</span>
+              <strong>₹{getSubtotal().toLocaleString('en-IN')}</strong>
+            </div>
+            <Link href="/checkout">
+              <button className={styles.payBtn}>PROCEED TO PAY</button>
+            </Link>
           </div>
-          <div className={styles.summaryRow}>
-            <span>Delivery Charges:</span>
-            <strong>₹49</strong>
-          </div>
-          <div className={styles.totalRow}>
-            <span>TOTAL</span>
-            <strong>₹{(getSubtotal() + 49).toLocaleString('en-IN')}</strong>
-          </div>
-          <Link href="/checkout">
-            <button className={styles.payBtn}>PROCEED TO PAY</button>
-          </Link>
-        </div>
+        )}
 
         <div className={styles.trustBadges}>
           <div className={styles.badgeItem}>
             <div className={styles.badgeIcon}><ShieldCheck size={14} /></div>
-            <span>100% Original</span>
+            <span>100% Authentic</span>
           </div>
           <div className={styles.badgeItem}>
             <div className={styles.badgeIcon}><RotateCcw size={14} /></div>

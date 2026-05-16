@@ -1,122 +1,48 @@
 import { Product } from './products';
 
-// ========================================
-// BEAUTY — Real Cosmetics & Skincare Brands
-// Verified Unsplash images matched to product type
-// ========================================
+export interface BeautyProduct extends Product {
+  brand: string;
+}
 
-export const allBeautyProducts: Product[] = [
+export const allBeautyProducts: BeautyProduct[] = [
   // --- SKINCARE ---
-  {
-    id: 'b-1', slug: 'cetaphil-moisturizer', name: 'Cetaphil Moisturizing Cream', brand: 'Cetaphil',
-    category: 'Beauty', subCategory: 'Moisturizer',
-    description: 'Clinically proven moisturizer for dry, sensitive skin.',
-    price: 389, originalPrice: 499, discount: 22, rating: 4.7, reviews: 12400,
-    image: 'https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery by Tomorrow',
-    labels: ['BEST SELLER', 'DERMA TESTED'], isBestSeller: true,
-    specifications: { Type: 'Moisturizer', Skin: 'Dry & Sensitive', Volume: '250ml', Fragrance: 'Fragrance-Free' }
-  },
-  {
-    id: 'b-2', slug: 'minimalist-niacinamide', name: 'Minimalist 10% Niacinamide Serum', brand: 'Minimalist',
-    category: 'Beauty', subCategory: 'Serum',
-    description: 'Controls oil, minimizes pores, and reduces acne marks.',
-    price: 549, originalPrice: 649, discount: 15, rating: 4.6, reviews: 18200,
-    image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery by Tomorrow',
-    labels: ['TRENDING', 'BEST SELLER'], isTrending: true, isBestSeller: true,
-    specifications: { Active: '10% Niacinamide + 1% Zinc', Skin: 'Oily & Acne-Prone', Volume: '30ml' }
-  },
-  {
-    id: 'b-3', slug: 'cetaphil-cleanser', name: 'Cetaphil Gentle Skin Cleanser', brand: 'Cetaphil',
-    category: 'Beauty', subCategory: 'Cleanser',
-    description: 'Soap-free, non-foaming face wash for all skin types.',
-    price: 350, originalPrice: 449, discount: 22, rating: 4.8, reviews: 9800,
-    image: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 2 hours',
-    labels: ['DERMA TESTED'], isBestSeller: true,
-    specifications: { Type: 'Cleanser', Skin: 'All Types', Volume: '250ml', pH: 'Balanced' }
-  },
+  { id: 'b-1', slug: 'cetaphil-cleanser', name: 'Cetaphil Gentle Cleanser', brand: 'Cetaphil', availability: 'in-stock', price: 333, originalPrice: 350, discount: 5, rating: 4.8, reviews: 15400, image: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&auto=format&fit=crop', category: 'Beauty', subCategory: 'Skincare', description: 'For sensitive skin types.' },
+  { id: 'b-2', slug: 'cerave-moisturizer', name: 'CeraVe Moisturizing Cream', brand: 'CeraVe', availability: 'in-stock', price: 1499, originalPrice: 1799, discount: 16, rating: 4.9, reviews: 12000, image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=600&auto=format&fit=crop', category: 'Beauty', subCategory: 'Skincare', description: 'With 3 essential ceramides.' },
+  { id: 'b-3', slug: 'minimalist-serum', name: 'Minimalist 10% Niacinamide', brand: 'Minimalist', availability: 'in-stock', price: 599, originalPrice: 599, discount: 0, rating: 4.6, reviews: 8500, image: 'https://images.unsplash.com/photo-1629198688000-71f23e745b6e?w=600&auto=format&fit=crop', category: 'Beauty', subCategory: 'Skincare', description: 'Face serum for glowing skin.' },
+  { id: 'b-4', slug: 'neutrogena-sunscreen', name: 'Neutrogena Ultra Sheer', brand: 'Neutrogena', availability: 'in-stock', price: 675, originalPrice: 675, discount: 0, rating: 4.5, reviews: 21000, image: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&auto=format&fit=crop', category: 'Beauty', subCategory: 'Skincare', description: 'Dry-touch sunblock SPF 50+.' },
+  { id: 'b-5', slug: 'plum-vitamin-c', name: 'Plum 15% Vitamin C Serum', brand: 'Plum', availability: 'in-stock', price: 680, originalPrice: 790, discount: 14, rating: 4.7, reviews: 5400, image: 'https://images.unsplash.com/photo-1629198688000-71f23e745b6e?w=600&auto=format&fit=crop', category: 'Beauty', subCategory: 'Skincare', description: 'Glow activating face serum.' },
+  { id: 'b-6', slug: 'estee-lauder-night', name: 'Estée Lauder Advanced Night Repair', brand: 'Estée Lauder', availability: 'in-stock', price: 6200, originalPrice: 6200, discount: 0, rating: 4.9, reviews: 3200, image: 'https://images.unsplash.com/photo-1599305090598-fe179d501227?w=600&auto=format&fit=crop', category: 'Beauty', subCategory: 'Skincare', description: 'Synchronized multi-recovery complex.' },
 
   // --- MAKEUP ---
-  {
-    id: 'b-4', slug: 'mac-ruby-woo', name: 'MAC Ruby Woo Lipstick', brand: 'MAC',
-    category: 'Beauty', subCategory: 'Lipstick',
-    description: 'Iconic retro matte vivid red lipstick.',
-    price: 1950, originalPrice: 1950, discount: 0, rating: 4.9, reviews: 24500,
-    image: 'https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery by Tomorrow',
-    labels: ['ICONIC', 'BEST SELLER'], isBestSeller: true,
-    colors: ['#8B0000', '#C71585', '#D2691E', '#FF69B4'],
-    specifications: { Finish: 'Retro Matte', Shade: 'Ruby Woo', Weight: '3g' }
-  },
-  {
-    id: 'b-5', slug: 'huda-beauty-palette', name: 'Huda Beauty Rose Gold Palette', brand: 'Huda Beauty',
-    category: 'Beauty', subCategory: 'Eyeshadow',
-    description: '18 shades of rose gold, mattes, shimmers, and glitters.',
-    price: 4950, originalPrice: 5500, discount: 10, rating: 4.7, reviews: 6200,
-    image: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 3 days',
-    labels: ['PREMIUM', 'TRENDING'], isTrending: true,
-    specifications: { Shades: '18 (Matte, Shimmer, Glitter)', Type: 'Pressed Powder', Brand: 'Huda Beauty' }
-  },
-  {
-    id: 'b-6', slug: 'dior-lip-glow', name: 'Dior Addict Lip Glow', brand: 'Dior',
-    category: 'Beauty', subCategory: 'Lip Care',
-    description: 'Color-reviving lip balm with 97% natural origin.',
-    price: 3600, originalPrice: 3600, discount: 0, rating: 4.8, reviews: 4100,
-    image: 'https://images.unsplash.com/photo-1631214524020-7e18db9a8f92?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 2 days',
-    labels: ['LUXURY', 'PREMIUM'],
-    colors: ['#FFB6C1', '#FF69B4', '#DC143C'],
-    specifications: { Finish: 'Glossy Balm', Origin: '97% Natural', SPF: '10' }
-  },
+  { id: 'b-7', slug: 'lakme-cc', name: 'Lakmé 9 to 5 CC Cream', brand: 'Lakmé', availability: 'in-stock', price: 349, originalPrice: 399, discount: 12, rating: 4.4, reviews: 18000, image: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600&auto=format&fit=crop', category: 'Beauty', subCategory: 'Makeup', description: 'Complexion care face cream.' },
+  { id: 'b-8', slug: 'mac-lipstick', name: 'MAC Ruby Woo Lipstick', brand: 'MAC', availability: 'in-stock', price: 1950, originalPrice: 1950, discount: 0, rating: 4.8, reviews: 9600, image: 'https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=600&auto=format&fit=crop', category: 'Beauty', subCategory: 'Makeup', description: 'Retro matte classic red.' },
+  { id: 'b-9', slug: 'maybelline-foundation', name: 'Maybelline Fit Me Foundation', brand: 'Maybelline', availability: 'in-stock', price: 549, originalPrice: 599, discount: 8, rating: 4.6, reviews: 25000, image: 'https://images.unsplash.com/photo-1599305090598-fe179d501227?w=600&auto=format&fit=crop', category: 'Beauty', subCategory: 'Makeup', description: 'Matte + Poreless liquid foundation.' },
+  { id: 'b-10', slug: 'huda-palette', name: 'Huda Beauty Nude Palette', brand: 'Huda Beauty', availability: 'in-stock', price: 5350, originalPrice: 5350, discount: 0, rating: 4.9, reviews: 4200, image: 'https://images.unsplash.com/photo-1512496015851-a1c8f1301d0d?w=600&auto=format&fit=crop', category: 'Beauty', subCategory: 'Makeup', description: 'New nude eyeshadow palette.' },
+  { id: 'b-11', slug: 'tart-concealer', name: 'Tarte Shape Tape Concealer', brand: 'Tarte', availability: 'in-stock', price: 2900, originalPrice: 2900, discount: 0, rating: 4.8, reviews: 11000, image: 'https://images.unsplash.com/photo-1599305090598-fe179d501227?w=600&auto=format&fit=crop', category: 'Beauty', subCategory: 'Makeup', description: 'Full coverage contour concealer.' },
+  { id: 'b-12', slug: 'compact-powder', name: 'Faces Canada Compact', brand: 'Faces Canada', availability: 'in-stock', price: 249, originalPrice: 299, discount: 16, rating: 4.3, reviews: 8500, image: 'https://images.unsplash.com/photo-1590156546946-ce55a12a6a1d?w=600&auto=format&fit=crop', category: 'Beauty', subCategory: 'Makeup', description: 'Weightless matte compact.' },
 
-  // --- FRAGRANCE ---
-  {
-    id: 'b-7', slug: 'dior-sauvage', name: 'Dior Sauvage EDT', brand: 'Dior',
-    category: 'Beauty', subCategory: 'Fragrance',
-    description: 'Bold, fresh, and powerful — the world\'s #1 men\'s fragrance.',
-    price: 8500, originalPrice: 9500, discount: 11, rating: 4.9, reviews: 15600,
-    image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery by Tomorrow',
-    labels: ['LUXURY', 'BEST SELLER'], isBestSeller: true,
-    specifications: { Type: 'Eau de Toilette', Top: 'Bergamot, Pepper', Heart: 'Lavender, Sichuan', Base: 'Ambroxan, Cedar', Volume: '100ml' }
-  },
+  // --- HAIRCARE ---
+  { id: 'b-13', slug: 'loreal-shampoo', name: 'L\'Oréal Paris Shampoo', brand: 'L\'Oréal Paris', availability: 'in-stock', price: 399, originalPrice: 499, discount: 20, rating: 4.5, reviews: 14000, image: 'https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?w=600&auto=format&fit=crop', category: 'Beauty', subCategory: 'Haircare', description: 'Total repair 5 restoring shampoo.' },
+  { id: 'b-14', slug: 'dove-conditioner', name: 'Dove Intense Repair', brand: 'Dove', availability: 'in-stock', price: 210, originalPrice: 240, discount: 12, rating: 4.6, reviews: 19000, image: 'https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?w=600&auto=format&fit=crop', category: 'Beauty', subCategory: 'Haircare', description: 'Conditioner for damaged hair.' },
+  { id: 'b-15', slug: 'hair-serum', name: 'Biolage Smoothproof Serum', brand: 'Biolage', availability: 'in-stock', price: 320, originalPrice: 350, discount: 8, rating: 4.7, reviews: 11000, image: 'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=600&auto=format&fit=crop', category: 'Beauty', subCategory: 'Haircare', description: 'Deep smoothing hair serum.' },
+  { id: 'b-16', slug: 'hair-mask', name: 'Plum Olive & Macadamia', brand: 'Plum', availability: 'in-stock', price: 675, originalPrice: 875, discount: 22, rating: 4.8, reviews: 6200, image: 'https://images.unsplash.com/photo-1556228720-1c2a4624dc2a?w=600&auto=format&fit=crop', category: 'Beauty', subCategory: 'Haircare', description: 'Mega moisturizing hair mask.' },
+  { id: 'b-17', slug: 'hair-oil', name: 'Indulekha Bringha Oil', brand: 'Indulekha', availability: 'in-stock', price: 432, originalPrice: 480, discount: 10, rating: 4.4, reviews: 22000, image: 'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=600&auto=format&fit=crop', category: 'Beauty', subCategory: 'Haircare', description: 'Ayurvedic hair oil for hairfall.' },
 
-  // --- HAIR CARE ---
-  {
-    id: 'b-8', slug: 'loreal-serum', name: "L'Oréal Extraordinary Oil Serum", brand: "L'Oréal",
-    category: 'Beauty', subCategory: 'Hair Care',
-    description: '6 micro-oils for frizz-free, glossy hair.',
-    price: 499, originalPrice: 650, discount: 23, rating: 4.5, reviews: 7800,
-    image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 2 hours',
-    labels: ['BEST SELLER'],
-    specifications: { Type: 'Hair Serum', Benefit: 'Frizz Control + Shine', Volume: '100ml' }
-  },
+  // --- FRAGRANCES ---
+  { id: 'b-18', slug: 'dior-sauvage', name: 'Dior Sauvage Eau de Toilette', brand: 'Dior', availability: 'in-stock', price: 9500, originalPrice: 9500, discount: 0, rating: 4.9, reviews: 8500, image: 'https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?w=600&auto=format&fit=crop', category: 'Beauty', subCategory: 'Fragrances', description: 'Raw and noble masculine scent.' },
+  { id: 'b-19', slug: 'chanel-no5', name: 'Chanel No.5 Eau de Parfum', brand: 'Chanel', availability: 'in-stock', price: 14500, originalPrice: 14500, discount: 0, rating: 4.8, reviews: 6200, image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?w=600&auto=format&fit=crop', category: 'Beauty', subCategory: 'Fragrances', description: 'The legendary floral bouquet.' },
+  { id: 'b-20', slug: 'gucci-bloom', name: 'Gucci Bloom For Women', brand: 'Gucci', availability: 'in-stock', price: 8200, originalPrice: 8200, discount: 0, rating: 4.7, reviews: 4100, image: 'https://images.unsplash.com/photo-1590736969955-71cc94801759?w=600&auto=format&fit=crop', category: 'Beauty', subCategory: 'Fragrances', description: 'Authentic floral fragrance.' },
+  { id: 'b-21', slug: 'versace-eros', name: 'Versace Eros Eau de Toilette', brand: 'Versace', availability: 'in-stock', price: 6800, originalPrice: 7500, discount: 9, rating: 4.8, reviews: 5400, image: 'https://images.unsplash.com/photo-1585386903823-74d151dc3fdb?w=600&auto=format&fit=crop', category: 'Beauty', subCategory: 'Fragrances', description: 'Sublime masculinity.' },
 
-  // --- SUNSCREEN ---
-  {
-    id: 'b-9', slug: 'minimalist-sunscreen', name: 'Minimalist SPF 50 Sunscreen', brand: 'Minimalist',
-    category: 'Beauty', subCategory: 'Sunscreen',
-    description: 'Lightweight, no white cast, PA++++ protection.',
-    price: 449, originalPrice: 549, discount: 18, rating: 4.6, reviews: 11200,
-    image: 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery by Tomorrow',
-    labels: ['TRENDING', 'BEST SELLER'], isTrending: true,
-    specifications: { SPF: '50 PA++++', Type: 'Chemical', Finish: 'Matte', Volume: '50ml' }
-  },
+  // --- BATH & BODY ---
+  { id: 'b-22', slug: 'body-wash', name: 'Fiama Body Wash', brand: 'Fiama', availability: 'in-stock', price: 199, originalPrice: 220, discount: 9, rating: 4.5, reviews: 18000, image: 'https://images.unsplash.com/photo-1608248593842-8086202476b7?w=600&auto=format&fit=crop', category: 'Beauty', subCategory: 'Bath & Body', description: 'Shower gel with bearberry.' },
+  { id: 'b-23', slug: 'body-lotion', name: 'Nivea Body Lotion', brand: 'Nivea', availability: 'in-stock', price: 349, originalPrice: 449, discount: 22, rating: 4.7, reviews: 25000, image: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=600&auto=format&fit=crop', category: 'Beauty', subCategory: 'Bath & Body', description: 'Nourishing milk for very dry skin.' },
+  { id: 'b-24', slug: 'body-scrub', name: 'MCaffeine Coffee Scrub', brand: 'MCaffeine', availability: 'in-stock', price: 449, originalPrice: 449, discount: 0, rating: 4.6, reviews: 9200, image: 'https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=600&auto=format&fit=crop', category: 'Beauty', subCategory: 'Bath & Body', description: 'Exfoliating coffee body scrub.' },
+  { id: 'b-25', slug: 'shower-gel', name: 'The Body Shop Shower Gel', brand: 'The Body Shop', availability: 'in-stock', price: 345, originalPrice: 345, discount: 0, rating: 4.8, reviews: 8100, image: 'https://images.unsplash.com/photo-1608248593842-8086202476b7?w=600&auto=format&fit=crop', category: 'Beauty', subCategory: 'Bath & Body', description: 'British Rose shower gel.' },
 
-  // --- TOOLS ---
-  {
-    id: 'b-10', slug: 'dyson-airwrap', name: 'Dyson Airwrap Multi-Styler', brand: 'Dyson',
-    category: 'Beauty', subCategory: 'Styling Tools',
-    description: 'Curl, shape, smooth, and dry with no extreme heat.',
-    price: 45900, originalPrice: 45900, discount: 0, rating: 4.8, reviews: 3200,
-    image: 'https://images.unsplash.com/photo-1522338242992-e1a54f1f4569?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 5 days',
-    labels: ['LUXURY', 'PREMIUM'],
-    specifications: { Motor: 'Dyson V9', Heat: 'Coanda Effect (No extreme heat)', Attachments: '6 Styling', Voltage: '220-240V' }
-  },
+  // --- TOOLS & BRUSHES ---
+  { id: 'b-26', slug: 'makeup-brushes', name: 'Real Techniques Brush Set', brand: 'Real Techniques', availability: 'in-stock', price: 1800, originalPrice: 2200, discount: 18, rating: 4.8, reviews: 4500, image: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600&auto=format&fit=crop', category: 'Beauty', subCategory: 'Tools & Brushes', description: 'Everyday essentials makeup brushes.' },
+  { id: 'b-27', slug: 'beauty-blender', name: 'Original Beautyblender', brand: 'Beautyblender', availability: 'in-stock', price: 1800, originalPrice: 1800, discount: 0, rating: 4.7, reviews: 3200, image: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600&auto=format&fit=crop', category: 'Beauty', subCategory: 'Tools & Brushes', description: 'Makeup sponge for flawless blending.' },
+  { id: 'b-28', slug: 'hair-dryer', name: 'Philips Hair Dryer', brand: 'Philips', availability: 'in-stock', price: 849, originalPrice: 945, discount: 10, rating: 4.5, reviews: 16000, image: 'https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=600&auto=format&fit=crop', category: 'Beauty', subCategory: 'Tools & Brushes', description: '1000W daily care dryer.' },
+  { id: 'b-29', slug: 'straightener', name: 'Dyson Corrale Straightener', brand: 'Dyson', availability: 'in-stock', price: 38900, originalPrice: 38900, discount: 0, rating: 4.9, reviews: 1500, image: 'https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=600&auto=format&fit=crop', category: 'Beauty', subCategory: 'Tools & Brushes', description: 'Cord-free styling with less damage.' },
 ];
