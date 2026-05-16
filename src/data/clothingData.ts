@@ -1,120 +1,47 @@
 import { Product } from './products';
 
-// ========================================
-// CLOTHING — Real Fashion Brands
-// Verified Unsplash images matched to clothing type
-// ========================================
+export interface FashionProduct extends Product {
+  gender: 'Men' | 'Women' | 'Kids' | 'Unisex';
+  itemType: 'Topwear' | 'Bottomwear' | 'Winterwear' | 'Accessories';
+  brand: string;
+}
 
-export const allClothingProducts: Product[] = [
-  // --- T-SHIRTS ---
-  {
-    id: 'cl-1', slug: 'nike-dri-fit-tee', name: 'Nike Dri-FIT Training Tee', brand: 'Nike',
-    category: 'Clothing', subCategory: 'T-Shirts',
-    description: 'Moisture-wicking Dri-FIT fabric for intense workouts.',
-    price: 1795, originalPrice: 2495, discount: 28, rating: 4.6, reviews: 3200,
-    image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 3 days',
-    labels: ['BEST SELLER'], colors: ['#000000', '#FFFFFF', '#1a1a2e'],
-    specifications: { Material: '100% Recycled Polyester', Fit: 'Standard', Care: 'Machine Wash' }, isBestSeller: true
-  },
-  {
-    id: 'cl-2', slug: 'adidas-trefoil-tee', name: 'Adidas Originals Trefoil Tee', brand: 'Adidas',
-    category: 'Clothing', subCategory: 'T-Shirts',
-    description: 'Classic cotton tee with the iconic Trefoil logo.',
-    price: 1999, originalPrice: 2799, discount: 29, rating: 4.5, reviews: 2800,
-    image: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 2 days',
-    labels: ['ICONIC'], colors: ['#000000', '#FFFFFF', '#1a5276'],
-    specifications: { Material: '100% Cotton', Fit: 'Regular', Care: 'Machine Wash' }
-  },
+export const allFashionProducts: FashionProduct[] = [
+  // --- MEN ---
+  { id: 'f-1', slug: 'nike-tshirt-men', name: 'Nike Sportswear T-Shirt', brand: 'Nike', availability: 'in-stock', price: 1495, originalPrice: 1995, discount: 25, rating: 4.8, reviews: 1200, image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&auto=format&fit=crop', category: 'Fashion', subCategory: 'Clothing', gender: 'Men', itemType: 'Topwear', description: 'Classic comfort and style.' },
+  { id: 'f-2', slug: 'adidas-hoodie-men', name: 'Adidas Originals Hoodie', brand: 'Adidas', availability: 'in-stock', price: 4599, originalPrice: 5999, discount: 23, rating: 4.7, reviews: 850, image: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&auto=format&fit=crop', category: 'Fashion', subCategory: 'Clothing', gender: 'Men', itemType: 'Winterwear', description: 'Premium fleece hoodie.' },
+  { id: 'f-3', slug: 'levi-jeans-men', name: 'Levi\'s 511 Slim Fit Jeans', brand: 'Levi\'s', availability: 'in-stock', price: 3299, originalPrice: 4599, discount: 28, rating: 4.6, reviews: 2100, image: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&auto=format&fit=crop', category: 'Fashion', subCategory: 'Clothing', gender: 'Men', itemType: 'Bottomwear', description: 'Modern slim fit jeans.' },
+  { id: 'f-4', slug: 'puma-jacket-men', name: 'Puma Puffer Jacket', brand: 'Puma', availability: 'in-stock', price: 5499, originalPrice: 7999, discount: 31, rating: 4.5, reviews: 420, image: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600&auto=format&fit=crop', category: 'Fashion', subCategory: 'Clothing', gender: 'Men', itemType: 'Winterwear', description: 'Warm and lightweight.' },
+  { id: 'f-5', slug: 'formal-shirt-men', name: 'Louis Philippe Formal Shirt', brand: 'Louis Philippe', availability: 'in-stock', price: 2199, originalPrice: 2499, discount: 12, rating: 4.7, reviews: 1500, image: 'https://images.unsplash.com/photo-1596755094514-f87e32f85e2c?w=600&auto=format&fit=crop', category: 'Fashion', subCategory: 'Clothing', gender: 'Men', itemType: 'Topwear', description: 'Crisp cotton formal shirt.' },
+  { id: 'f-6', slug: 'blazer-men', name: 'Raymond Tailored Blazer', brand: 'Raymond', availability: 'in-stock', price: 6999, originalPrice: 8999, discount: 22, rating: 4.8, reviews: 340, image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&auto=format&fit=crop', category: 'Fashion', subCategory: 'Clothing', gender: 'Men', itemType: 'Winterwear', description: 'Sharp tailored fit.' },
 
-  // --- SNEAKERS ---
-  {
-    id: 'cl-3', slug: 'nike-air-max-270', name: 'Nike Air Max 270', brand: 'Nike',
-    category: 'Clothing', subCategory: 'Sneakers',
-    description: 'Iconic Air Max with the tallest Air unit for all-day comfort.',
-    price: 12995, originalPrice: 14995, discount: 13, rating: 4.8, reviews: 8200,
-    image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 3 days',
-    labels: ['ICONIC', 'BEST SELLER'], colors: ['#c0392b', '#2c3e50', '#ecf0f1'], isBestSeller: true,
-    specifications: { Sole: 'Air Max Unit', Upper: 'Mesh + Synthetic', Closure: 'Lace-up' }
-  },
-  {
-    id: 'cl-4', slug: 'adidas-ultraboost', name: 'Adidas Ultraboost Light', brand: 'Adidas',
-    category: 'Clothing', subCategory: 'Sneakers',
-    description: 'Lightest Ultraboost ever with BOOST midsole.',
-    price: 16999, originalPrice: 19999, discount: 15, rating: 4.7, reviews: 5400,
-    image: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 4 days',
-    labels: ['PREMIUM'], colors: ['#000000', '#FFFFFF'],
-    specifications: { Sole: 'BOOST + LEP', Upper: 'Primeknit+', Weight: '280g' }
-  },
-  {
-    id: 'cl-5', slug: 'puma-rs-x', name: 'Puma RS-X Reinvention', brand: 'Puma',
-    category: 'Clothing', subCategory: 'Sneakers',
-    description: 'Retro-futuristic chunky sneaker with RS cushioning.',
-    price: 8999, originalPrice: 10999, discount: 18, rating: 4.5, reviews: 3100,
-    image: 'https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 3 days',
-    labels: ['TRENDING'], colors: ['#FFFFFF', '#3498db', '#e74c3c'], isTrending: true,
-    specifications: { Sole: 'RS Cushioning', Upper: 'Mesh + Leather', Style: 'Retro Runner' }
-  },
+  // --- WOMEN ---
+  { id: 'f-7', slug: 'summer-dress-women', name: 'H&M Floral Summer Dress', brand: 'H&M', availability: 'in-stock', price: 1999, originalPrice: 2499, discount: 20, rating: 4.8, reviews: 2300, image: 'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=600&auto=format&fit=crop', category: 'Fashion', subCategory: 'Clothing', gender: 'Women', itemType: 'Topwear', description: 'Breezy and comfortable.' },
+  { id: 'f-8', slug: 'crop-top-women', name: 'Zara Ribbed Crop Top', brand: 'Zara', availability: 'in-stock', price: 990, originalPrice: 1290, discount: 23, rating: 4.6, reviews: 4100, image: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=600&auto=format&fit=crop', category: 'Fashion', subCategory: 'Clothing', gender: 'Women', itemType: 'Topwear', description: 'Essential basic crop top.' },
+  { id: 'f-9', slug: 'zara-jacket-women', name: 'Zara Leather Biker Jacket', brand: 'Zara', availability: 'in-stock', price: 5990, originalPrice: 7990, discount: 25, rating: 4.9, reviews: 1100, image: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&auto=format&fit=crop', category: 'Fashion', subCategory: 'Clothing', gender: 'Women', itemType: 'Winterwear', description: 'Edgy faux leather jacket.' },
+  { id: 'f-10', slug: 'kurti-women', name: 'Biba Embroidered Kurti', brand: 'Biba', availability: 'in-stock', price: 1899, originalPrice: 2599, discount: 27, rating: 4.7, reviews: 3200, image: 'https://images.unsplash.com/photo-1601056586022-f947ee19159f?w=600&auto=format&fit=crop', category: 'Fashion', subCategory: 'Clothing', gender: 'Women', itemType: 'Topwear', description: 'Elegant ethnic wear.' },
+  { id: 'f-11', slug: 'jeans-women', name: 'Mango High-Waist Jeans', brand: 'Mango', availability: 'in-stock', price: 3590, originalPrice: 4590, discount: 21, rating: 4.5, reviews: 1800, image: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=600&auto=format&fit=crop', category: 'Fashion', subCategory: 'Clothing', gender: 'Women', itemType: 'Bottomwear', description: 'Flattering high rise fit.' },
+  { id: 'f-12', slug: 'handbag-women', name: 'Guess Quilted Handbag', brand: 'Guess', availability: 'in-stock', price: 8999, originalPrice: 12999, discount: 30, rating: 4.8, reviews: 950, image: 'https://images.unsplash.com/photo-1584916201218-f4242ceb4809?w=600&auto=format&fit=crop', category: 'Fashion', subCategory: 'Accessories', gender: 'Women', itemType: 'Accessories', description: 'Luxury everyday tote.' },
 
-  // --- JEANS ---
-  {
-    id: 'cl-6', slug: 'levis-511-slim', name: "Levi's 511 Slim Fit Jeans", brand: "Levi's",
-    category: 'Clothing', subCategory: 'Jeans',
-    description: 'Classic slim fit jeans with stretch comfort.',
-    price: 2799, originalPrice: 3999, discount: 30, rating: 4.6, reviews: 6700,
-    image: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 3 days',
-    labels: ['CLASSIC', 'BEST SELLER'], colors: ['#1a1a2e', '#2c3e50', '#34495e'], isBestSeller: true,
-    specifications: { Material: '99% Cotton, 1% Elastane', Fit: 'Slim', Rise: 'Mid-Rise', Wash: 'Medium Indigo' }
-  },
+  // --- KIDS ---
+  { id: 'f-13', slug: 'kids-tshirt', name: 'United Colors Graphic T-Shirt', brand: 'UCB Kids', availability: 'in-stock', price: 799, originalPrice: 999, discount: 20, rating: 4.6, reviews: 850, image: 'https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?w=600&auto=format&fit=crop', category: 'Fashion', subCategory: 'Clothing', gender: 'Kids', itemType: 'Topwear', description: 'Fun printed tee.' },
+  { id: 'f-14', slug: 'kids-hoodie', name: 'Gap Kids Logo Hoodie', brand: 'Gap Kids', availability: 'in-stock', price: 1499, originalPrice: 1999, discount: 25, rating: 4.8, reviews: 620, image: 'https://images.unsplash.com/photo-1519238263530-99abad67b86b?w=600&auto=format&fit=crop', category: 'Fashion', subCategory: 'Clothing', gender: 'Kids', itemType: 'Winterwear', description: 'Soft and cozy.' },
+  { id: 'f-15', slug: 'school-wear', name: 'Classic School Uniform Shirt', brand: 'Marks & Spencer', availability: 'in-stock', price: 699, originalPrice: 899, discount: 22, rating: 4.5, reviews: 1200, image: 'https://images.unsplash.com/photo-1503919545889-aef636e10ad4?w=600&auto=format&fit=crop', category: 'Fashion', subCategory: 'Clothing', gender: 'Kids', itemType: 'Topwear', description: 'Easy iron fabric.' },
+  { id: 'f-16', slug: 'kids-shoes', name: 'Nike Revolution Kids Shoes', brand: 'Nike', availability: 'in-stock', price: 2995, originalPrice: 3495, discount: 14, rating: 4.7, reviews: 1500, image: 'https://images.unsplash.com/photo-1514989940723-e8e51635b782?w=600&auto=format&fit=crop', category: 'Fashion', subCategory: 'Accessories', gender: 'Kids', itemType: 'Accessories', description: 'Comfortable running shoes.' },
 
-  // --- HOODIES ---
-  {
-    id: 'cl-7', slug: 'nike-tech-fleece', name: 'Nike Tech Fleece Hoodie', brand: 'Nike',
-    category: 'Clothing', subCategory: 'Hoodies',
-    description: 'Lightweight warmth with a sleek, modern silhouette.',
-    price: 7495, originalPrice: 9995, discount: 25, rating: 4.7, reviews: 4300,
-    image: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 4 days',
-    labels: ['PREMIUM'], colors: ['#2c3e50', '#7f8c8d', '#000000'],
-    specifications: { Material: 'Nike Tech Fleece', Fit: 'Slim', Hood: 'Adjustable Drawcord' }
-  },
-  {
-    id: 'cl-8', slug: 'hm-oversized-hoodie', name: 'H&M Oversized Cotton Hoodie', brand: 'H&M',
-    category: 'Clothing', subCategory: 'Hoodies',
-    description: 'Relaxed oversized hoodie in soft organic cotton.',
-    price: 1499, originalPrice: 1999, discount: 25, rating: 4.4, reviews: 5600,
-    image: 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 3 days',
-    labels: ['VALUE PICK'], colors: ['#bdc3c7', '#2c3e50', '#8e44ad'],
-    specifications: { Material: 'Organic Cotton', Fit: 'Oversized', Care: 'Machine Wash 40°' }
-  },
+  // --- MORE BOTTOMWEAR & OTHERS ---
+  { id: 'f-17', slug: 'joggers-unisex', name: 'Under Armour Fleece Joggers', brand: 'Under Armour', availability: 'in-stock', price: 3499, originalPrice: 4499, discount: 22, rating: 4.7, reviews: 2200, image: 'https://images.unsplash.com/photo-1552902865-b72c031ac5ea?w=600&auto=format&fit=crop', category: 'Fashion', subCategory: 'Clothing', gender: 'Unisex', itemType: 'Bottomwear', description: 'Performance joggers.' },
+  { id: 'f-18', slug: 'trousers-men', name: 'Allen Solly Chinos', brand: 'Allen Solly', availability: 'in-stock', price: 2299, originalPrice: 2999, discount: 23, rating: 4.6, reviews: 1800, image: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&auto=format&fit=crop', category: 'Fashion', subCategory: 'Clothing', gender: 'Men', itemType: 'Bottomwear', description: 'Smart casual chinos.' },
+  { id: 'f-19', slug: 'shorts-men', name: 'Adidas Running Shorts', brand: 'Adidas', availability: 'in-stock', price: 1599, originalPrice: 1999, discount: 20, rating: 4.5, reviews: 1400, image: 'https://images.unsplash.com/photo-1533681473489-0824b2234f9a?w=600&auto=format&fit=crop', category: 'Fashion', subCategory: 'Clothing', gender: 'Men', itemType: 'Bottomwear', description: 'Breathable running shorts.' },
+  
+  // --- MORE WINTERWEAR ---
+  { id: 'f-20', slug: 'sweater-women', name: 'Tommy Hilfiger Knit Sweater', brand: 'Tommy Hilfiger', availability: 'in-stock', price: 4999, originalPrice: 6599, discount: 24, rating: 4.8, reviews: 750, image: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=600&auto=format&fit=crop', category: 'Fashion', subCategory: 'Clothing', gender: 'Women', itemType: 'Winterwear', description: 'Premium wool blend.' },
+  { id: 'f-21', slug: 'trench-coat', name: 'Burberry Style Trench Coat', brand: 'Marks & Spencer', availability: 'in-stock', price: 8999, originalPrice: 11999, discount: 25, rating: 4.9, reviews: 420, image: 'https://images.unsplash.com/photo-1520975954732-57dd22299614?w=600&auto=format&fit=crop', category: 'Fashion', subCategory: 'Clothing', gender: 'Women', itemType: 'Winterwear', description: 'Classic weather protection.' },
 
-  // --- JACKETS ---
-  {
-    id: 'cl-9', slug: 'zara-leather-jacket', name: 'Zara Faux Leather Biker Jacket', brand: 'Zara',
-    category: 'Clothing', subCategory: 'Jackets',
-    description: 'Premium faux leather jacket with asymmetric zip.',
-    price: 5990, originalPrice: 7990, discount: 25, rating: 4.6, reviews: 1900,
-    image: 'https://images.unsplash.com/photo-1551028150-64b9f398f678?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 5 days',
-    labels: ['PREMIUM'], colors: ['#000000', '#8B4513'],
-    specifications: { Material: 'Faux Leather', Fit: 'Slim', Closure: 'Asymmetric Zip' }
-  },
-
-  // --- FORMAL ---
-  {
-    id: 'cl-10', slug: 'levis-trucker-jacket', name: "Levi's Trucker Jacket", brand: "Levi's",
-    category: 'Clothing', subCategory: 'Jackets',
-    description: 'The original denim jacket — an American icon since 1967.',
-    price: 4999, originalPrice: 6999, discount: 29, rating: 4.7, reviews: 3800,
-    image: 'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600&auto=format&fit=crop',
-    availability: 'in-stock', deliveryDate: 'Delivery in 4 days',
-    labels: ['ICONIC', 'CLASSIC'], colors: ['#2c3e50', '#5dade2'],
-    specifications: { Material: '100% Cotton Denim', Fit: 'Classic', Pockets: '4 Pockets' }
-  },
+  // --- ACCESSORIES ---
+  { id: 'f-22', slug: 'watch-men', name: 'Fossil Chronograph Watch', brand: 'Fossil', availability: 'in-stock', price: 9995, originalPrice: 12495, discount: 20, rating: 4.8, reviews: 3100, image: 'https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=600&auto=format&fit=crop', category: 'Fashion', subCategory: 'Accessories', gender: 'Men', itemType: 'Accessories', description: 'Stainless steel elegance.' },
+  { id: 'f-23', slug: 'cap-unisex', name: 'New Era NY Baseball Cap', brand: 'New Era', availability: 'in-stock', price: 1899, originalPrice: 2299, discount: 17, rating: 4.7, reviews: 4500, image: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600&auto=format&fit=crop', category: 'Fashion', subCategory: 'Accessories', gender: 'Unisex', itemType: 'Accessories', description: 'Classic street style.' },
+  { id: 'f-24', slug: 'sunglasses-unisex', name: 'Ray-Ban Aviator Classic', brand: 'Ray-Ban', availability: 'in-stock', price: 8590, originalPrice: 9590, discount: 10, rating: 4.9, reviews: 5200, image: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=600&auto=format&fit=crop', category: 'Fashion', subCategory: 'Accessories', gender: 'Unisex', itemType: 'Accessories', description: 'Iconic aviator sunglasses.' },
+  { id: 'f-25', slug: 'belt-men', name: 'Tommy Hilfiger Leather Belt', brand: 'Tommy Hilfiger', availability: 'in-stock', price: 2499, originalPrice: 3299, discount: 24, rating: 4.6, reviews: 1800, image: 'https://images.unsplash.com/photo-1624222247344-550fb60583dc?w=600&auto=format&fit=crop', category: 'Fashion', subCategory: 'Accessories', gender: 'Men', itemType: 'Accessories', description: 'Genuine leather.' },
+  { id: 'f-26', slug: 'wallet-men', name: 'Wildcraft Leather Wallet', brand: 'Wildcraft', availability: 'in-stock', price: 999, originalPrice: 1499, discount: 33, rating: 4.5, reviews: 2600, image: 'https://images.unsplash.com/photo-1627123424574-724758594e93?w=600&auto=format&fit=crop', category: 'Fashion', subCategory: 'Accessories', gender: 'Men', itemType: 'Accessories', description: 'Slim bi-fold wallet.' },
 ];
