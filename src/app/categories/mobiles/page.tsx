@@ -1,6 +1,6 @@
 'use client';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { 
   Home, 
   LayoutGrid, 
@@ -9,11 +9,14 @@ import {
   ShoppingBag, 
   Heart, 
   User, 
-  HelpCircle, 
-  Plus, 
-  Minus, 
   Trash2, 
   ChevronLeft, 
+  Plus, 
+  Minus, 
+  HelpCircle, 
+  Laptop, 
+  Smartphone, 
+  Shirt, 
   ChevronDown, 
   ArrowRight, 
   ShieldCheck, 
@@ -21,66 +24,41 @@ import {
   Truck, 
   Grid, 
   List, 
-  Smartphone, 
-  UtensilsCrossed, 
-  Laptop, 
-  Shirt
+  UtensilsCrossed
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCartStore } from '@/store/cartStore';
 import styles from './mobiles.module.css';
-
-const menuItems = [
-  { icon: Home, label: 'Home', href: '/' },
-  { icon: Tag, label: 'Deals', href: '/deals' },
-  { icon: Sparkles, label: 'New Arrivals', href: '/new-arrivals' },
-];
-
-const categoryItems = [
-  { icon: UtensilsCrossed, label: 'Grocery', href: '/categories/grocery' },
-  { icon: Smartphone, label: 'Mobiles', href: '/categories/mobiles', active: true },
-  { icon: Laptop, label: 'Electronics', href: '/categories/electronics' },
-  { icon: Shirt, label: 'Fashion', href: '/categories/fashion' },
-  { icon: Sparkles, label: 'Beauty', href: '/categories/beauty' },
-  { icon: LayoutGrid, label: 'Appliances', href: '/categories/appliances' },
-];
+import SafeImage from '@/components/ui/SafeImage';
+import { allMobileProducts } from '@/data/mobileData';
 
 const categoryPills = [
   'All', 'Smartphones', 'iPhone', 'Samsung', 'OnePlus', 'Google', 'Accessories'
-];
-
-const mobileProducts = [
-  { id: 1, name: 'Apple iPhone 15', specs: '128GB, Blue', price: 79900, originalPrice: 89900, discount: '-11%', image: 'https://images.unsplash.com/photo-1696446701796-da61225697cc?auto=format&fit=crop&w=400&q=80' },
-  { id: 2, name: 'Samsung Galaxy S24', specs: '256GB, Marble Gray', price: 74999, originalPrice: 84999, discount: '-12%', image: 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=400&q=80' },
-  { id: 3, name: 'OnePlus 12R', specs: '256GB, Iron Gray', price: 39999, originalPrice: 45999, discount: '-13%', image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=400&q=80' },
-  { id: 4, name: 'Google Pixel 8', specs: '128GB, Hazel', price: 52999, originalPrice: 59999, discount: '-12%', image: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=400&q=80' },
-  { id: 5, name: 'Apple iPhone 14', specs: '128GB, Midnight', price: 59900, originalPrice: 69900, discount: '-14%', image: 'https://images.unsplash.com/photo-1663499482523-1c0c1bae4ce1?auto=format&fit=crop&w=400&q=80' },
-  { id: 6, name: 'Samsung Galaxy S23 FE', specs: '128GB, Purple', price: 39999, originalPrice: 44999, discount: '-11%', image: 'https://images.unsplash.com/photo-1678911820864-e2c567c655d7?auto=format&fit=crop&w=400&q=80' },
-];
-
-const cartItems = [
-  { id: 1, name: 'iPhone 15', specs: '128GB, Blue', price: 79900, quantity: 1, image: 'https://images.unsplash.com/photo-1696446701796-da61225697cc?auto=format&fit=crop&w=100&q=80', color: '#8B5CF6' },
-  { id: 2, name: 'Galaxy S24', specs: '256GB, Marble Gray', price: 74999, quantity: 1, image: 'https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?auto=format&fit=crop&w=100&q=80', color: '#3B82F6' },
-  { id: 3, name: 'OnePlus 12R', specs: '256GB, Iron Gray', price: 39999, quantity: 1, image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=100&q=80', color: '#10B981' },
 ];
 
 const MobilesPage = () => {
   const [activeTab, setActiveTab] = useState('All');
   const { items, addItem, removeItem, updateQuantity, getSubtotal } = useCartStore();
 
-  return (
-    <div className={styles.mobilesLayout}>
-      {/* LEFT SIDEBAR */}
-      
+  const filteredProducts = useMemo(() => {
+    if (activeTab === 'All') return allMobileProducts;
+    if (activeTab === 'Smartphones') return allMobileProducts.filter(p => p.subCategory === 'Smartphones');
+    if (activeTab === 'Accessories') return allMobileProducts.filter(p => p.subCategory === 'Accessories');
+    // Map specific brands
+    if (activeTab === 'iPhone') return allMobileProducts.filter(p => p.brand === 'Apple' && p.subCategory === 'Smartphones');
+    return allMobileProducts.filter(p => p.brand === activeTab && p.subCategory === 'Smartphones');
+  }, [activeTab]);
 
+  return (
+    <div className={styles.mobileLayout}>
       {/* MAIN CONTENT */}
       <main className={styles.mainContent}>
         <header className={styles.header}>
           <div className={styles.headerLeft}>
-            <div className={styles.headerIcon}><Smartphone size={32} color="#8B5CF6" /></div>
+            <div className={styles.headerIcon}>📱</div>
             <div>
-              <h1>Mobiles</h1>
-              <p>Smartphones that keep you ahead.</p>
+              <h1>Premium Mobiles</h1>
+              <p>Discover the latest flagship smartphones and accessories.</p>
             </div>
           </div>
           <div className={styles.headerActions}>
@@ -91,47 +69,69 @@ const MobilesPage = () => {
 
         <div className={styles.categoryBar}>
           {categoryPills.map((cat) => (
-            <button 
+            <motion.button 
               key={cat} 
               className={`${styles.catPill} ${activeTab === cat ? styles.catActive : ''}`}
               onClick={() => setActiveTab(cat)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               {cat}
-            </button>
+            </motion.button>
           ))}
         </div>
 
-        <div className={styles.productGrid}>
-          {mobileProducts.map((product) => (
-            <motion.div 
-              key={product.id} 
-              className={styles.productCard}
-              whileHover={{ y: -5 }}
-            >
-              <div className={styles.discountBadge}>{product.discount}</div>
-              <button className={styles.wishlistBtn}><Heart size={18} /></button>
-              <div className={styles.productImg}>
-                <img src={product.image} alt={product.name} />
-              </div>
-              <div className={styles.productInfo}>
-                <h3>{product.name}</h3>
-                <span>{product.specs}</span>
-                <div className={styles.priceRow}>
-                  <div>
-                    <span className={styles.price}>₹{product.price.toLocaleString('en-IN')}</span>
-                    <span className={styles.oldPrice}>₹{product.originalPrice.toLocaleString('en-IN')}</span>
-                  </div>
-                  <button className={styles.addBtn} onClick={() => addItem(product as any)}><Plus size={18} /></button>
+        <motion.div 
+          className={styles.productGrid}
+          layout
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredProducts.map((product, index) => (
+              <motion.div 
+                key={product.id} 
+                className={styles.productCard}
+                layout
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9, y: -20 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+              >
+                {product.discount > 0 && (
+                  <div className={styles.discountBadge}>-{product.discount}%</div>
+                )}
+                <button className={styles.wishlistBtn}><Heart size={18} /></button>
+                <div className={styles.productImg}>
+                  <SafeImage 
+                    src={product.image} 
+                    alt={product.name} 
+                    fill 
+                    style={{ objectFit: 'contain' }}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+                <div className={styles.productInfo}>
+                  <h3>{product.name}</h3>
+                  <span>{product.description}</span>
+                  <div className={styles.priceRow}>
+                    <div>
+                      <span className={styles.price}>₹{product.price.toLocaleString('en-IN')}</span>
+                      {product.originalPrice > product.price && (
+                        <span className={styles.oldPrice}>₹{product.originalPrice.toLocaleString('en-IN')}</span>
+                      )}
+                    </div>
+                    <button className={styles.addBtn} onClick={() => addItem(product as any)}><Plus size={18} /></button>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
 
-        <div className={styles.showMore}>
-          <span>Show More</span>
-          <ChevronDown size={18} />
-        </div>
+        {filteredProducts.length === 0 && (
+          <div className={styles.emptyState}>
+            <p>No products found in this category.</p>
+          </div>
+        )}
       </main>
 
       {/* RIGHT SIDEBAR (CART) */}
@@ -143,46 +143,84 @@ const MobilesPage = () => {
         </div>
 
         <div className={styles.cartList}>
-          {items.map((item) => (
-            <div key={item.id} className={styles.cartItem}>
-              <div className={styles.itemImg}>
-                <img src={item.image} alt={item.name} />
-              </div>
-              <div className={styles.itemInfo}>
-                <h4>{item.name}</h4>
-                <div className={styles.itemPrice}>₹{item.price.toLocaleString('en-IN')}</div>
-              </div>
-              <div className={styles.itemActions}>
-                <div className={styles.qtyBox}>
-                  <button onClick={() => updateQuantity(item.id, item.quantity - 1)}><Minus size={14} /></button>
-                  <span>{item.quantity}</span>
-                  <button onClick={() => updateQuantity(item.id, item.quantity + 1)}><Plus size={14} /></button>
+          <AnimatePresence>
+            {items.map((item) => (
+              <motion.div 
+                key={item.id} 
+                className={styles.cartItem}
+                layout
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+              >
+                <div className={styles.itemImg}>
+                  <SafeImage 
+                    src={item.image} 
+                    alt={item.name} 
+                    fill 
+                    style={{ objectFit: 'contain' }} 
+                    sizes="60px"
+                  />
                 </div>
-              </div>
+                <div className={styles.itemInfo}>
+                  <h4>{item.name}</h4>
+                  <div className={styles.itemPrice}>₹{item.price.toLocaleString('en-IN')}</div>
+                </div>
+                <div className={styles.itemActions}>
+                  <div className={styles.qtyBox}>
+                    <button onClick={() => updateQuantity(item.id, item.quantity - 1)}><Minus size={14} /></button>
+                    <span>{item.quantity}</span>
+                    <button onClick={() => updateQuantity(item.id, item.quantity + 1)}><Plus size={14} /></button>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+          {items.length === 0 && (
+            <div className={styles.emptyCart}>
+              <ShoppingBag size={48} opacity={0.2} color="#3B82F6" />
+              <p>Your cart is empty</p>
             </div>
-          ))}
+          )}
         </div>
 
-        <div className={styles.cartSummary}>
-          <div className={styles.summaryRow}>
-            <span>Delivered To:</span>
-            <strong>Home</strong>
+        {items.length > 0 && (
+          <div className={styles.cartSummary}>
+            <div className={styles.summaryRow}>
+              <span>Delivered To:</span>
+              <strong>Home</strong>
+            </div>
+            <div className={styles.summaryRow}>
+              <span>Delivery Charges:</span>
+              <strong>Free</strong>
+            </div>
+            <div className={styles.totalRow}>
+              <span>TOTAL</span>
+              <strong>₹{getSubtotal().toLocaleString('en-IN')}</strong>
+            </div>
+            <Link href="/checkout">
+              <button className={styles.payBtn}>PROCEED TO PAY</button>
+            </Link>
           </div>
-          <div className={styles.summaryRow}>
-            <span>Delivery Charges:</span>
-            <strong>₹49</strong>
-          </div>
-          <div className={styles.totalRow}>
-            <span>TOTAL</span>
-            <strong>₹{(getSubtotal() + 49).toLocaleString('en-IN')}</strong>
-          </div>
-          <Link href="/checkout">
-            <button className={styles.payBtn}>PROCEED TO PAY</button>
-          </Link>
-        </div>
+        )}
 
         <div className={styles.trustBadges}>
-          {/* Reuse the badges from grocery or stick to image style */}
+          <div className={styles.badgeItem}>
+            <div className={styles.badgeIcon}><ShieldCheck size={14} /></div>
+            <span>100% Original</span>
+          </div>
+          <div className={styles.badgeItem}>
+            <div className={styles.badgeIcon}><RotateCcw size={14} /></div>
+            <span>Easy Returns</span>
+          </div>
+          <div className={styles.badgeItem}>
+            <div className={styles.badgeIcon}><Truck size={14} /></div>
+            <span>Free Delivery</span>
+          </div>
+          <div className={styles.badgeItem}>
+            <div className={styles.badgeIcon}><ShieldCheck size={14} /></div>
+            <span>Secure Payment</span>
+          </div>
         </div>
       </aside>
     </div>
