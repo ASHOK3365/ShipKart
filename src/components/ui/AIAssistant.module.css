@@ -21,7 +21,7 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, rgba(139, 92, 246, 0) 70%);
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.4) 0%, rgba(236, 72, 153, 0) 70%);
   border-radius: 50%;
   animation: pulse 2s infinite ease-in-out;
 }
@@ -37,7 +37,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 0 20px rgba(236, 72, 153, 0.3);
   overflow: hidden;
 }
 
@@ -48,7 +48,7 @@
   left: -50%;
   width: 200%;
   height: 200%;
-  background: conic-gradient(from 180deg at 50% 50%, #8B5CF6 0deg, #EC4899 120deg, #8B5CF6 360deg);
+  background: conic-gradient(from 180deg at 50% 50%, #EC4899 0deg, #F472B6 120deg, #EC4899 360deg);
   opacity: 0.2;
   animation: rotate 4s linear infinite;
 }
@@ -267,4 +267,201 @@
 .sendBtn:hover {
   transform: scale(1.05);
   background: #7C3AED;
+}
+.messageContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.recommendationsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.productRecCard {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: all 0.2s;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.productRecCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.06);
+}
+
+.recImg {
+  width: 100%;
+  height: 100px;
+  position: relative;
+  background: #f8fafc;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.recInfo h4 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.recMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+}
+
+.recPrice {
+  font-weight: 800;
+  color: #8b5cf6;
+}
+
+.recRating {
+  color: #f59e0b;
+  font-weight: 600;
+}
+
+.recAddBtn {
+  width: 100%;
+  padding: 0.4rem;
+  background: #f1f5f9;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #475569;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  transition: all 0.2s;
+}
+
+.recAddBtn:hover {
+  background: #8b5cf6;
+  color: white;
+}
+
+.recipeCard {
+  background: linear-gradient(135deg, #ffffff 0%, #fff1f2 100%);
+  border: 1px solid #fecdd3;
+  border-radius: 20px;
+  padding: 1.25rem;
+  box-shadow: 0 8px 20px rgba(244, 114, 182, 0.1);
+}
+
+.recipeHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.recipeIcon {
+  color: #ec4899;
+}
+
+.recipeHeader h4 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #be185d;
+}
+
+.recipeList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.recipeList li {
+  font-size: 0.9rem;
+  color: #4b5563;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.itemCheck {
+  color: #10b981;
+}
+
+.recipeAddAll {
+  width: 100%;
+  padding: 0.75rem;
+  background: #be185d;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(190, 24, 93, 0.2);
+  transition: all 0.2s;
+}
+
+.recipeAddAll:hover {
+  background: #9d174d;
+  transform: translateY(-1px);
+}
+
+.comparisonCard {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.comparisonCard h4 {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.95rem;
+  color: #1e293b;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.comparisonCard table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+}
+
+.comparisonCard th {
+  text-align: left;
+  padding: 0.5rem;
+  background: #f8fafc;
+  color: #64748b;
+  font-weight: 700;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.comparisonCard td {
+  padding: 0.5rem;
+  border-bottom: 1px solid #f1f5f9;
+  color: #475569;
+}
+
+.comparisonCard tr:last-child td {
+  border-bottom: none;
 }
