@@ -198,7 +198,12 @@ const AIAssistant = () => {
                       <div className={styles.messageBubble}>{msg.text}</div>
                     ) : (
                       <>
-                        {msg.data?.message && <div className={styles.messageBubble}>{msg.data.message}</div>}
+                        {/* Always show a message bubble if it exists or if no rich content exists */}
+                        {(msg.data?.message || (!msg.data?.recommendations && !msg.data?.recipe && !msg.data?.comparison)) && (
+                          <div className={styles.messageBubble}>
+                            {msg.data?.message || "I'm looking that up for you..."}
+                          </div>
+                        )}
                         
                         {msg.data?.recommendations && msg.data.recommendations.length > 0 && (
                           <div className={styles.recommendationsGrid}>

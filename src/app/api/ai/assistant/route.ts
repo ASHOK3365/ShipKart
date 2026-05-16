@@ -20,7 +20,7 @@ export async function POST(req: Request) {
     }));
 
     const systemPrompt = `You are AXOR AI, a highly advanced, premium Smart Shopping Assistant for Shipkart Commerce OS.
-Your goal is to be helpful, concise, and actionable.
+Your goal is to be helpful, concise, and provide expert shopping recommendations.
 
 INTENT DETECTION:
 - Recipe Intent: User asks for recipe ingredients (e.g., "biryani recipe").
@@ -33,11 +33,13 @@ CATALOG KNOWLEDGE:
 Available Products: ${JSON.stringify(catalog.slice(0, 100))}
 
 RESPONSE FORMAT:
-You MUST respond in valid JSON format ONLY. No markdown, no extra text.
+You MUST respond with a SINGLE JSON OBJECT ONLY. 
+CRITICAL: The "message" field MUST ALWAYS be present and non-empty.
+
 JSON Structure:
 {
   "intent": "recipe | budget | comparison | shopping | gift | general",
-  "message": "A friendly, expert shopping response.",
+  "message": "A friendly, expert shopping response. This field is mandatory.",
   "recommendations": [ { "id": "p-id", "name": "Name", "price": 100, "rating": 4.5, "image": "url" } ],
   "recipe": { "title": "Recipe Name", "items": ["Product Name 1", "Product Name 2"] },
   "comparison": { 
@@ -49,17 +51,16 @@ JSON Structure:
 }
 
 RULES:
-- Only recommend products that exist in the catalog provided.
-- If a recipe is requested, list the items and find matching products from the catalog if possible.
-- For comparison, create a table-like structure in the "comparison" field.
-- For budget, filter by price.
-- Never mention "system initialized" or "re-synchronize". Be human and premium.
+- Never return empty JSON.
+- Never return text outside the JSON object.
+- If recommending, use IDs from the provided catalog.
+- Be premium, professional, and helpful.
 
 User query: ${query}
 Current Cart: ${JSON.stringify(context.cart)}
 `;
 
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-live-preview:generateContent?key=${GEMINI_API_KEY}`, {
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -73,13 +74,20 @@ Current Cart: ${JSON.stringify(context.cart)}
 
     const data = await response.json();
     
-    let aiText = data.candidates?.[0]?.content?.parts?.[0]?.text || "{}";
+    let aiText = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
     
-    // Clean up potential markdown wrapping if AI ignores the "JSON ONLY" rule
-    aiText = aiText.replace(/```json/g, '').replace(/```/g, '').trim();
+    // Improved JSON cleaning
+    const jsonMatch = aiText.match(/\{[\s\S]*\}/);
+    if (jsonMatch) {
+      aiText = jsonMatch[0];
+    }
 
     try {
       const parsedData = JSON.parse(aiText);
+      // Ensure there is always a message
+      if (!parsedData.message && !parsedData.recommendations && !parsedData.recipe && !parsedData.comparison) {
+        parsedData.message = "I've analyzed your request. Here's what I found.";
+      }
       return NextResponse.json({ success: true, data: parsedData });
     } catch (parseError) {
       console.error('AI JSON Parse Error:', parseError, aiText);
@@ -87,8 +95,8 @@ Current Cart: ${JSON.stringify(context.cart)}
         success: true, 
         data: { 
           intent: 'general', 
-          message: aiText || "I'm processing your request. How can I help you find products today?",
-          suggestions: ["Best budget phones", "Recipe items", "Gift ideas"]
+          message: aiText || "I'm having trouble processing that right now. Could you rephrase your shopping request?",
+          suggestions: ["Best budget phones", "Maggi recipe items", "Compare headphones"]
         } 
       });
     }
