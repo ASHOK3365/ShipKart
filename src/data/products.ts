@@ -38,7 +38,7 @@ import { allGroceryProducts } from './groceryData';
 import { allMobileProducts } from './mobileData';
 import { allElectronicsProducts } from './electronicsData';
 import { allApplianceProducts } from './applianceData';
-import { allClothingProducts } from './clothingData';
+import { allFashionProducts } from './clothingData';
 import { allBeautyProducts } from './beautyData';
 import { allTwoWheelerProducts } from './twoWheelerData';
 
@@ -52,7 +52,7 @@ const generateProducts = (): Product[] => {
   allProducts.push(...allMobileProducts);
   allProducts.push(...allElectronicsProducts);
   allProducts.push(...allApplianceProducts);
-  allProducts.push(...allClothingProducts);
+  allProducts.push(...allFashionProducts);
   allProducts.push(...allBeautyProducts);
   allProducts.push(...allTwoWheelerProducts);
 
